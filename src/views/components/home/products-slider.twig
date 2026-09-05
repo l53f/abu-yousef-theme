@@ -1,27 +1,46 @@
 {#
-| Variable              | Type      | Description                                                      |
-|-----------------------|-----------|------------------------------------------------------------------|
-| products.source       | string    |                                                                  |
-| products.source_value | ?int[]    | ids of sources (product_ids, categories_ids, brands_id..etc)     |
-| products.source_value | ?int      | limit of products                                                |
-| title                 | string    | Section title                                                    |
-| display_all_url       | ?string   | If it's existed, mean should show load more link to this url     |
-| position              | Int       | Sorting number start from zero                                   |
-| limit                 | int       | Number of products to be shown                                   |
+| القسم ٤ — شريط المنتجات الأكثر مبيعاً (Products Slider)                        |
+|-----------------------|-----------|----------------------------------------------|
+| title                 | string    | عنوان القسم                                  |
+| sub_title             | ?string   | عنوان فرعي                                   |
+| products.source       | string    | مصدر المنتجات (مثال: best_selling)           |
+| products.source_value | ?int[]    | معرّفات المصدر                               |
+| display_all_url       | ?string   | رابط "عرض الكل"                              |
+| limit                 | int       | عدد المنتجات                                 |
+| position              | int       | ترتيب القسم يبدأ من صفر                      |
 #}
+<section component-id="{{ componentId }}"
+         data-testid="store-home-products-slider"
+         id="best-offers-{{ position }}-slider"
+         class="s-block s-block--best-offers container overflow-hidden ay-bestsellers">
 
-<section component-id="{{ componentId }}" data-testid="store-home-products-slider" id="best-offers-{{ position }}-slider" class="s-block s-block--best-offers container overflow-hidden">
   {% if products|length %}
+    {# الترويسة مكتوبة داخل الثيم كي تُطبَّق عليها خطوط وألوان الهوية بالكامل #}
+    {% if title %}
+      <div class="s-block__title ay-block-title ay-bestsellers__head">
+        <div class="right-side">
+          <h2>{{ title }}</h2>
+          {% if sub_title %}
+            <p>{{ sub_title|raw }}</p>
+          {% endif %}
+        </div>
+
+        {% if display_all_url %}
+          <a href="{{ display_all_url }}" class="s-block__display-all">
+            {{ trans('blocks.home.display_all') }}
+            <i class="sicon-arrow-left" aria-hidden="true"></i>
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
     <salla-products-slider
-            data-testid="store-home-products-slider-widget"
-            source="{{ products.source }}"
-            limit="{{ limit }}"
-            autoplay
-            source-value="{{ products.source_value|json_encode }}"
-            display-all-url="{{display_all_url}}"
-            block-title="{{ title }}"
-            block-subTitle="{{ sub_title|raw }}"
-            slider-id="slider-with-bg-{{ position }}"
-    ></salla-products-slider>
+      data-testid="store-home-products-slider-widget"
+      source="{{ products.source }}"
+      limit="{{ limit }}"
+      autoplay
+      source-value="{{ products.source_value|json_encode }}"
+      slider-id="slider-with-bg-{{ position }}">
+    </salla-products-slider>
   {% endif %}
 </section>

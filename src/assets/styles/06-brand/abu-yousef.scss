@@ -1,0 +1,393 @@
+/* ==========================================================================
+   أبو يوسف للعطارة — طبقة الهوية البصرية
+   --------------------------------------------------------------------------
+   يجب استيراد هذا الملف *آخر* ملف في app.scss حتى يتغلّب على قيم الثيم
+   الافتراضية وعلى ملف 05-utilities/font-customization.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1) الرموز (Design Tokens)
+   -------------------------------------------------------------------------- */
+:root {
+  /* ألوان الهوية */
+  --brand-crimson:    #cd103d;
+  --brand-crimson-d:  #a30c30;
+  --brand-crimson-l:  #e5476d;
+  --brand-sand:       #fef6e9;
+  --brand-sand-2:     #f7e8d0;
+  --brand-sand-3:     #f2dcbc;
+  --brand-olive:      #375b41;
+  --brand-olive-l:    #4d7758;
+  --brand-olive-soft: #5d7d67;
+
+  /* الخطوط */
+  --font-display: "FODA Freestyle", "29LT Rewaya", Georgia, serif;
+  --font-body:    "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* ------------------------------------------------------------------
+     ربط رموز الثيم/مكونات سلة بالهوية.
+     ملاحظة: global.scss يُعرّف ‎--color-primary-d/-l‎ بينما tailwind.config.js
+     يقرأ ‎--color-primary-dark/-light‎ — لذلك نُعرّف الاسمين معاً.
+     ------------------------------------------------------------------ */
+  --color-primary:         var(--brand-crimson);
+  --color-primary-d:       var(--brand-crimson-d);
+  --color-primary-dark:    var(--brand-crimson-d);
+  --color-primary-l:       var(--brand-crimson-l);
+  --color-primary-light:   var(--brand-crimson-l);
+  --color-primary-reverse: #ffffff;
+
+  --main-text-color: var(--brand-olive);
+  --color-text:      var(--brand-olive-soft);
+  --color-grey:      var(--brand-sand-2);
+  --font-main:       "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* إيقاع المسافات بين أقسام الصفحة الرئيسية */
+  --ay-section-gap: 48px;
+}
+
+/* --------------------------------------------------------------------------
+   2) الأساسيات
+   -------------------------------------------------------------------------- */
+body {
+  background-color: var(--brand-sand);
+  color: var(--brand-olive);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5 {
+  color: var(--brand-olive);
+}
+
+/* عناوين الأقسام بخط العرض */
+.ay-block-title h2,
+.s-block__title h2 {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 400;
+  color: var(--brand-olive);
+}
+
+/* خط زخرفي صغير أسفل عنوان القسم */
+.ay-block-title .right-side h2::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 3px;
+  background: var(--brand-crimson);
+}
+
+.ay-block-title p {
+  font-family: var(--font-body);
+  color: var(--brand-olive-soft);
+}
+
+.s-block__display-all {
+  color: var(--brand-crimson);
+  opacity: 1;
+}
+.s-block__display-all:hover { color: var(--brand-crimson-d); }
+
+/* مسافات موحّدة بين أقسام الصفحة الرئيسية */
+.ay-hero,
+.ay-categories,
+.ay-packages,
+.ay-bestsellers,
+.ay-features,
+.ay-reviews { margin-bottom: var(--ay-section-gap); }
+
+/* --------------------------------------------------------------------------
+   3) الأزرار
+   -------------------------------------------------------------------------- */
+.btn--primary,
+.s-button-primary {
+  background-color: var(--brand-crimson);
+  border-color: var(--brand-crimson);
+  color: #fff;
+  font-family: var(--font-body);
+  transition: background-color .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+.btn--primary:hover,
+.s-button-primary:hover {
+  background-color: var(--brand-crimson-d);
+  border-color: var(--brand-crimson-d);
+  box-shadow: 0 8px 20px rgba(205, 16, 61, .25);
+}
+
+/* --------------------------------------------------------------------------
+   4) القسم ١ — البنرات العريضة (Main Slider)
+   -------------------------------------------------------------------------- */
+.ay-hero {
+  .ay-hero__slide {
+    position: relative;
+    background-color: var(--brand-olive);
+  }
+
+  /* تدرّج زيتوني بدل التعتيم الأسود الافتراضي */
+  .ay-hero__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .ay-hero__bg--overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(55, 91, 65, .78) 0%, rgba(55, 91, 65, .35) 60%, rgba(55, 91, 65, .15) 100%);
+  }
+
+  .ay-hero__content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .ay-hero__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: #fff;
+    font-size: clamp(28px, 5vw, 54px);
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+
+  .ay-hero__desc {
+    font-family: var(--font-body);
+    color: var(--brand-sand);
+    font-size: clamp(14px, 1.5vw, 18px);
+    line-height: 1.9;
+    margin-bottom: 26px;
+  }
+
+  .ay-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 30px;
+    border-radius: 999px;
+    background: var(--brand-crimson);
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 700;
+    transition: background-color .3s ease, transform .3s ease, box-shadow .3s ease;
+  }
+  .ay-hero__cta:hover {
+    background: #fff;
+    color: var(--brand-crimson);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .18);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5) القسم ٢ — التصنيفات البارزة (دوائر)
+   -------------------------------------------------------------------------- */
+.ay-categories {
+  .ay-cat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .ay-cat__ring {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: clamp(88px, 12vw, 128px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #fff;
+    border: 2px solid var(--brand-sand-3);
+    box-shadow: 0 6px 18px rgba(55, 91, 65, .08);
+    transition: transform .45s cubic-bezier(.22, .9, .28, 1),
+                border-color .45s ease,
+                box-shadow .45s ease;
+  }
+
+  .ay-cat__ring img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(.22, .9, .28, 1);
+  }
+
+  .ay-cat__ring i {
+    font-size: clamp(30px, 4vw, 42px);
+    color: var(--brand-crimson);
+    transition: transform .45s ease;
+  }
+
+  .ay-cat__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(15px, 1.6vw, 19px);
+    color: var(--brand-olive);
+    margin: 0;
+    transition: color .35s ease;
+  }
+
+  .ay-cat:hover .ay-cat__ring {
+    transform: translateY(-6px);
+    border-color: var(--brand-crimson);
+    box-shadow: 0 14px 30px rgba(205, 16, 61, .18);
+  }
+  .ay-cat:hover .ay-cat__ring img { transform: scale(1.08); }
+  .ay-cat:hover .ay-cat__ring i   { transform: scale(1.12); }
+  .ay-cat:hover .ay-cat__name     { color: var(--brand-crimson); }
+}
+
+/* --------------------------------------------------------------------------
+   6) القسم ٣ — شبكة البكجات والعروض
+   -------------------------------------------------------------------------- */
+.ay-packages {
+  position: relative;
+  padding: 38px 0 42px;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .55) 0%, rgba(247, 232, 208, .55) 100%);
+
+  .ay-packages__inner { padding-inline: 16px; }
+}
+
+/* --------------------------------------------------------------------------
+   7) القسم ٤ — شريط الأكثر مبيعاً
+   -------------------------------------------------------------------------- */
+.ay-bestsellers {
+  .ay-bestsellers__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8) القسم ٥ — مميزات المتجر
+   -------------------------------------------------------------------------- */
+.ay-features {
+  padding: 34px 0;
+
+  .ay-features__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    background: #fff;
+    border: 1px solid var(--brand-sand-3);
+    border-radius: 20px;
+    padding: 24px 18px;
+    box-shadow: 0 8px 26px rgba(55, 91, 65, .07);
+  }
+
+  .ay-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 12px 10px;
+    border-radius: 14px;
+    transition: background-color .35s ease, transform .35s ease;
+  }
+
+  .ay-feature__icon {
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: var(--brand-sand);
+    color: var(--brand-crimson);
+    font-size: 27px;
+    transition: background-color .35s ease, color .35s ease, transform .35s ease;
+  }
+
+  .ay-feature__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--brand-olive);
+    margin: 0;
+  }
+
+  .ay-feature__text {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--brand-olive-soft);
+    margin: 0;
+  }
+
+  .ay-feature:hover {
+    background: var(--brand-sand);
+    transform: translateY(-4px);
+  }
+  .ay-feature:hover .ay-feature__icon {
+    background: var(--brand-crimson);
+    color: #fff;
+    transform: scale(1.06);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9) القسم ٦ — آراء العملاء
+   -------------------------------------------------------------------------- */
+.ay-reviews {
+  padding: 46px 0;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(205, 16, 61, .05) 0, transparent 42%),
+    var(--brand-sand-2);
+  border-radius: 24px;
+
+  .ay-reviews__head {
+    text-align: center;
+    margin-bottom: 26px;
+  }
+  .ay-reviews__head h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(24px, 2.6vw, 32px);
+    color: var(--brand-olive);
+    margin: 0 0 8px;
+  }
+  .ay-reviews__head p {
+    font-family: var(--font-body);
+    color: var(--brand-olive-soft);
+    margin: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10) نقاط الاستجابة
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  :root { --ay-section-gap: 64px; }
+
+  .ay-features .ay-features__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 30px 22px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root { --ay-section-gap: 80px; }
+}
+
+/* احترام تفضيل تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  .ay-categories .ay-cat__ring,
+  .ay-categories .ay-cat__ring img,
+  .ay-categories .ay-cat__ring i,
+  .ay-features .ay-feature,
+  .ay-features .ay-feature__icon,
+  .ay-hero .ay-hero__cta {
+    transition: none !important;
+    transform: none !important;
+  }
+}

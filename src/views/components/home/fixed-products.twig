@@ -1,23 +1,35 @@
 {#
-| Variable              | Type      | Description                                                      |
-|-----------------------|-----------|------------------------------------------------------------------|
-| products.source       | string    |                                                                  |
-| products.source_value | ?int[]    | ids of sources (product_ids, categories_ids, brands_id..etc)     |
-| title                 | string    | Section title                                                    |
-| display_all_url       | ?string   | If it's existed, mean should show load more link to this url     |
-| position              | Int       | Sorting number start from zero                                   |
-| limit                 | int       | Number of products to be shown                                   |
+| القسم ٣ — شبكة البكجات والعروض (Grid)                                          |
+|-----------------------|-----------|----------------------------------------------|
+| title                 | string    | عنوان القسم                                  |
+| sub_title             | ?string   | عنوان فرعي                                   |
+| products.source       | string    | مصدر المنتجات                                |
+| products.source_value | ?int[]    | معرّفات المصدر                               |
+| display_all_url       | ?string   | رابط "عرض الكل"                              |
+| limit                 | int       | عدد المنتجات                                 |
+| position              | int       | ترتيب القسم يبدأ من صفر                      |
 #}
 {% set is_vertical = theme.settings.get('vertical_fixed_products', true) %}
-<section component-id="{{ componentId }}" data-testid="store-home-fixed-products" class="s-block container">
+
+<section component-id="{{ componentId }}"
+         data-testid="store-home-fixed-products"
+         class="s-block container ay-packages">
+  <div class="ay-packages__inner">
+
     {% if title %}
-      <div class="s-block__title">
+      <div class="s-block__title ay-block-title">
         <div class="right-side">
           <h2>{{ title }}</h2>
-          {# <p>عنوان فرعي توصيفي صغير</p> #}
+          {% if sub_title %}
+            <p>{{ sub_title|raw }}</p>
+          {% endif %}
         </div>
+
         {% if display_all_url %}
-            <a href="{{ display_all_url }}" class="s-block__display-all">{{ trans('blocks.home.display_all') }} <i class="sicon-arrow-left"></i></a>
+          <a href="{{ display_all_url }}" class="s-block__display-all">
+            {{ trans('blocks.home.display_all') }}
+            <i class="sicon-arrow-left" aria-hidden="true"></i>
+          </a>
         {% endif %}
       </div>
     {% endif %}
@@ -27,10 +39,9 @@
       source="{{ products.source }}"
       limit="{{ limit }}"
       source-value="{{ products.source_value|json_encode }}"
-      class="{{is_vertical ? 'vertical-products' : 'horizontal-products'}}"
-      {{is_vertical ? '' : 'horizontal-cards'}}
-      >
+      class="{{ is_vertical ? 'vertical-products' : 'horizontal-products' }}"
+      {{ is_vertical ? '' : 'horizontal-cards' }}>
     </salla-products-list>
+
+  </div>
 </section>
-
-

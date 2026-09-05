@@ -1,33 +1,49 @@
 {#
-| Variable                       | Type     | Description                                                                  |
-|--------------------------------|----------|------------------------------------------------------------------------------|
-| component                      | object   | Contains merchant settings for fields from twilight.json `component` section |
-| component.slides[].image       | string   | Image url                                                                    |
-| component.slides[].title       | ?string  |                                                                              |
-| component.slides[].description | ?string  |                                                                              |
-| component.slides               | object[] | list of slides                                                               |
-| position                       | int      | Sorting number start from zero                                               |
+| القسم ١ — البنرات العريضة (Main Slider)                                       |
+|--------------------------------|----------|------------------------------------|
+| component.slides[].image       | string   | رابط الصورة                        |
+| component.slides[].title       | ?string  |                                    |
+| component.slides[].description | ?string  |                                    |
+| component.slides[].link        | ?string  | رابط الزر (إن وفّره التاجر)        |
+| component.slides[].without_overlay | bool | إلغاء التعتيم فوق الصورة          |
+| position                       | int      | ترتيب القسم يبدأ من صفر            |
 #}
-<section component-id="{{ componentId }}" data-testid="store-home-slider" class="s-block s-block--hero-slider s-block--full-bg wide-placeholder"> 
-    <salla-slider 
-      id="main-slider-{{ position }}"
-      auto-play
-      static-when-single
-      slider-config='{"lazy":"false"}'
-      {{ component.slides|length > 1 ? '' : 'show-controls="false"' }}
-      type="fullwidth">
-        <div slot="items">
-            {% for slide in component.slides %}
-                <div class="swiper-slide w-full min-h-[300px] lg:min-h-[528px] bg-dark relative">
-					<div style="background-image: url({{ slide.image }});" class="{{ slide.without_overlay ? '' : 'overlay-bg' }} bg-cover bg-center absolute inset-0"></div>
-                    <div class="flex-center container pb-16 sm:pb-0 home-slider__content relative h-full">
-                        <div class=" w-4/6 text-center md:w-7/12 lg:w-5/12 text-white">
-                            <h2 data-swiper-parallax="-500" class="lg:text-title-size font-bold leading-tight mb-4">{{ slide.title }}</h2>
-                            <p data-swiper-parallax="-300" class="line-clamp-2 description">{{ slide.description }}</p>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+<section component-id="{{ componentId }}"
+         data-testid="store-home-slider"
+         class="s-block s-block--hero-slider s-block--full-bg ay-hero wide-placeholder">
+  <salla-slider
+    id="main-slider-{{ position }}"
+    auto-play
+    static-when-single
+    slider-config='{"lazy":"false"}'
+    {{ component.slides|length > 1 ? '' : 'show-controls="false"' }}
+    type="fullwidth">
+    <div slot="items">
+      {% for slide in component.slides %}
+        <div class="swiper-slide w-full ay-hero__slide">
+          <div class="ay-hero__bg {{ slide.without_overlay ? '' : 'ay-hero__bg--overlay' }}"
+               style="background-image: url('{{ slide.image }}');"></div>
+
+          <div class="container ay-hero__content">
+            <div class="w-full sm:w-8/12 lg:w-1/2 rtl:text-right ltr:text-left">
+              {% if slide.title %}
+                <h2 data-swiper-parallax="-500" class="ay-hero__title">{{ slide.title }}</h2>
+              {% endif %}
+
+              {% if slide.description %}
+                <p data-swiper-parallax="-300" class="ay-hero__desc line-clamp-3">{{ slide.description }}</p>
+              {% endif %}
+
+              {% if slide.link %}
+                <a href="{{ slide.link }}" data-swiper-parallax="-200" class="ay-hero__cta">
+                  <span>{{ trans('blocks.home.display_all') }}</span>
+                  <i class="sicon-arrow-left" aria-hidden="true"></i>
+                </a>
+              {% endif %}
+            </div>
+          </div>
         </div>
-    </salla-slider>
-</section> 
+      {% endfor %}
+    </div>
+  </salla-slider>
+</section>

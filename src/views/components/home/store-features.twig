@@ -1,22 +1,24 @@
 {#
-| Variable      | Type   | Description                                                      |
-|---------------|--------|------------------------------------------------------------------|
-| items[]       | array  | List of 3 features                                               |
-| items[].icon  | string | SallaIcons css class `sicon-*`                                   |
-| items[].title | string | Title of the feature                                             |
-| items[].text  | string | Subtitle for the feature                                         |
-| position      | Int    | Sorting number start from zero                                   |
+| القسم ٥ — مميزات المتجر (Store Features)                                       |
+|---------------|--------|---------------------------------------------------------|
+| items[]       | array  | قائمة المميزات كما يضبطها التاجر من لوحة التحكم         |
+| items[].icon  | string | صنف أيقونة SallaIcons مثل `sicon-shield-check`          |
+| items[].title | string | عنوان الميزة                                            |
+| items[].text  | string | وصف مختصر                                               |
+| position      | int    | ترتيب القسم يبدأ من صفر                                 |
 #}
-<section component-id="{{ componentId }}" data-testid="store-home-features" class="s-block s-block--features container">
-    <div class="grid grid-cols-[repeat(2,minmax(0,1fr))] md:grid-cols-[repeat(3,minmax(0,1fr))] gap-4 sm:gap-6 xl:gap-8">
-      {% for item in items %}
-          <div class="s-block--features__item">
-            <div class="feature-icon">
-              <i class="{{ item.icon }}"></i>
-            </div>
-            <h2>{{ item.title }}</h2>
-            <p>{{ item.text }}</p>
-          </div>
-      {% endfor %}
-    </div>
+<section component-id="{{ componentId }}"
+         data-testid="store-home-features"
+         class="s-block s-block--features container ay-features">
+  <div class="ay-features__grid">
+    {% for item in items %}
+      <div class="ay-feature">
+        <span class="ay-feature__icon">
+          <i class="{{ item.icon ?: 'sicon-shield-check' }}" aria-hidden="true"></i>
+        </span>
+        <h3 class="ay-feature__title">{{ item.title }}</h3>
+        <p class="ay-feature__text">{{ item.text }}</p>
+      </div>
+    {% endfor %}
+  </div>
 </section>

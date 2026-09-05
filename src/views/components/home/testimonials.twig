@@ -1,11 +1,30 @@
 {#
-| Variable           | Type                      | Description                         |
-|--------------------|---------------------------|-------------------------------------|
-| limit              | string                    | Maximum number of the testimonials  |
-| type               | string                    | `default:store` all, product, store |
-| sort               | string                    |                                     |
-| hide_customer_info | bool                      | show/hide info customers            |
+| القسم ٦ — آراء العملاء (Reviews)                                               |
+|--------------------|--------|-------------------------------------------------|
+| title              | ?string| عنوان القسم                                     |
+| sub_title          | ?string| عنوان فرعي                                      |
+| limit              | int    | أقصى عدد للتقييمات                              |
+| type               | string | `store` الكل أو `product`                       |
+| sort               | string | ترتيب التقييمات                                 |
+| hide_customer_info | bool   | إخفاء بيانات العميل                             |
+| display_all_url    | ?string| إظهار رابط عرض الكل                             |
 #}
-<section component-id="{{ componentId }}" data-testid="store-home-testimonials" class="s-block s-block--testimonials container overflow-hidden">
-    <salla-reviews {{ display_all_url ? "display-all-link" : "" }} limit="{{ limit }}" sort="{{ sort }}" {{ hide_customer_info ? 'hide-customer-info' : '' }} type="{{type}}"></salla-reviews>
-</section> 
+<section component-id="{{ componentId }}"
+         data-testid="store-home-testimonials"
+         class="s-block s-block--testimonials container overflow-hidden ay-reviews">
+
+  <div class="ay-reviews__head">
+    <h2>{{ title ?: 'ماذا قال عملاؤنا' }}</h2>
+    {% if sub_title %}
+      <p>{{ sub_title|raw }}</p>
+    {% endif %}
+  </div>
+
+  <salla-reviews
+    {{ display_all_url ? 'display-all-link' : '' }}
+    limit="{{ limit }}"
+    sort="{{ sort }}"
+    {{ hide_customer_info ? 'hide-customer-info' : '' }}
+    type="{{ type }}">
+  </salla-reviews>
+</section>
