@@ -16,11 +16,12 @@
   {# ─────────── ١. البنرات: ضع روابط صورك هنا ─────────── #}
   {% set banners = [
     {
-      image: '',
-      title: 'عطارة أبو يوسف',
-      text:  'أجود أنواع العسل والأعشاب والبهارات، مختارة بعناية ووصلت إليك طازجة',
-      cta:   'تسوّق الآن',
-      url:   '/products'
+      {# البنر الأول ممتد بعرض الشاشة وبلا نصوص — الصورة مصمّمة ومكتوب عليها مسبقاً.
+         ضع صورة الديسكتوب في image وصورة الجوال في image_mobile #}
+      image:        '',
+      image_mobile: '',
+      alt:          'عطارة أبو يوسف',
+      url:          '/products'
     },
     {
       image: '',
@@ -68,7 +69,7 @@
 
 
   {# ══════════ البنر الأول ══════════ #}
-  {% include 'components.partials.ay-banner' with { banner: banners[0], index: 0 } %}
+  {% include 'components.partials.ay-banner' with { banner: banners[0], index: 0, full_bleed: true, bare: true } %}
 
   {# ══════════ التصنيفات الدائرية ══════════ #}
   <section class="s-block ay-categories ay-animate container">

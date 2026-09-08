@@ -9797,6 +9797,139 @@ h1, h2, h3, h4, h5 {
     transition: none !important;
   }
 }
+/* ==========================================================================
+   المرحلة ٤ — هيدر شفاف عائم + بنر أول ممتد بعرض الشاشة (أسلوب الغربي)
+   ========================================================================== */
+/* --------------------------------------------------------------------------
+   16) البنر الممتد بعرض الشاشة الكامل
+   -------------------------------------------------------------------------- */
+.ay-banner--bleed {
+  width: 100vw;
+  max-width: 100vw;
+  /* يخرج من قيد أي أب محدود العرض دون التسبب بتمرير أفقي */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.ay-banner--bleed .ay-banner__wrap {
+  display: block;
+}
+.ay-banner--bleed .ay-banner__link {
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+/* البنر الأول: صورة فقط، بلا نصوص ولا تعتيم */
+.ay-banner--bare .ay-banner__link {
+  display: block;
+  min-height: max(320px, min(46vw, 620px));
+  padding: 0;
+  align-items: stretch;
+}
+.ay-banner--bare .ay-banner__picture,
+.ay-banner--bare .ay-banner__picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.ay-banner--bare .ay-banner__picture {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.ay-banner--bare {
+  /* لا تكبير عند المرور — الصورة مصمّمة كما هي */
+}
+.ay-banner--bare .ay-banner__link:hover {
+  box-shadow: none;
+}
+/* --------------------------------------------------------------------------
+   17) الهيدر الشفاف العائم — الصفحة الرئيسية فقط
+   -------------------------------------------------------------------------- */
+.ay-home .store-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: transparent;
+  /* تدرّج خفيف يضمن قراءة النص الأبيض فوق الصور الفاتحة */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.16) 55%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+}
+.ay-home {
+  /* نعيد التفاعل للعناصر نفسها بعد تعطيله على الحاوية */
+}
+.ay-home .store-header > * {
+  pointer-events: auto;
+}
+.ay-home .top-navbar,
+.ay-home .main-nav-container,
+.ay-home .main-nav-container .inner {
+  background: transparent;
+  box-shadow: none;
+}
+.ay-home {
+  /* نصوص وأيقونات بيضاء */
+}
+.ay-home .store-header,
+.ay-home .store-header a,
+.ay-home .store-header h2,
+.ay-home .store-header .menu-item {
+  color: #fff;
+}
+.ay-home .store-header i,
+.ay-home .store-header .sicon-menu,
+.ay-home .store-header .header-btn__icon {
+  color: #fff !important;
+}
+.ay-home {
+  /* شعار المتجر: الشعارات الداكنة تحتاج تفتيحاً فوق الصور */
+}
+.ay-home .store-header .navbar-brand img {
+  filter: brightness(0) invert(1);
+}
+.ay-home {
+  /* ── عند التمرير: يعود الهيدر صلباً ومقروءاً ── */
+}
+.ay-home .main-nav-container.fixed-pinned .inner,
+.ay-home .main-nav-container.fixed-header .inner {
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(55, 91, 65, 0.12);
+}
+.ay-home .main-nav-container.fixed-pinned .inner a,
+.ay-home .main-nav-container.fixed-header .inner a,
+.ay-home .main-nav-container.fixed-pinned .inner .menu-item,
+.ay-home .main-nav-container.fixed-header .inner .menu-item {
+  color: #375b41;
+  color: var(--brand-olive);
+}
+.ay-home .main-nav-container.fixed-pinned .inner i,
+.ay-home .main-nav-container.fixed-header .inner i {
+  color: #cd103d !important;
+  color: var(--brand-crimson) !important;
+}
+.ay-home .main-nav-container.fixed-pinned .inner .navbar-brand img,
+.ay-home .main-nav-container.fixed-header .inner .navbar-brand img {
+  filter: none;
+}
+/* على الشاشات الصغيرة نغمّق التدرّج قليلاً لأن الهيدر أكثف */
+@media (max-width: 767px) {
+  .ay-home .store-header {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0) 100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ay-banner--bare .ay-banner__link {
+    transition: none !important;
+  }
+}
 .before\:text-orange-300::before{
     content: var(--tw-content);
     --tw-text-opacity: 1;
