@@ -810,3 +810,11 @@ h1, h2, h3, h4, h5 {
 @media (prefers-reduced-motion: reduce) {
   .ay-banner--bare .ay-banner__link { transition: none !important; }
 }
+
+/* حاوية البنر الممتد — بديل .container حين يمتد بعرض الشاشة */
+.ay-banner__full {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}

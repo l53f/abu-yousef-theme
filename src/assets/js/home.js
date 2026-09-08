@@ -5,6 +5,10 @@ window.fslightbox = Lightbox;
 
 class Home extends BasePage {
     onReady() {
+        // الهيدر الشفاف: يُفعّل من JS لا من Twig، فالصفحة الرئيسية وحدها
+        // هي ما يُشغّل هذا الملف (انظر initiateWhenReady في آخر الملف)
+        document.body.classList.add('ay-home');
+
         this.initFeaturedTabs();
         this.initFaqAccordion();
         this.initScrollReveal();

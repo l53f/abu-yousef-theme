@@ -9930,6 +9930,13 @@ h1, h2, h3, h4, h5 {
     transition: none !important;
   }
 }
+/* حاوية البنر الممتد — بديل .container حين يمتد بعرض الشاشة */
+.ay-banner__full {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
 .before\:text-orange-300::before{
     content: var(--tw-content);
     --tw-text-opacity: 1;

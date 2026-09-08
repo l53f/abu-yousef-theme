@@ -1,49 +1,53 @@
 {#
-  بنر عريض — يُستخدم مكرراً في الصفحة الرئيسية على نمط متجر الغربي.
+  بنر عريض — شريك اختياري. غير مستخدَم حالياً في الصفحة الرئيسية،
+  لأن ترتيب الأقسام عاد ليأتي من لوحة تحكم سلة عبر {% component home %}.
+  محفوظ للاستخدام اليدوي داخل أي قالب عند الحاجة.
 
-  | banner.image        | ?string | صورة سطح المكتب (اتركها فارغة لخلفية لونية)      |
-  | banner.image_mobile | ?string | صورة الجوال (اختيارية، تحل محل صورة الديسكتوب)  |
-  | banner.alt          | ?string | نص بديل للصورة                                  |
-  | banner.title        | ?string | العنوان (يُخفى عند bare)                        |
-  | banner.text         | ?string | نص وصفي (يُخفى عند bare)                        |
-  | banner.cta          | ?string | نص الزر (يُخفى عند bare)                        |
-  | banner.url          | ?string | رابط الزر أو رابط البنر كله عند bare            |
-  | index               | int     | رقم البنر (لتنويع التدرّج اللوني)               |
-  | full_bleed          | ?bool   | يمتد بعرض الشاشة كاملاً بلا container ولا حواف  |
-  | bare                | ?bool   | صورة فقط بلا نصوص ولا أزرار ولا تعتيم           |
+  ملاحظة: تجنّبنا هنا الالتقاط بالكتلة (set/endset) عمداً — ليس مضموناً
+  في محرك Twilight وقد يسبب انهيار الصفحة.
+
+  | banner.image        | ?string | صورة سطح المكتب                                |
+  | banner.image_mobile | ?string | صورة الجوال                                    |
+  | banner.alt          | ?string | نص بديل                                        |
+  | banner.title        | ?string | العنوان (يُخفى عند bare)                       |
+  | banner.text         | ?string | نص وصفي (يُخفى عند bare)                       |
+  | banner.cta          | ?string | نص الزر (يُخفى عند bare)                       |
+  | banner.url          | ?string | الرابط                                         |
+  | index               | ?int    | رقم البنر لتنويع التدرّج اللوني                |
+  | full_bleed          | ?bool   | امتداد بعرض الشاشة بلا container ولا حواف      |
+  | bare                | ?bool   | صورة فقط بلا نصوص                              |
 #}
 {% set is_bleed = full_bleed|default(false) %}
 {% set is_bare  = bare|default(false) %}
+{% set tone     = index|default(0) % 3 %}
 {% set alt_text = banner.alt|default(banner.title)|default('بنر') %}
 
 <section class="s-block s-block--fixed-banner ay-banner ay-animate
                 {{ is_bleed ? 'ay-banner--bleed' : '' }}
                 {{ is_bare  ? 'ay-banner--bare'  : '' }}">
+  <div class="{{ is_bleed ? 'ay-banner__full' : 'container' }}">
 
-  {% set body %}
-    <div class="ay-banner__link ay-anime-item ay-banner--tone-{{ index % 3 }}"
-         {% if banner.image and not is_bare %}style="background-image: url('{{ banner.image }}');"{% endif %}>
+    {% if is_bare %}
+      <a href="{{ banner.url ?: '/products' }}"
+         class="ay-banner__link ay-anime-item ay-banner--tone-{{ tone }}"
+         aria-label="{{ alt_text }}">
+        {% if banner.image %}
+          <picture class="ay-banner__picture">
+            {% if banner.image_mobile %}
+              <source media="(max-width: 767px)" srcset="{{ banner.image_mobile }}" />
+            {% endif %}
+            <img src="{{ banner.image }}" alt="{{ alt_text }}" fetchpriority="high" />
+          </picture>
+        {% endif %}
+      </a>
 
-      {# عند bare نعرض الصورة كعنصر img ليعمل srcset للجوال ويبقى الارتفاع طبيعياً #}
-      {% if is_bare and banner.image %}
-        <picture class="ay-banner__picture">
-          {% if banner.image_mobile %}
-            <source media="(max-width: 767px)" srcset="{{ banner.image_mobile }}" />
-          {% endif %}
-          <img src="{{ banner.image }}" alt="{{ alt_text }}" fetchpriority="high" />
-        </picture>
-      {% endif %}
-
-      {% if not is_bare %}
+    {% else %}
+      <div class="ay-banner__link ay-anime-item ay-banner--tone-{{ tone }}"
+           {% if banner.image %}style="background-image: url('{{ banner.image }}');"{% endif %}>
         <div class="ay-banner__overlay"></div>
-
         <div class="ay-banner__body">
-          {% if banner.title %}
-            <h2 class="ay-banner__title">{{ banner.title }}</h2>
-          {% endif %}
-          {% if banner.text %}
-            <p class="ay-banner__text">{{ banner.text }}</p>
-          {% endif %}
+          {% if banner.title %}<h2 class="ay-banner__title">{{ banner.title }}</h2>{% endif %}
+          {% if banner.text %}<p class="ay-banner__text">{{ banner.text }}</p>{% endif %}
           {% if banner.cta %}
             <a href="{{ banner.url ?: '/products' }}" class="ay-banner__cta">
               <span>{{ banner.cta }}</span>
@@ -51,18 +55,8 @@
             </a>
           {% endif %}
         </div>
-      {% endif %}
-    </div>
-  {% endset %}
-
-  {% if is_bleed %}
-    {# بلا container: يمتد بعرض الشاشة الكامل #}
-    {% if is_bare and banner.url %}
-      <a href="{{ banner.url }}" class="ay-banner__wrap" aria-label="{{ alt_text }}">{{ body|raw }}</a>
-    {% else %}
-      {{ body|raw }}
+      </div>
     {% endif %}
-  {% else %}
-    <div class="container">{{ body|raw }}</div>
-  {% endif %}
+
+  </div>
 </section>
