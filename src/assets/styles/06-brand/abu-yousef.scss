@@ -847,9 +847,9 @@ salla-product-card .s-product-card-entry.s-product-card-shadow:hover {
    -------------------------------------------------------------------------- */
 salla-product-card .s-product-card-image {
   position: relative;
-  border-radius: 16px;
   overflow: hidden;
-  background: #fff;
+  /* شفافة لتندمج مع خلفية المتجر السكرية ويظهر أثر الطفو */
+  background: transparent;
   aspect-ratio: 1 / 1;
 }
 
