@@ -6,6 +6,8 @@ window.fslightbox = Lightbox;
 class Home extends BasePage {
     onReady() {
         this.initFeaturedTabs();
+        this.initFaqAccordion();
+        this.initScrollReveal();
     }
 
     /**
@@ -24,6 +26,73 @@ class Home extends BasePage {
             })
         });
         document.querySelectorAll('.s-block-tabs').forEach(block => block.classList.add('tabs-initialized'));
+    }
+
+    /**
+     * used in views/components/home/faq.twig
+     * أكورديون الأسئلة الشائعة — يفتح سؤالاً واحداً داخل كل قسم
+     */
+    initFaqAccordion() {
+        document.querySelectorAll('.ay-faq').forEach(section => {
+            const items = section.querySelectorAll('.ay-faq__item');
+
+            items.forEach(item => {
+                const btn = item.querySelector('.ay-faq__btn');
+                const content = item.querySelector('.ay-faq__content');
+                if (!btn || !content) return;
+
+                content.style.height = '0px';
+
+                btn.addEventListener('click', () => {
+                    const isOpen = item.classList.contains('is-open');
+
+                    // أغلق البقية داخل هذا القسم فقط
+                    items.forEach(other => {
+                        if (other === item) return;
+                        const otherContent = other.querySelector('.ay-faq__content');
+                        const otherBtn = other.querySelector('.ay-faq__btn');
+                        other.classList.remove('is-open');
+                        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                        if (otherContent) otherContent.style.height = '0px';
+                    });
+
+                    item.classList.toggle('is-open', !isOpen);
+                    btn.setAttribute('aria-expanded', String(!isOpen));
+                    content.style.height = isOpen ? '0px' : `${content.scrollHeight}px`;
+                });
+            });
+        });
+    }
+
+    /**
+     * ظهور تدريجي لعناصر الأقسام عند التمرير — يحاكي s-block--animate
+     * يحترم تفضيل تقليل الحركة، ويعرض كل شيء فوراً إن لم يدعم المتصفح IntersectionObserver
+     */
+    initScrollReveal() {
+        const sections = document.querySelectorAll('.ay-animate');
+        if (!sections.length) return;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+            sections.forEach(s => s.classList.add('is-revealed'));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+
+                const section = entry.target;
+                section.querySelectorAll('.ay-anime-item').forEach((el, i) => {
+                    el.style.transitionDelay = `${Math.min(i * 90, 540)}ms`;
+                });
+                section.classList.add('is-revealed');
+                obs.unobserve(section);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+        sections.forEach(section => observer.observe(section));
     }
 }
 

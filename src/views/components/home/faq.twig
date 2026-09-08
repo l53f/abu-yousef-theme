@@ -1,0 +1,47 @@
+{#
+| الأسئلة الشائعة (FAQ) — مكوّن مخصص لثيم أبو يوسف                              |
+|--------------------------------|----------|------------------------------------|
+| component.title                | ?string  | عنوان القسم                        |
+| component.subtitle             | ?string  | عنوان فرعي                         |
+| component.items[]              | object[] | قائمة الأسئلة                      |
+| component.items[].question     | string   | نص السؤال                          |
+| component.items[].answer       | string   | نص الإجابة                         |
+| position                       | int      | ترتيب القسم يبدأ من صفر            |
+#}
+<section component-id="{{ componentId }}"
+         data-testid="store-home-faq"
+         class="s-block s-block--faq ay-faq ay-animate container">
+
+  <div class="ay-faq__head ay-anime-item">
+    <h2 class="ay-faq__title">{{ component.title ?: 'الأسئلة الشائعة' }}</h2>
+    {% if component.subtitle %}
+      <p class="ay-faq__subtitle">{{ component.subtitle }}</p>
+    {% endif %}
+    <span class="ay-title-line"></span>
+  </div>
+
+  <div class="ay-faq__grid">
+    {% for item in component.items %}
+      {% if item.question %}
+        {% set uid = componentId ~ '-' ~ loop.index %}
+        <div class="ay-faq__item ay-anime-item">
+          <button type="button"
+                  class="ay-faq__btn"
+                  aria-expanded="false"
+                  aria-controls="faq-answer-{{ uid }}"
+                  id="faq-question-{{ uid }}">
+            <span class="ay-faq__question">{{ item.question }}</span>
+            <i class="sicon-keyboard_arrow_down ay-faq__chevron" aria-hidden="true"></i>
+          </button>
+
+          <div class="ay-faq__content"
+               id="faq-answer-{{ uid }}"
+               role="region"
+               aria-labelledby="faq-question-{{ uid }}">
+            <p class="ay-faq__answer">{{ item.answer|raw }}</p>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>

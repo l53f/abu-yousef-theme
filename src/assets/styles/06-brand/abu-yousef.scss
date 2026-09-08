@@ -391,3 +391,226 @@ h1, h2, h3, h4, h5 {
     transform: none !important;
   }
 }
+
+/* ==========================================================================
+   المرحلة ٣ — بنية الغربي: بنر ← منتجات، مميزات محسّنة، أسئلة شائعة، ظهور تدريجي
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   11) الظهور التدريجي عند التمرير
+   -------------------------------------------------------------------------- */
+.ay-animate .ay-anime-item {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .7s cubic-bezier(.22, .9, .28, 1),
+              transform .7s cubic-bezier(.22, .9, .28, 1);
+  will-change: opacity, transform;
+}
+
+.ay-animate.is-revealed .ay-anime-item {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   12) البنر العريض — العنصر المتكرر في بنية الغربي
+   -------------------------------------------------------------------------- */
+.ay-banner {
+  .ay-banner__link {
+    display: block;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--brand-sand-2);
+    box-shadow: 0 8px 26px rgba(55, 91, 65, .09);
+    transition: transform .5s cubic-bezier(.22, .9, .28, 1), box-shadow .5s ease;
+  }
+
+  .ay-banner__link img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    transition: transform .7s cubic-bezier(.22, .9, .28, 1);
+  }
+
+  .ay-banner__link:hover {
+    box-shadow: 0 16px 36px rgba(205, 16, 61, .16);
+  }
+  .ay-banner__link:hover img { transform: scale(1.03); }
+}
+
+/* --------------------------------------------------------------------------
+   13) خط زخرفي تحت عناوين الأقسام الوسطية
+   -------------------------------------------------------------------------- */
+.ay-title-line {
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin: 14px auto 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--brand-crimson) 0%, var(--brand-crimson-l) 100%);
+}
+
+/* --------------------------------------------------------------------------
+   14) المميزات — إطار يُرسَم عند المرور بالمؤشر
+   -------------------------------------------------------------------------- */
+.ay-features {
+  .ay-feature {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ay-feature__line {
+    position: absolute;
+    background: var(--brand-crimson);
+    transition: transform .3s ease;
+  }
+
+  .ay-feature__line--b {
+    bottom: 0; left: 0; width: 100%; height: 1px;
+    transform: scaleX(0); transform-origin: left;
+  }
+  .ay-feature__line--t {
+    top: 0; left: 0; width: 100%; height: 1px;
+    transform: scaleX(0); transform-origin: right;
+  }
+  .ay-feature__line--l {
+    bottom: 0; left: 0; width: 1px; height: 100%;
+    transform: scaleY(0); transform-origin: bottom;
+  }
+  .ay-feature__line--r {
+    bottom: 0; right: 0; width: 1px; height: 100%;
+    transform: scaleY(0); transform-origin: top;
+  }
+
+  .ay-feature:hover .ay-feature__line--b,
+  .ay-feature:hover .ay-feature__line--t { transform: scaleX(1); }
+  .ay-feature:hover .ay-feature__line--l,
+  .ay-feature:hover .ay-feature__line--r { transform: scaleY(1); }
+}
+
+/* --------------------------------------------------------------------------
+   15) الأسئلة الشائعة
+   -------------------------------------------------------------------------- */
+.ay-faq {
+  padding: 46px 0;
+
+  .ay-faq__head {
+    max-width: 640px;
+    margin: 0 auto 30px;
+    text-align: center;
+  }
+
+  .ay-faq__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(24px, 2.8vw, 34px);
+    color: var(--brand-olive);
+    margin: 0;
+  }
+
+  .ay-faq__subtitle {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--brand-olive-soft);
+    margin: 10px 0 0;
+  }
+
+  .ay-faq__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 14px;
+  }
+
+  .ay-faq__item {
+    background: #fff;
+    border: 1px solid var(--brand-sand-3);
+    border-radius: 16px;
+    padding: 4px 20px;
+    transition: border-color .35s ease, box-shadow .35s ease;
+  }
+
+  .ay-faq__item:hover,
+  .ay-faq__item.is-open {
+    border-color: var(--brand-crimson);
+    box-shadow: 0 10px 26px rgba(205, 16, 61, .10);
+  }
+
+  .ay-faq__btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    text-align: inherit;
+  }
+
+  .ay-faq__question {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--brand-olive);
+  }
+
+  .ay-faq__chevron {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--brand-sand);
+    color: var(--brand-crimson);
+    font-size: 15px;
+    transition: transform .35s ease, background-color .35s ease, color .35s ease;
+  }
+
+  .ay-faq__item.is-open .ay-faq__chevron {
+    transform: rotate(180deg);
+    background: var(--brand-crimson);
+    color: #fff;
+  }
+
+  /* الارتفاع يُضبط من JS ليتحرك بنعومة */
+  .ay-faq__content {
+    height: 0;
+    overflow: hidden;
+    transition: height .4s cubic-bezier(.22, .9, .28, 1);
+  }
+
+  .ay-faq__answer {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 2;
+    color: var(--brand-olive-soft);
+    margin: 0;
+    padding: 0 0 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .ay-faq .ay-faq__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* احترام تقليل الحركة للإضافات الجديدة */
+@media (prefers-reduced-motion: reduce) {
+  .ay-animate .ay-anime-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .ay-banner .ay-banner__link,
+  .ay-banner .ay-banner__link img,
+  .ay-features .ay-feature__line,
+  .ay-faq .ay-faq__chevron {
+    transition: none !important;
+  }
+}

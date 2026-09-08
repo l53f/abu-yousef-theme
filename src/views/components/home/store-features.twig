@@ -1,5 +1,5 @@
 {#
-| القسم ٥ — مميزات المتجر (Store Features)                                       |
+| مميزات المتجر (Store Features) — بأسلوب الإطار المتحرك                         |
 |---------------|--------|---------------------------------------------------------|
 | items[]       | array  | قائمة المميزات كما يضبطها التاجر من لوحة التحكم         |
 | items[].icon  | string | صنف أيقونة SallaIcons مثل `sicon-shield-check`          |
@@ -9,10 +9,16 @@
 #}
 <section component-id="{{ componentId }}"
          data-testid="store-home-features"
-         class="s-block s-block--features container ay-features">
-  <div class="ay-features__grid">
+         class="s-block s-block--features container ay-features ay-animate">
+  <div class="ay-features__grid" data-length="{{ items|length }}">
     {% for item in items %}
-      <div class="ay-feature">
+      <div class="ay-feature ay-anime-item">
+        {# أربعة خطوط ترسم الإطار عند المرور بالمؤشر #}
+        <span class="ay-feature__line ay-feature__line--b" aria-hidden="true"></span>
+        <span class="ay-feature__line ay-feature__line--l" aria-hidden="true"></span>
+        <span class="ay-feature__line ay-feature__line--t" aria-hidden="true"></span>
+        <span class="ay-feature__line ay-feature__line--r" aria-hidden="true"></span>
+
         <span class="ay-feature__icon">
           <i class="{{ item.icon ?: 'sicon-shield-check' }}" aria-hidden="true"></i>
         </span>

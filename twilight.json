@@ -1138,6 +1138,95 @@
                     "maxLength": 30
                 }
             ]
+        },
+        {
+            "key": "99043f12-fa7d-4331-9526-7cca1d746736",
+            "title": {
+                "en": "FAQ",
+                "ar": "الأسئلة الشائعة"
+            },
+            "icon": "sicon-info-circle",
+            "path": "home.faq",
+            "is_default": false,
+            "fields": [
+                {
+                    "id": "title",
+                    "key": "4ad5e295-760e-4bf3-a3de-3bcef1f379dc",
+                    "type": "string",
+                    "format": "text",
+                    "label": "عنوان القسم",
+                    "placeholder": "الأسئلة الشائعة",
+                    "icon": "sicon-format-text-alt",
+                    "value": "الأسئلة الشائعة",
+                    "multilanguage": true,
+                    "required": false
+                },
+                {
+                    "id": "subtitle",
+                    "key": "ece99a24-2965-4338-9e33-3c6622c7bc14",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "العنوان الفرعي",
+                    "placeholder": "هنا تجد إجابات لأكثر الأسئلة شيوعاً حول منتجاتنا",
+                    "icon": "sicon-format-text-alt",
+                    "value": "هنا تجد إجابات لأكثر الأسئلة شيوعاً حول منتجاتنا وخدماتنا.",
+                    "multilanguage": true,
+                    "required": false
+                },
+                {
+                    "id": "items",
+                    "key": "bd3b2373-8ff2-4a0a-90c5-33c267f4e7af",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الأسئلة",
+                    "item_label": "السؤال",
+                    "icon": "sicon-list-add",
+                    "value": [
+                        {
+                            "items.question": "ما هي مدة الشحن المتوقعة؟",
+                            "items.answer": "الشحن داخل المدن الرئيسية من ٢ إلى ٤ أيام عمل، وباقي المناطق من ٣ إلى ٧ أيام عمل."
+                        },
+                        {
+                            "items.question": "ما هي طرق الدفع المتاحة؟",
+                            "items.answer": "نوفّر مدى، والبطاقات الائتمانية، وApple Pay، والدفع عند الاستلام، وتابي وتمارا."
+                        },
+                        {
+                            "items.question": "هل المنتجات طبيعية ١٠٠٪؟",
+                            "items.answer": "نعم، جميع منتجاتنا من العطارة والأعشاب والعسل طبيعية ومصدرها موثوق ومفحوص."
+                        },
+                        {
+                            "items.question": "هل يمكن استبدال أو إرجاع الطلب؟",
+                            "items.answer": "يمكنك الاستبدال أو الإرجاع خلال ٣ أيام من الاستلام بشرط أن يكون المنتج بحالته الأصلية."
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "items.question",
+                            "key": "c89ecc42-14d4-4908-bb1e-a0ffdbcdcbfe",
+                            "type": "string",
+                            "format": "text",
+                            "label": "السؤال",
+                            "placeholder": "اكتب السؤال",
+                            "icon": "sicon-format-text-alt",
+                            "value": null,
+                            "multilanguage": true,
+                            "required": true
+                        },
+                        {
+                            "id": "items.answer",
+                            "key": "7309abb6-272d-434a-9211-df52175effa9",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "الإجابة",
+                            "placeholder": "اكتب الإجابة",
+                            "icon": "sicon-format-text-alt",
+                            "value": null,
+                            "multilanguage": true,
+                            "required": true
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "support_url": "https://example.com",

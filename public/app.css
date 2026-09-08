@@ -901,9 +901,6 @@ input:where([type='file']):focus{
 .static{
     position: static;
 }
-.fixed{
-    position: fixed;
-}
 .absolute{
     position: absolute;
 }
@@ -9476,6 +9473,244 @@ h1, h2, h3, h4, h5 {
   .ay-hero .ay-hero__cta {
     transition: none !important;
     transform: none !important;
+  }
+}
+/* ==========================================================================
+   المرحلة ٣ — بنية الغربي: بنر ← منتجات، مميزات محسّنة، أسئلة شائعة، ظهور تدريجي
+   ========================================================================== */
+/* --------------------------------------------------------------------------
+   11) الظهور التدريجي عند التمرير
+   -------------------------------------------------------------------------- */
+.ay-animate .ay-anime-item {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(0.22, 0.9, 0.28, 1), transform 0.7s cubic-bezier(0.22, 0.9, 0.28, 1);
+  will-change: opacity, transform;
+}
+.ay-animate.is-revealed .ay-anime-item {
+  opacity: 1;
+  transform: none;
+}
+/* --------------------------------------------------------------------------
+   12) البنر العريض — العنصر المتكرر في بنية الغربي
+   -------------------------------------------------------------------------- */
+.ay-banner .ay-banner__link {
+  display: block;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #f7e8d0;
+  background: var(--brand-sand-2);
+  box-shadow: 0 8px 26px rgba(55, 91, 65, 0.09);
+  transition: transform 0.5s cubic-bezier(0.22, 0.9, 0.28, 1), box-shadow 0.5s ease;
+}
+.ay-banner .ay-banner__link img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.22, 0.9, 0.28, 1);
+}
+.ay-banner .ay-banner__link:hover {
+  box-shadow: 0 16px 36px rgba(205, 16, 61, 0.16);
+}
+.ay-banner .ay-banner__link:hover img {
+  transform: scale(1.03);
+}
+/* --------------------------------------------------------------------------
+   13) خط زخرفي تحت عناوين الأقسام الوسطية
+   -------------------------------------------------------------------------- */
+.ay-title-line {
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin: 14px auto 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #cd103d 0%, #e5476d 100%);
+  background: linear-gradient(90deg, var(--brand-crimson) 0%, var(--brand-crimson-l) 100%);
+}
+/* --------------------------------------------------------------------------
+   14) المميزات — إطار يُرسَم عند المرور بالمؤشر
+   -------------------------------------------------------------------------- */
+.ay-features .ay-feature {
+  position: relative;
+  overflow: hidden;
+}
+.ay-features .ay-feature__line {
+  position: absolute;
+  background: #cd103d;
+  background: var(--brand-crimson);
+  transition: transform 0.3s ease;
+}
+.ay-features .ay-feature__line--b {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.ay-features .ay-feature__line--t {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+.ay-features .ay-feature__line--l {
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+.ay-features .ay-feature__line--r {
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.ay-features .ay-feature:hover .ay-feature__line--b,
+.ay-features .ay-feature:hover .ay-feature__line--t {
+  transform: scaleX(1);
+}
+.ay-features .ay-feature:hover .ay-feature__line--l,
+.ay-features .ay-feature:hover .ay-feature__line--r {
+  transform: scaleY(1);
+}
+/* --------------------------------------------------------------------------
+   15) الأسئلة الشائعة
+   -------------------------------------------------------------------------- */
+.ay-faq {
+  padding: 46px 0;
+}
+.ay-faq .ay-faq__head {
+  max-width: 640px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+.ay-faq .ay-faq__title {
+  font-family: "FODA Freestyle", "29LT Rewaya", Georgia, serif;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: max(24px, min(2.8vw, 34px));
+  color: #375b41;
+  color: var(--brand-olive);
+  margin: 0;
+}
+.ay-faq .ay-faq__subtitle {
+  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.9;
+  color: #5d7d67;
+  color: var(--brand-olive-soft);
+  margin: 10px 0 0;
+}
+.ay-faq .ay-faq__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  grid-gap: 14px;
+  gap: 14px;
+}
+.ay-faq .ay-faq__item {
+  background: #fff;
+  border: 1px solid #f2dcbc;
+  border: 1px solid var(--brand-sand-3);
+  border-radius: 16px;
+  padding: 4px 20px;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.ay-faq .ay-faq__item:hover,
+.ay-faq .ay-faq__item.is-open {
+  border-color: #cd103d;
+  border-color: var(--brand-crimson);
+  box-shadow: 0 10px 26px rgba(205, 16, 61, 0.1);
+}
+.ay-faq .ay-faq__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: inherit;
+}
+.ay-faq .ay-faq__question {
+  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #375b41;
+  color: var(--brand-olive);
+}
+.ay-faq .ay-faq__chevron {
+  flex-shrink: 0;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fef6e9;
+  background: var(--brand-sand);
+  color: #cd103d;
+  color: var(--brand-crimson);
+  font-size: 15px;
+  transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease;
+}
+.ay-faq .ay-faq__item.is-open .ay-faq__chevron {
+  transform: rotate(180deg);
+  background: #cd103d;
+  background: var(--brand-crimson);
+  color: #fff;
+}
+.ay-faq {
+  /* الارتفاع يُضبط من JS ليتحرك بنعومة */
+}
+.ay-faq .ay-faq__content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.4s cubic-bezier(0.22, 0.9, 0.28, 1);
+}
+.ay-faq .ay-faq__answer {
+  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 2;
+  color: #5d7d67;
+  color: var(--brand-olive-soft);
+  margin: 0;
+  padding: 0 0 16px;
+}
+@media (min-width: 768px) {
+  .ay-faq .ay-faq__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* احترام تقليل الحركة للإضافات الجديدة */
+@media (prefers-reduced-motion: reduce) {
+  .ay-animate .ay-anime-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .ay-banner .ay-banner__link,
+  .ay-banner .ay-banner__link img,
+  .ay-features .ay-feature__line,
+  .ay-faq .ay-faq__chevron {
+    transition: none !important;
   }
 }
 .before\:text-orange-300::before{
