@@ -848,17 +848,18 @@ salla-product-card .s-product-card-entry.s-product-card-shadow:hover {
 salla-product-card .s-product-card-image {
   position: relative;
   overflow: hidden;
-  /* شفافة لتندمج مع خلفية المتجر السكرية ويظهر أثر الطفو */
+  /* الصور استوديو بخلفيات كاملة: الحواف الناعمة تجعلها بطاقة لا مستطيلاً حاداً */
+  border-radius: 16px;
   background: transparent;
-  aspect-ratio: 1 / 1;
+  /* نسبة طولية تناسب صور العلب */
+  aspect-ratio: 3 / 4;
 }
 
 salla-product-card .s-product-card-image img {
   width: 100%;
   height: 100%;
-  /* contain بدل cover: لا يُقص المنتج من أطرافه */
-  object-fit: contain;
-  padding: 12px;
+  /* cover: الصورة تملأ الحاوية حتى الحواف الدائرية بلا فراغات جانبية */
+  object-fit: cover;
   transition: transform .55s cubic-bezier(.22, .9, .28, 1);
 }
 
