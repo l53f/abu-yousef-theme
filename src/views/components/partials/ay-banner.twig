@@ -1,0 +1,34 @@
+{#
+  بنر عريض — يُستخدم مكرراً في الصفحة الرئيسية على نمط متجر الغربي.
+  إن كان banner.image فارغاً تُرسم خلفية بألوان الهوية بدل الصورة،
+  فتبقى الصفحة كاملة الشكل قبل رفع الصور.
+
+  | banner.image | ?string | رابط الصورة (اتركه فارغاً لخلفية لونية) |
+  | banner.title | string  | العنوان                                  |
+  | banner.text  | ?string | نص وصفي                                  |
+  | banner.cta   | ?string | نص الزر                                  |
+  | banner.url   | ?string | رابط الزر                                |
+  | index        | int     | رقم البنر (لتنويع التدرّج اللوني)        |
+#}
+<section class="s-block s-block--fixed-banner ay-banner ay-animate wide-placeholder">
+  <div class="container">
+    <div class="ay-banner__link ay-anime-item ay-banner--tone-{{ index % 3 }}"
+         {% if banner.image %}style="background-image: url('{{ banner.image }}');"{% endif %}>
+
+      <div class="ay-banner__overlay"></div>
+
+      <div class="ay-banner__body">
+        <h2 class="ay-banner__title">{{ banner.title }}</h2>
+        {% if banner.text %}
+          <p class="ay-banner__text">{{ banner.text }}</p>
+        {% endif %}
+        {% if banner.cta %}
+          <a href="{{ banner.url ?: '/products' }}" class="ay-banner__cta">
+            <span>{{ banner.cta }}</span>
+            <i class="sicon-arrow-left" aria-hidden="true"></i>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

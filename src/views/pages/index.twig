@@ -1,14 +1,192 @@
 {#
-| Variable         | Type       | Description                                                         |
-|------------------|------------|---------------------------------------------------------------------|
-| page             | object     |                                                                     |
-| page.title       | string     | *could be html                                                      |
-| page.slug        | string     | ex: "cat.show"                                                      |
+  ══════════════════════════════════════════════════════════════════════════
+  الصفحة الرئيسية — أبو يوسف للعطارة
+  ──────────────────────────────────────────────────────────────────────────
+  البنية مثبّتة في الكود على نمط متجر الغربي: بنر عريض ← شريط منتجات، مكرّراً.
+  لا تعتمد على ترتيب العناصر في لوحة التاجر إطلاقاً.
+
+  ★ لتغيير المحتوى: عدّل المصفوفات الثلاث في الأعلى فقط (بنرات/تصنيفات/مميزات/أسئلة).
+    ضع رابط صورتك في `image` وسيحلّ محل الخلفية اللونية تلقائياً.
+  ══════════════════════════════════════════════════════════════════════════
 #}
 {% extends "layouts.master" %}
+
 {% block content %}
-    {% component home %}
+
+  {# ─────────── ١. البنرات: ضع روابط صورك هنا ─────────── #}
+  {% set banners = [
+    {
+      image: '',
+      title: 'عطارة أبو يوسف',
+      text:  'أجود أنواع العسل والأعشاب والبهارات، مختارة بعناية ووصلت إليك طازجة',
+      cta:   'تسوّق الآن',
+      url:   '/products'
+    },
+    {
+      image: '',
+      title: 'عسل السدر الجبلي',
+      text:  'من مناحل موثوقة، معبّأ بعناية ومفحوص مخبرياً',
+      cta:   'اكتشف العسل',
+      url:   '/products'
+    },
+    {
+      image: '',
+      title: 'خلطات وبهارات أصيلة',
+      text:  'تُطحن عندنا طازجة كل أسبوع، بنكهة تعرفها من أول ملعقة',
+      cta:   'تصفّح البهارات',
+      url:   '/products'
+    }
+  ] %}
+
+  {# ─────────── ٢. التصنيفات الدائرية ─────────── #}
+  {% set categories = [
+    { name: 'العسل',   icon: 'sicon-shopping-basket', url: '/products' },
+    { name: 'الأعشاب', icon: 'sicon-shopping-bag',    url: '/products' },
+    { name: 'الملح',   icon: 'sicon-shopping-basket', url: '/products' },
+    { name: 'الزيوت',  icon: 'sicon-shopping-bag',    url: '/products' }
+  ] %}
+
+  {# ─────────── ٣. مميزات المتجر ─────────── #}
+  {% set features = [
+    { icon: 'sicon-shield-check',  title: 'أصالة الجودة', text: 'منتجات طبيعية مختارة ومفحوصة' },
+    { icon: 'sicon-shipping-fast', title: 'توصيل سريع',   text: 'يصلك طلبك خلال ٢ إلى ٤ أيام' },
+    { icon: 'sicon-credit-card',   title: 'دفع آمن',      text: 'مدى، أبل باي، تابي وتمارا' },
+    { icon: 'sicon-headphone',     title: 'خدمة العملاء', text: 'نجيبك في كل وقت وباهتمام' }
+  ] %}
+
+  {# ─────────── ٤. الأسئلة الشائعة ─────────── #}
+  {% set faqs = [
+    { q: 'ما هي مدة الشحن المتوقعة؟',
+      a: 'داخل المدن الرئيسية من ٢ إلى ٤ أيام عمل، وباقي المناطق من ٣ إلى ٧ أيام عمل.' },
+    { q: 'ما هي طرق الدفع المتاحة؟',
+      a: 'مدى والبطاقات الائتمانية وApple Pay والدفع عند الاستلام، إضافة إلى تابي وتمارا.' },
+    { q: 'هل المنتجات طبيعية ١٠٠٪؟',
+      a: 'نعم، جميع منتجاتنا من العطارة والأعشاب والعسل طبيعية ومصدرها موثوق ومفحوص.' },
+    { q: 'هل يمكن استبدال أو إرجاع الطلب؟',
+      a: 'يمكنك الاستبدال أو الإرجاع خلال ٣ أيام من الاستلام بشرط بقاء المنتج بحالته الأصلية.' }
+  ] %}
+
+
+  {# ══════════ البنر الأول ══════════ #}
+  {% include 'components.partials.ay-banner' with { banner: banners[0], index: 0 } %}
+
+  {# ══════════ التصنيفات الدائرية ══════════ #}
+  <section class="s-block ay-categories ay-animate container">
+    <div class="s-block__title ay-block-title ay-anime-item">
+      <div class="right-side"><h2>تسوّق حسب القسم</h2></div>
+    </div>
+
+    <div class="ay-cats-row">
+      {% for cat in categories %}
+        <a href="{{ cat.url }}" class="ay-cat ay-anime-item" aria-label="{{ cat.name }}">
+          <span class="ay-cat__ring"><i class="{{ cat.icon }}" aria-hidden="true"></i></span>
+          <h3 class="ay-cat__name">{{ cat.name }}</h3>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  {# ══════════ الأكثر مبيعاً ══════════ #}
+  <section class="s-block s-block--best-offers ay-bestsellers ay-animate container overflow-hidden">
+    <div class="s-block__title ay-block-title ay-anime-item">
+      <div class="right-side">
+        <h2>الأكثر مبيعاً</h2>
+        <p>ما يختاره عملاؤنا أكثر من غيره</p>
+      </div>
+    </div>
+    <salla-products-slider source="top-rated" limit="10" autoplay
+                           slider-id="ay-top-rated"></salla-products-slider>
+  </section>
+
+  {# ══════════ البنر الثاني ══════════ #}
+  {% include 'components.partials.ay-banner' with { banner: banners[1], index: 1 } %}
+
+  {# ══════════ وصل حديثاً ══════════ #}
+  <section class="s-block s-block--best-offers ay-bestsellers ay-animate container overflow-hidden">
+    <div class="s-block__title ay-block-title ay-anime-item">
+      <div class="right-side">
+        <h2>وصل حديثاً</h2>
+        <p>أحدث ما أضفناه إلى رفوفنا</p>
+      </div>
+    </div>
+    <salla-products-slider source="latest" limit="10" autoplay
+                           slider-id="ay-latest"></salla-products-slider>
+  </section>
+
+  {# ══════════ البنر الثالث ══════════ #}
+  {% include 'components.partials.ay-banner' with { banner: banners[2], index: 2 } %}
+
+  {# ══════════ العروض ══════════ #}
+  <section class="s-block s-block--best-offers ay-bestsellers ay-animate container overflow-hidden">
+    <div class="s-block__title ay-block-title ay-anime-item">
+      <div class="right-side">
+        <h2>عروض وبكجات</h2>
+        <p>وفّر أكثر عند شرائك البكجات المجمّعة</p>
+      </div>
+    </div>
+    <salla-products-slider source="offers" limit="10" autoplay
+                           slider-id="ay-offers"></salla-products-slider>
+  </section>
+
+  {# ══════════ مميزات المتجر ══════════ #}
+  <section class="s-block s-block--features container ay-features ay-animate">
+    <div class="ay-features__grid" data-length="{{ features|length }}">
+      {% for item in features %}
+        <div class="ay-feature ay-anime-item">
+          <span class="ay-feature__line ay-feature__line--b" aria-hidden="true"></span>
+          <span class="ay-feature__line ay-feature__line--l" aria-hidden="true"></span>
+          <span class="ay-feature__line ay-feature__line--t" aria-hidden="true"></span>
+          <span class="ay-feature__line ay-feature__line--r" aria-hidden="true"></span>
+
+          <span class="ay-feature__icon"><i class="{{ item.icon }}" aria-hidden="true"></i></span>
+          <h3 class="ay-feature__title">{{ item.title }}</h3>
+          <p class="ay-feature__text">{{ item.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  {# ══════════ آراء العملاء ══════════ #}
+  <section class="s-block s-block--testimonials container overflow-hidden ay-reviews ay-animate">
+    <div class="ay-reviews__head ay-anime-item">
+      <h2>ماذا قال عملاؤنا</h2>
+      <p>آراء حقيقية من مشترين فعليين</p>
+      <span class="ay-title-line"></span>
+    </div>
+    <div class="ay-anime-item">
+      <salla-reviews limit="8" type="store"></salla-reviews>
+    </div>
+  </section>
+
+  {# ══════════ الأسئلة الشائعة ══════════ #}
+  <section class="s-block s-block--faq ay-faq ay-animate container">
+    <div class="ay-faq__head ay-anime-item">
+      <h2 class="ay-faq__title">الأسئلة الشائعة</h2>
+      <p class="ay-faq__subtitle">هنا تجد إجابات لأكثر الأسئلة شيوعاً حول منتجاتنا وخدماتنا.</p>
+      <span class="ay-title-line"></span>
+    </div>
+
+    <div class="ay-faq__grid">
+      {% for item in faqs %}
+        <div class="ay-faq__item ay-anime-item">
+          <button type="button" class="ay-faq__btn"
+                  aria-expanded="false"
+                  aria-controls="ay-faq-a-{{ loop.index }}"
+                  id="ay-faq-q-{{ loop.index }}">
+            <span class="ay-faq__question">{{ item.q }}</span>
+            <i class="sicon-keyboard_arrow_down ay-faq__chevron" aria-hidden="true"></i>
+          </button>
+          <div class="ay-faq__content" id="ay-faq-a-{{ loop.index }}"
+               role="region" aria-labelledby="ay-faq-q-{{ loop.index }}">
+            <p class="ay-faq__answer">{{ item.a }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
 {% endblock %}
+
 {% block scripts %}
-    <script defer src="{{ 'home.js' | asset }}"></script>
+  <script defer src="{{ 'home.js' | asset }}"></script>
 {% endblock %}

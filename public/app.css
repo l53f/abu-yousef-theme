@@ -9495,28 +9495,112 @@ h1, h2, h3, h4, h5 {
    12) البنر العريض — العنصر المتكرر في بنية الغربي
    -------------------------------------------------------------------------- */
 .ay-banner .ay-banner__link {
-  display: block;
-  border-radius: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: max(230px, min(32vw, 380px));
+  padding: 34px max(20px, min(5vw, 64px));
+  border-radius: 22px;
   overflow: hidden;
-  background: #f7e8d0;
-  background: var(--brand-sand-2);
-  box-shadow: 0 8px 26px rgba(55, 91, 65, 0.09);
-  transition: transform 0.5s cubic-bezier(0.22, 0.9, 0.28, 1), box-shadow 0.5s ease;
+  background-color: #375b41;
+  background-color: var(--brand-olive);
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 30px rgba(55, 91, 65, 0.12);
+  transition: box-shadow 0.5s ease;
 }
-.ay-banner .ay-banner__link img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.22, 0.9, 0.28, 1);
+.ay-banner {
+  /* تدرّجات بديلة حين لا توجد صورة بعد */
+}
+.ay-banner .ay-banner--tone-0 {
+  background-image: linear-gradient(120deg, #375b41 0%, #4d7758 55%, #6a9478 100%);
+}
+.ay-banner .ay-banner--tone-1 {
+  background-image: linear-gradient(120deg, #a30c30 0%, #cd103d 55%, #e5476d 100%);
+}
+.ay-banner .ay-banner--tone-2 {
+  background-image: linear-gradient(120deg, #2f4f39 0%, #375b41 45%, #8a6b3c 100%);
+}
+.ay-banner {
+  /* الصورة إن وُجدت تُغطّي التدرّج */
+}
+.ay-banner .ay-banner__link[style*=background-image] {
+  background-blend-mode: normal;
+}
+.ay-banner .ay-banner__overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.48) 0%, rgba(0, 0, 0, 0.18) 55%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+}
+.ay-banner .ay-banner__body {
+  position: relative;
+  max-width: 560px;
+}
+.ay-banner .ay-banner__title {
+  font-family: "FODA Freestyle", "29LT Rewaya", Georgia, serif;
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: #fff;
+  font-size: max(24px, min(3.6vw, 44px));
+  line-height: 1.3;
+  margin: 0 0 12px;
+}
+.ay-banner .ay-banner__text {
+  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
+  color: #fef6e9;
+  color: var(--brand-sand);
+  font-size: max(13px, min(1.5vw, 17px));
+  line-height: 1.95;
+  margin: 0 0 22px;
+}
+.ay-banner .ay-banner__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: #cd103d;
+  background: var(--brand-crimson);
+  color: #fff;
+  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.ay-banner .ay-banner__cta i {
+  transition: transform 0.3s ease;
+}
+.ay-banner .ay-banner__cta:hover {
+  background: #fff;
+  color: #cd103d;
+  color: var(--brand-crimson);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+.ay-banner .ay-banner__cta:hover i {
+  transform: translateX(-4px);
 }
 .ay-banner .ay-banner__link:hover {
-  box-shadow: 0 16px 36px rgba(205, 16, 61, 0.16);
+  box-shadow: 0 18px 40px rgba(205, 16, 61, 0.18);
 }
-.ay-banner .ay-banner__link:hover img {
-  transform: scale(1.03);
+/* صف التصنيفات الدائرية الثابت */
+.ay-cats-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: 22px 12px;
+  gap: 22px 12px;
+  justify-items: center;
+}
+@media (min-width: 640px) {
+  .ay-cats-row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 /* --------------------------------------------------------------------------
    13) خط زخرفي تحت عناوين الأقسام الوسطية
