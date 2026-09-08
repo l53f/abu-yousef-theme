@@ -9937,6 +9937,179 @@ h1, h2, h3, h4, h5 {
   padding: 0;
   margin: 0;
 }
+/* ==========================================================================
+   المرحلة ٥ — بطاقات المنتجات بأسلوب التبسيط (نمط الغربي)
+   --------------------------------------------------------------------------
+   كل مكوّنات سلة هنا ترسم في Light DOM، فالتنسيق الخارجي يصلها مباشرة.
+   نرفع التخصيص بـ (العنصر + الصنف) بدل !important لنتغلّب على utilities
+   الافتراضية بنظافة.
+   ========================================================================== */
+/* --------------------------------------------------------------------------
+   18) إزالة "الصندوق المعلّب"
+   -------------------------------------------------------------------------- */
+salla-product-card .s-product-card-entry {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+/* إلغاء ظل التمرير الافتراضي */
+salla-product-card .s-product-card-entry.s-product-card-shadow:hover {
+  box-shadow: none;
+}
+/* --------------------------------------------------------------------------
+   19) الصورة — تأخذ راحتها بلا قص
+   -------------------------------------------------------------------------- */
+salla-product-card .s-product-card-image {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  aspect-ratio: 1/1;
+}
+salla-product-card .s-product-card-image img {
+  width: 100%;
+  height: 100%;
+  /* contain بدل cover: لا يُقص المنتج من أطرافه */
+  -o-object-fit: contain;
+     object-fit: contain;
+  padding: 12px;
+  transition: transform 0.55s cubic-bezier(0.22, 0.9, 0.28, 1);
+}
+salla-product-card .s-product-card-entry:hover .s-product-card-image img {
+  transform: scale(1.05);
+}
+/* --------------------------------------------------------------------------
+   20) توسيط المحتوى
+   -------------------------------------------------------------------------- */
+salla-product-card .s-product-card-content {
+  text-align: center;
+  padding: 14px 6px 0;
+  background: transparent;
+}
+salla-product-card .s-product-card-content-main,
+salla-product-card .s-product-card-content-sub,
+salla-product-card .s-product-card-content-title,
+salla-product-card .s-product-card-content-subtitle {
+  text-align: center;
+}
+salla-product-card .s-product-card-content-title a {
+  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #375b41;
+  color: var(--brand-olive);
+  transition: color 0.3s ease;
+}
+salla-product-card .s-product-card-content-title a:hover {
+  color: #cd103d;
+  color: var(--brand-crimson);
+}
+/* التقييم (النجوم) في المنتصف */
+salla-product-card salla-rating-stars {
+  display: flex;
+  justify-content: center;
+  margin: 6px 0;
+}
+/* السعر */
+salla-product-card .s-product-card-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: #cd103d;
+  color: var(--brand-crimson);
+}
+salla-product-card .s-product-card-sale-price {
+  color: #5d7d67;
+  color: var(--brand-olive-soft);
+  font-weight: 400;
+  -webkit-text-decoration: line-through;
+  text-decoration: line-through;
+}
+/* --------------------------------------------------------------------------
+   21) زر "أضف للسلة" — مفرّغ بعرض البطاقة
+   -------------------------------------------------------------------------- */
+salla-product-card .s-product-card-content-footer {
+  display: block;
+  padding: 12px 0 0;
+  background: transparent;
+}
+salla-product-card salla-add-product-button {
+  display: block;
+  width: 100%;
+}
+salla-product-card salla-add-product-button .s-button-element {
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1.5px solid #375b41;
+  border: 1.5px solid var(--brand-olive);
+  color: #375b41;
+  color: var(--brand-olive);
+  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: none;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+salla-product-card salla-add-product-button .s-button-element:hover {
+  background: #cd103d;
+  background: var(--brand-crimson);
+  border-color: #cd103d;
+  border-color: var(--brand-crimson);
+  color: #fff;
+}
+/* --------------------------------------------------------------------------
+   22) أزرار شريط التمرير — دائرية بيضاء تطفو على الجانبين
+   -------------------------------------------------------------------------- */
+.s-slider-nav-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  color: #375b41;
+  color: var(--brand-olive);
+  border: 1px solid #f2dcbc;
+  border: 1px solid var(--brand-sand-3);
+  box-shadow: 0 6px 18px rgba(55, 91, 65, 0.14);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  place-items: center;
+  z-index: 10;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.s-slider-nav-arrow:hover {
+  background: #cd103d;
+  background: var(--brand-crimson);
+  border-color: #cd103d;
+  border-color: var(--brand-crimson);
+  color: #fff;
+  transform: scale(1.06);
+  box-shadow: 0 10px 24px rgba(205, 16, 61, 0.24);
+}
+.s-slider-nav-arrow .s-slider-button-icon,
+.s-slider-nav-arrow i {
+  color: inherit;
+  font-size: 17px;
+}
+@media (prefers-reduced-motion: reduce) {
+  salla-product-card .s-product-card-image img,
+  salla-product-card salla-add-product-button .s-button-element,
+  .s-slider-nav-arrow {
+    transition: none !important;
+    transform: none !important;
+  }
+}
 .before\:text-orange-300::before{
     content: var(--tw-content);
     --tw-text-opacity: 1;
