@@ -18,5 +18,20 @@
     "terminal.ansiRed": "#FB543F",
     "terminal.ansiWhite": "#A89984",
     "terminal.ansiYellow": "#FAC03B"
+  },
+  "remote.autoForwardPorts": true,
+  "remote.autoForwardPortsSource": "process",
+  "remote.restoreForwardedPorts": true,
+  "remote.portsAttributes": {
+    "8000": {
+      "label": "Salla assets",
+      "onAutoForward": "silent",
+      "protocol": "http"
+    },
+    "8001": {
+      "label": "Salla live reload",
+      "onAutoForward": "silent",
+      "protocol": "http"
+    }
   }
 }
