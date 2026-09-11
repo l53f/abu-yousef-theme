@@ -1040,3 +1040,79 @@ salla-product-card salla-add-product-button .s-button-element:hover {
     transform: none !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   23) آراء العملاء اليدوية — بطاقات فخمة
+   -------------------------------------------------------------------------- */
+.ay-reviews__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  /* قاعدة الثيم .s-block--testimonials.container تصفّر الحشو الأفقي في الجوال */
+  padding-inline: 16px;
+}
+
+.ay-review {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 24px 22px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(55, 91, 65, .06);
+  overflow: hidden;
+}
+
+/* علامة اقتباس زخرفية خافتة */
+.ay-review::before {
+  content: "\201C";
+  position: absolute;
+  top: 4px;
+  inset-inline-end: 18px;
+  font-family: serif;
+  font-size: 76px;
+  line-height: 1;
+  color: var(--brand-crimson);
+  opacity: .1;
+  pointer-events: none;
+}
+
+.ay-review__stars {
+  display: flex;
+  gap: 3px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.ay-review__star { color: #e6dfd0; }
+.ay-review__star.is-on { color: #e0a526; }
+
+.ay-review__text {
+  flex: 1;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--brand-olive-soft);
+}
+
+.ay-review__author {
+  padding-top: 14px;
+  border-top: 1px solid var(--brand-sand-2);
+}
+
+.ay-review__name {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--brand-olive);
+}
+
+@media (min-width: 768px) {
+  .ay-reviews__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    padding-inline: 24px;
+  }
+}

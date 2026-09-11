@@ -66,6 +66,13 @@
       a: 'يمكنك الاستبدال أو الإرجاع خلال ٣ أيام من الاستلام بشرط بقاء المنتج بحالته الأصلية.' }
   ] %}
 
+  {# ─────────── آراء العملاء — تُعرض يدوياً بدل salla-reviews ─────────── #}
+  {% set manual_reviews = [
+    { name: 'عبدالعزيز اليامي', text: 'أحب هذا المتجر وتعاملهم الراقي مع العملاء، جودة المنتجات لا يعلى عليها وتغليف يفتح النفس.', rating: 5 },
+    { name: 'سارة محمد', text: 'المنتجات طبيعية 100% ونظيفة جداً، التوصيل كان سريع والأسعار مناسبة لجودة الشغل. شكراً لكم.', rating: 5 },
+    { name: 'خالد العتيبي', text: 'من أفضل متاجر العطارة اللي تعاملت معهم، شغل نظيف ومرتب، وزيت الزيتون عندهم أصلي وممتاز.', rating: 5 }
+  ] %}
+
 
   {# ══════════ ١. البنر الأول — ممتد بعرض الشاشة وبلا نصوص ══════════ #}
   {% include 'components.partials.ay-banner' with { banner: banners[0], index: 0, full_bleed: true, bare: true } %}
@@ -148,8 +155,20 @@
       <p>آراء حقيقية من مشترين فعليين</p>
       <span class="ay-title-line"></span>
     </div>
-    <div class="ay-anime-item">
-      <salla-reviews limit="8" type="store"></salla-reviews>
+    <div class="ay-reviews__grid">
+      {% for review in manual_reviews %}
+        <article class="ay-review ay-anime-item">
+          <div class="ay-review__stars" role="img" aria-label="تقييم {{ review.rating|default(5) }} من 5">
+            {% for i in [1, 2, 3, 4, 5] %}
+              <span class="ay-review__star {{ i <= review.rating|default(5) ? 'is-on' : '' }}" aria-hidden="true">★</span>
+            {% endfor %}
+          </div>
+          <p class="ay-review__text">{{ review.text }}</p>
+          <div class="ay-review__author">
+            <span class="ay-review__name">{{ review.name }}</span>
+          </div>
+        </article>
+      {% endfor %}
     </div>
   </section>
 

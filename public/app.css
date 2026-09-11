@@ -10122,6 +10122,86 @@ salla-product-card salla-add-product-button .s-button-element:hover {
     transform: none !important;
   }
 }
+/* --------------------------------------------------------------------------
+   23) آراء العملاء اليدوية — بطاقات فخمة
+   -------------------------------------------------------------------------- */
+.ay-reviews__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 18px;
+  gap: 18px;
+  /* قاعدة الثيم .s-block--testimonials.container تصفّر الحشو الأفقي في الجوال */
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.ay-review {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 24px 22px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(55, 91, 65, 0.06);
+  overflow: hidden;
+}
+/* علامة اقتباس زخرفية خافتة */
+.ay-review::before {
+  content: "“";
+  position: absolute;
+  top: 4px;
+  right: 18px;
+  font-family: serif;
+  font-size: 76px;
+  line-height: 1;
+  color: #cd103d;
+  color: var(--brand-crimson);
+  opacity: 0.1;
+  pointer-events: none;
+}
+.ay-review__stars {
+  display: flex;
+  gap: 3px;
+  font-size: 18px;
+  line-height: 1;
+}
+.ay-review__star {
+  color: #e6dfd0;
+}
+.ay-review__star.is-on {
+  color: #e0a526;
+}
+.ay-review__text {
+  flex: 1;
+  margin: 0;
+  font-family: 'Tajawal', "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.95;
+  color: #5d7d67;
+  color: var(--brand-olive-soft);
+}
+.ay-review__author {
+  padding-top: 14px;
+  border-top: 1px solid #f7e8d0;
+  border-top: 1px solid var(--brand-sand-2);
+}
+.ay-review__name {
+  font-family: 'Tajawal', "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  color: #375b41;
+  color: var(--brand-olive);
+}
+@media (min-width: 768px) {
+  .ay-reviews__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
 .before\:text-orange-300::before{
     content: var(--tw-content);
     --tw-text-opacity: 1;
