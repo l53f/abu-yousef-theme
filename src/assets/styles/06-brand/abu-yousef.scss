@@ -1116,3 +1116,54 @@ salla-product-card salla-add-product-button .s-button-element:hover {
     padding-inline: 24px;
   }
 }
+
+/* ==========================================================================
+   تخصيص الفوتر (Footer)
+   ========================================================================== */
+footer, .s-footer, .store-footer {
+  background-color: var(--brand-olive) !important;
+  color: var(--brand-sand) !important;
+}
+
+/* توحيد ألوان النصوص والعناوين والأيقونات للسكري */
+footer h1, footer h2, footer h3, footer h4, footer h5, footer h6,
+footer .s-footer-title, footer p, footer span, footer a, footer i, footer div {
+  color: var(--brand-sand) !important;
+}
+
+/* لمسة جمالية: تحول الروابط للقرمزي عند التمرير */
+footer a:hover, footer a:hover * {
+  color: var(--brand-crimson) !important;
+}
+
+/* شريط حقوق النشر السفلي (فصل بخط شفاف ناعم) */
+footer .s-footer-bottom, footer .footer-bottom {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+  border-top: 1px solid rgba(254, 246, 233, 0.1) !important;
+}
+
+/* --------------------------------------------------------------------------
+   تكميل على بنية فوتر ثيم رائد الفعلية
+   الأصناف .s-footer-bottom و .footer-bottom و .s-footer-title غير موجودة في
+   footer.twig، فهذه القواعد تحقق النتيجة نفسها على العناصر الحقيقية.
+   -------------------------------------------------------------------------- */
+
+/* الجزء الرئيسي: footer.scss يضع bg-dark على __inner فيغطي الزيتوني */
+.store-footer__inner {
+  background-color: var(--brand-olive) !important;
+  /* خط فاصل ناعم واحد بدل الخط المتقطع الافتراضي */
+  border-bottom: 1px solid rgba(254, 246, 233, 0.1) !important;
+}
+
+/* شريط الحقوق صف بعرض container لا يمتد للشاشة كاملة، فنعتّم الفوتر نفسه
+   بطبقة 15% سوداء؛ لا تظهر إلا حيث لا يغطيها __inner، أي في الشريط السفلي */
+.store-footer {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)) !important;
+}
+
+/* نافذة شهادة الضريبة داخل الفوتر خلفيتها بيضاء: نمنع النص السكري من الاختفاء.
+   التخصيص (0,1,2) يتغلّب على footer div (0,0,2) */
+.store-footer salla-modal,
+.store-footer salla-modal * {
+  color: var(--brand-olive) !important;
+}
