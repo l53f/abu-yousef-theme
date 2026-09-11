@@ -50,6 +50,10 @@
  *
 */
 
+/* خط Tajawal — يجب أن يبقى أول @import ليقع في رأس app.css المُصرَّف؛
+   قاعدة @import يُهملها المتصفح إن سبقتها أي قاعدة أخرى */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+
 @import './01-settings/tailwind';
 @import './01-settings/fonts';
 @import './01-settings/global';

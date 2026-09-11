@@ -6,6 +6,38 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
+   0) تعميم الهوية على كامل المتجر (أولوية إجبارية)
+   -------------------------------------------------------------------------- */
+
+/* الخلفية السكرية والخط الموحّد على كل الصفحات */
+body, .s-page, .s-main {
+  background-color: var(--brand-sand) !important;
+  font-family: 'Tajawal', 'PingARLT', sans-serif !important;
+}
+
+/* عناوين الأقسام: بارزة وفخمة */
+.s-block__title h2, .ay-block-title h2, .ay-reviews__head h2, .ay-faq__title, .ay-features__title {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  font-family: 'Tajawal', 'PingARLT', sans-serif !important;
+  color: var(--brand-olive) !important;
+  margin-bottom: 15px;
+}
+
+/* منع تداخل آراء العملاء والأسئلة الشائعة مع ما يسبقهما */
+.ay-reviews, .ay-faq {
+  margin-top: 60px !important;
+  padding-top: 40px !important;
+}
+
+/* السبب الجذري للتداخل: قاعدة الثيم .s-block--testimonials.container { p-0 }
+   بتخصيص (0,2,0) كانت تلغي padding قسم آراء العملاء. نعيد الأسفل أيضاً
+   لأن للقسم خلفية ملوّنة بحواف دائرية فلا يبدو مقصوصاً من الأسفل */
+.ay-reviews {
+  padding-bottom: 46px !important;
+}
+
+/* --------------------------------------------------------------------------
    1) الرموز (Design Tokens)
    -------------------------------------------------------------------------- */
 :root {
@@ -22,8 +54,8 @@
 
   /* الخطوط */
   /* var(--font-main) يعرّفه master.twig بخط المتجر المحمَّل فعلاً من سلة (theme.font.path) */
-  --font-display: var(--font-main), "PingARLT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
-  --font-body:    var(--font-main), "PingARLT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+  --font-display: 'Tajawal', var(--font-main), "PingARLT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+  --font-body:    'Tajawal', var(--font-main), "PingARLT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
 
   /* ------------------------------------------------------------------
      ربط رموز الثيم/مكونات سلة بالهوية.
