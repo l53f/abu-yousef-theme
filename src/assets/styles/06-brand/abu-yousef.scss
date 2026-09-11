@@ -1167,3 +1167,44 @@ footer .s-footer-bottom, footer .footer-bottom {
 .store-footer salla-modal * {
   color: var(--brand-olive) !important;
 }
+
+/* ==========================================================================
+   فرض الهوية على الصفحات الداخلية (أولوية قصوى)
+   ========================================================================== */
+
+/* ١) الخلفية السكرية على كل الحاويات الجذرية وكسر فئات Tailwind البيضاء */
+html, body, #app, .s-page, .s-main, main, .bg-gray-50, .bg-white, .bg-gray-100 {
+  background-color: var(--brand-sand) !important;
+}
+
+/* ٢) هيدر الصفحات الداخلية يندمج مع الخلفية السكرية.
+   حُصر في .store-header: المكوّنان salla-cart-summary-card و salla-loyalty-program
+   يرسمان <header> خاصاً بهما، ومحدّد header العام كان سيلوّنهما */
+body:not(.ay-home) .store-header {
+  background-color: var(--brand-sand) !important;
+  border-bottom: 1px solid rgba(55, 91, 65, 0.1) !important;
+}
+
+/* ٣) خط موحّد في كل مكان.
+   آمن على الأيقونات: sallaicons.css يعرّف [class^=sicon-] بـ !important وتخصيص (0,1,0)
+   يغلب * (0,0,0) و span/a (0,0,1)، والرمز يُرسم في ::before الذي لا يطابقه * */
+*, h1, h2, h3, h4, h5, h6, p, a, span, button, input {
+  font-family: 'Tajawal', 'PingARLT', sans-serif !important;
+}
+
+/* تكميل: الهيدر العائم في الرئيسية.
+   #mainnav يحمل bg-white، فالقاعدة ١ كانت ستحوّله شريطاً سكرياً فوق البنر
+   لأن قواعد الشفافية السابقة بلا !important */
+.ay-home .store-header .top-navbar,
+.ay-home .store-header .main-nav-container,
+.ay-home .store-header .main-nav-container .inner {
+  background-color: transparent !important;
+}
+
+/* عند التمرير يعود صلباً — سكرياً بخط ناعم ليطابق هيدر الصفحات الداخلية.
+   تخصيص (0,5,0) يغلب قاعدة الشفافية أعلاه (0,4,0) */
+.ay-home .store-header .main-nav-container.fixed-pinned .inner,
+.ay-home .store-header .main-nav-container.fixed-header .inner {
+  background-color: var(--brand-sand) !important;
+  border-bottom: 1px solid rgba(55, 91, 65, 0.1) !important;
+}

@@ -2224,6 +2224,8 @@ body{
     --tw-bg-opacity: 1;
     background-color: rgba(249, 250, 251, 1);
     background-color: rgba(249, 250, 251, var(--tw-bg-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 body [type=text]:focus, body [type=email]:focus, body [type=url]:focus, body [type=password]:focus, body [type=number]:focus, body [type=date]:focus, body [type=datetime-local]:focus, body [type=month]:focus, body [type=search]:focus, body [type=tel]:focus, body [type=time]:focus, body [type=week]:focus, body [multiple]:focus, body textarea:focus, body select:focus{
     --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
@@ -3240,6 +3242,8 @@ salla-button.copied i:before {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .btn--icon:hover{
     --tw-border-opacity: 1;
@@ -3334,6 +3338,8 @@ input[type=radio].sr-only:checked ~ div.btn--close {
     --tw-text-opacity: 1;
     color: rgba(55, 65, 81, 1);
     color: rgba(55, 65, 81, var(--tw-text-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 @media (min-width: 480px){
     .btn--collapse:where([dir="ltr"], [dir="ltr"] *){
@@ -3420,6 +3426,8 @@ input[type=radio].sr-only:checked ~ div.btn--close {
     --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
     box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .btn--outline:hover{
     border-color: #cd103d;
@@ -3730,6 +3738,8 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
     transition-property: box-shadow;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .s-product-card-shadow:hover {
   box-shadow: 5px 10px 30px rgba(43, 45, 52, 0.0509803922);
@@ -3986,6 +3996,10 @@ input[type=radio].sr-only div.s-product-card-out-badge {
 input[type=radio].sr-only:checked ~ div.s-product-card-out-badge {
   border-color: var(--color-main);
 }
+.s-product-card-out-badge {
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
+}
 @media (min-width: 768px){
     .s-product-card-out-badge{
         padding-top: 0.5rem;
@@ -4001,6 +4015,8 @@ input[type=radio].sr-only:checked ~ div.s-product-card-out-badge {
     --tw-bg-opacity: 1;
     background-color: rgba(243, 244, 246, 1);
     background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .s-product-card-image::before{
     position: absolute;
@@ -4581,6 +4597,8 @@ input[type=radio].sr-only:checked ~ div.s-product-card-full-image .s-product-car
     transition-property: opacity;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 @media (min-width: 1024px){
     .s-reviews-testimonial{
@@ -5205,6 +5223,8 @@ salla-menu[topnav]:not(.hydrated)::after {
     --tw-text-opacity: 1;
     color: rgba(55, 65, 81, 1);
     color: rgba(55, 65, 81, var(--tw-text-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .footer-is-light .store-footer .store-footer__inner{
     --tw-border-opacity: 1;
@@ -5213,6 +5233,8 @@ salla-menu[topnav]:not(.hydrated)::after {
     --tw-bg-opacity: 1;
     background-color: rgba(243, 244, 246, 1);
     background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .footer-is-light .store-footer .social-link{
     --tw-border-opacity: 1;
@@ -5336,6 +5358,10 @@ input[type=radio].sr-only div.main-menu .sub-menu {
 }
 input[type=radio].sr-only:checked ~ div.main-menu .sub-menu {
   border-color: var(--color-main);
+}
+.main-menu .sub-menu {
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
   .main-menu .sub-menu .sub-menu {
     top: -1px;
@@ -5608,6 +5634,10 @@ input[type=radio].sr-only div.dropdown__menu {
 input[type=radio].sr-only:checked ~ div.dropdown__menu {
   border-color: var(--color-main);
 }
+.dropdown__menu {
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
+}
 @media (min-width: 1024px){
     .dropdown__menu{
         width: 15rem;
@@ -5848,6 +5878,10 @@ input[type=radio].sr-only:checked ~ div.dropdown__menu {
 .form--user-profile .s-file-upload-wrapper .filepond--drop-label * {
   pointer-events: none;
 }
+.form--user-profile .s-file-upload-wrapper .filepond--drop-label {
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
+}
 .form--user-profile .s-file-upload-wrapper .profile-filepond-placholder{
     display: flex;
     flex-direction: column;
@@ -5898,6 +5932,8 @@ input[type=radio].sr-only:checked ~ div.dropdown__menu {
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
     padding: 2rem;
     transition-duration: 500ms;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .thankyou-block:hover{
     --tw-shadow: 5px 10px 30px #2B2D340D;;
@@ -6136,6 +6172,8 @@ input[type=radio].sr-only:checked ~ div.s-block--hero-slider .swiper-slide .over
     background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
     -o-object-fit: cover;
        object-fit: cover;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 /* Square Banner Block */
 .banner-entry{
@@ -6154,6 +6192,8 @@ input[type=radio].sr-only:checked ~ div.s-block--hero-slider .swiper-slide .over
     --tw-text-opacity: 1;
     color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 @media (min-width: 480px){
     .banner-entry{
@@ -6549,6 +6589,8 @@ input[type=radio].sr-only:checked ~ div.has-overlay:after {
     background-color: rgba(243, 244, 246, 1);
     background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
     padding-bottom: 2rem;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .s-block--slider-with-bg:first-of-type{
     margin-top: 0px;
@@ -6670,7 +6712,9 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
   --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow)
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
+  background-color: #fef6e9;
+  background-color: var(--brand-sand)
 }
 .s-block--slider-with-bg .s-slider-block__display-all:hover{
     border-color: #cd103d;
@@ -6736,6 +6780,8 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 500ms;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .slide--cat-entry:hover{
     --tw-text-opacity: 1;
@@ -6782,6 +6828,8 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 500ms;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .slide--offer-entry:hover{
     --tw-shadow: 5px 10px 30px #2B2D340D;;
@@ -6874,6 +6922,10 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
 .s-block--features__item * {
   pointer-events: none;
 }
+.s-block--features__item {
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
+}
 .s-block--features__item:hover{
     --tw-shadow: 5px 10px 30px #2B2D340D;;
     --tw-shadow-colored: 5px 10px 30px var(--tw-shadow-color);
@@ -6964,6 +7016,8 @@ salla-slider.details-slider .s-slider-container{
     --tw-bg-opacity: 1;
     background-color: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 salla-slider.details-slider .swiper-slide{
     position: relative;
@@ -6978,6 +7032,8 @@ salla-slider.details-slider .swiper-slide{
     --tw-ring-inset: inset;
     --tw-ring-opacity: 1;
     --tw-ring-color: rgba(243, 244, 246, var(--tw-ring-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 salla-slider.details-slider salla-button.btn--wishlist{
     position: absolute;
@@ -7308,6 +7364,8 @@ model-viewer[style*=width]:before{
     transition-property: box-shadow;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .product-entry:hover{
     --tw-shadow: 5px 10px 30px #2B2D340D;;
@@ -7349,6 +7407,8 @@ model-viewer[style*=width]:before{
     background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
     padding-top: 1rem;
     padding-bottom: 1rem;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 @media (min-width: 768px){
     .s-comments-product{
@@ -7410,6 +7470,10 @@ input[type=radio].sr-only div.share-btns-list {
 }
 input[type=radio].sr-only:checked ~ div.share-btns-list {
   border-color: var(--color-main);
+}
+.share-btns-list {
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .share-btns-list a{
     display: block;
@@ -7676,6 +7740,8 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
     --tw-text-opacity: 1;
     color: rgba(75, 85, 99, 1);
     color: rgba(75, 85, 99, var(--tw-text-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .product-option-uploader {
   display: block;
@@ -7701,6 +7767,10 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
 }
 .product-option-uploader .s-file-upload-wrapper .filepond--drop-label * {
   pointer-events: none;
+}
+.product-option-uploader .s-file-upload-wrapper .filepond--drop-label {
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .product-option-uploader .s-file-upload-wrapper .product-option-uploader-placholder{
     display: flex;
@@ -7770,6 +7840,8 @@ salla-add-product-button[product-status=out-and-notify] .s-product-availability-
     --tw-bg-opacity: 1;
     background-color: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .s-product-card-wishlist-added i{
     --tw-text-opacity: 1;
@@ -7960,6 +8032,8 @@ input[type=radio].sr-only:checked ~ div#offer-corner-badge {
     --tw-bg-opacity: 1;
     background-color: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .cart-options salla-product-options{
     margin-bottom: 0px;
@@ -8036,6 +8110,8 @@ salla-quantity-input[max="1"] .s-quantity-input-button{
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .brands-nav__item:hover{
     --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -8087,6 +8163,8 @@ salla-quantity-input[max="1"] .s-quantity-input-button{
     --tw-bg-opacity: 1;
     background-color: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 @media (max-width: 1280px) {
   .brands-nav.is-sticky .brands-nav__item{
@@ -8111,6 +8189,8 @@ salla-quantity-input[max="1"] .s-quantity-input-button{
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .brand-char:hover{
     --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -8158,6 +8238,8 @@ salla-quantity-input[max="1"] .s-quantity-input-button{
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .brand-item:hover{
     opacity: 0.95;
@@ -8213,6 +8295,8 @@ salla-quantity-input[max="1"] .s-quantity-input-button{
     --tw-text-opacity: 1;
     color: rgba(209, 213, 219, 1);
     color: rgba(209, 213, 219, var(--tw-text-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .no-content-placeholder p{
     margin-bottom: 1rem;
@@ -8270,6 +8354,8 @@ salla-quantity-input[max="1"] .s-quantity-input-button{
     --tw-shadow-colored: 5px 10px 30px var(--tw-shadow-color);
     box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 5px 10px 30px #2B2D340D;;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 @media (min-width: 1024px){
     .loyalty__banner{
@@ -8426,6 +8512,8 @@ input[type=radio].sr-only:checked ~ div.loyalty-star {
     --tw-shadow-colored: 5px 10px 30px var(--tw-shadow-color);
     box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 5px 10px 30px #2B2D340D;;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .points-ways__list .way-item__icon{
     position: relative;
@@ -8574,6 +8662,8 @@ input[type=radio].sr-only:checked ~ div.points-ways__list .way-item__icon span {
     --tw-shadow-colored: 5px 10px 30px var(--tw-shadow-color);
     box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 5px 10px 30px #2B2D340D;;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
   top: 0;
   left: 0;
   right: 0;
@@ -8614,6 +8704,8 @@ input[type=radio].sr-only:checked ~ div.points-ways__list .way-item__icon span {
     --tw-bg-opacity: 1;
     background-color: rgba(243, 244, 246, 1);
     background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .s-add-product-toast__progress-bar{
     height: 100%;
@@ -8700,6 +8792,8 @@ input[type=radio].sr-only:checked ~ div.points-ways__list .way-item__icon span {
     background-color: rgba(249, 250, 251, var(--tw-bg-opacity, 1));
     -o-object-fit: contain;
        object-fit: contain;
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .s-add-product-toast__image img{
     height: 100%;
@@ -8964,6 +9058,8 @@ iframe.tawk-widget {
     --tw-bg-opacity: 1;
     background-color: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .swal2-container .swal2-popup.swal2-toast .swal2-title{
     margin: 0px;
@@ -9011,6 +9107,8 @@ iframe.tawk-widget {
     --tw-bg-opacity: 1;
     background-color: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
+  background-color: #fef6e9;
+  background-color: var(--brand-sand);
 }
 .swal2-container .swal2-popup.swal2-toast.swal2-icon-success{
     --tw-bg-opacity: 1;
@@ -10250,6 +10348,44 @@ footer .s-footer-bottom, footer .footer-bottom {
 .store-footer salla-modal * {
   color: #375b41 !important;
   color: var(--brand-olive) !important;
+}
+/* ==========================================================================
+   فرض الهوية على الصفحات الداخلية (أولوية قصوى)
+   ========================================================================== */
+/* ١) الخلفية السكرية على كل الحاويات الجذرية وكسر فئات Tailwind البيضاء */
+html, body, #app, .s-page, .s-main, main, .bg-gray-50, .bg-white, .bg-gray-100 {
+  background-color: #fef6e9 !important;
+  background-color: var(--brand-sand) !important;
+}
+/* ٢) هيدر الصفحات الداخلية يندمج مع الخلفية السكرية.
+   حُصر في .store-header: المكوّنان salla-cart-summary-card و salla-loyalty-program
+   يرسمان <header> خاصاً بهما، ومحدّد header العام كان سيلوّنهما */
+body:not(.ay-home) .store-header {
+  background-color: #fef6e9 !important;
+  background-color: var(--brand-sand) !important;
+  border-bottom: 1px solid rgba(55, 91, 65, 0.1) !important;
+}
+/* ٣) خط موحّد في كل مكان.
+   آمن على الأيقونات: sallaicons.css يعرّف [class^=sicon-] بـ !important وتخصيص (0,1,0)
+   يغلب * (0,0,0) و span/a (0,0,1)، والرمز يُرسم في ::before الذي لا يطابقه * */
+*, h1, h2, h3, h4, h5, h6, p, a, span, button, input {
+  font-family: "Tajawal", "PingARLT", sans-serif !important;
+}
+/* تكميل: الهيدر العائم في الرئيسية.
+   #mainnav يحمل bg-white، فالقاعدة ١ كانت ستحوّله شريطاً سكرياً فوق البنر
+   لأن قواعد الشفافية السابقة بلا !important */
+.ay-home .store-header .top-navbar,
+.ay-home .store-header .main-nav-container,
+.ay-home .store-header .main-nav-container .inner {
+  background-color: transparent !important;
+}
+/* عند التمرير يعود صلباً — سكرياً بخط ناعم ليطابق هيدر الصفحات الداخلية.
+   تخصيص (0,5,0) يغلب قاعدة الشفافية أعلاه (0,4,0) */
+.ay-home .store-header .main-nav-container.fixed-pinned .inner,
+.ay-home .store-header .main-nav-container.fixed-header .inner {
+  background-color: #fef6e9 !important;
+  background-color: var(--brand-sand) !important;
+  border-bottom: 1px solid rgba(55, 91, 65, 0.1) !important;
 }
 .before\:text-orange-300::before{
     content: var(--tw-content);
