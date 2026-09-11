@@ -24,7 +24,8 @@
 
 <section class="s-block s-block--fixed-banner ay-banner ay-animate
                 {{ is_bleed ? 'ay-banner--bleed' : '' }}
-                {{ is_bare  ? 'ay-banner--bare'  : '' }}">
+                {{ is_bare  ? 'ay-banner--bare'  : '' }}
+                {{ banner.image ? '' : 'ay-banner--empty' }}">
   <div class="{{ is_bleed ? 'ay-banner__full' : 'container' }}">
 
     {% if is_bare %}

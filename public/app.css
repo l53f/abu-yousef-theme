@@ -335,7 +335,7 @@ html,
   -moz-tab-size: 4; /* 3 */
   -o-tab-size: 4;
      tab-size: 4; /* 3 */
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif, -apple-system, BlinkMacSystemFont;
+  font-family: "DINNextLTArabic", -apple-system, BlinkMacSystemFont;
   font-family: var(--font-main), -apple-system, BlinkMacSystemFont; /* 4 */
   font-feature-settings: normal; /* 5 */
   font-variation-settings: normal; /* 6 */
@@ -2107,43 +2107,12 @@ input:where([type='file']):focus{
     transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 /* ==========================================================================
-   خطوط متجر "أبو يوسف للعطارة"
+   الخطوط
    --------------------------------------------------------------------------
-   مهم: css-loader في هذا الثيم مضبوط على { url: false }، أي أن مسارات url()
-   تُترك كما هي ولا يعالجها webpack. الملف الناتج هو public/app.css،
-   لذلك المسارات هنا نسبية إلى مجلد public/ وليس إلى مجلد src/.
-   ضع ملفات الخطوط في: src/assets/fonts/  (وستُنسخ إلى public/fonts/)
+   لا نعرّف @font-face هنا. الخط يأتي من سلة عبر theme.font.path في
+   master.twig، ويُقرأ في abu-yousef.scss من var(--font-main).
+   بهذا يمكن تغيير الخط من لوحة التاجر دون تعديل الكود.
    ========================================================================== */
-/* خط العناوين البارزة */
-@font-face {
-  font-family: "FODA Freestyle";
-  src: url("fonts/FODAFreestyle.woff2") format("woff2"), url("fonts/FODAFreestyle.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-/* خط النصوص العادية */
-@font-face {
-  font-family: "29LT Rewaya";
-  src: url("fonts/29LTRewaya-Regular.woff2") format("woff2"), url("fonts/29LTRewaya-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "29LT Rewaya";
-  src: url("fonts/29LTRewaya-Medium.woff2") format("woff2"), url("fonts/29LTRewaya-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "29LT Rewaya";
-  src: url("fonts/29LTRewaya-Bold.woff2") format("woff2"), url("fonts/29LTRewaya-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
 :root {
   --infinte-color: #c9c9c9;
   --main-text-color: #231f1e;
@@ -9080,8 +9049,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
   --brand-olive-l: #4d7758;
   --brand-olive-soft: #5d7d67;
   /* الخطوط */
-  --font-display: "FODA Freestyle", "29LT Rewaya", Georgia, serif;
-  --font-body: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* var(--font-main) يعرّفه master.twig بخط المتجر المحمَّل فعلاً من سلة (theme.font.path) */
+  --font-display: var(--font-main), "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+  --font-body: var(--font-main), "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   /* ------------------------------------------------------------------
      ربط رموز الثيم/مكونات سلة بالهوية.
      ملاحظة: global.scss يُعرّف ‎--color-primary-d/-l‎ بينما tailwind.config.js
@@ -9096,19 +9066,23 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
   --main-text-color: var(--brand-olive);
   --color-text: var(--brand-olive-soft);
   --color-grey: var(--brand-sand-2);
-  --font-main: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   /* إيقاع المسافات بين أقسام الصفحة الرئيسية */
   --ay-section-gap: 48px;
 }
 /* --------------------------------------------------------------------------
    2) الأساسيات
    -------------------------------------------------------------------------- */
+/* الخلفية السكرية على كل صفحات المتجر لا الرئيسية فقط.
+   !important لأن common.scss يطبّق bg-gray-50 على body */
+body,
+#app {
+  background-color: #fef6e9 !important;
+  background-color: var(--brand-sand) !important;
+}
 body {
-  background-color: #fef6e9;
-  background-color: var(--brand-sand);
   color: #375b41;
   color: var(--brand-olive);
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
 }
 h1, h2, h3, h4, h5 {
@@ -9118,7 +9092,7 @@ h1, h2, h3, h4, h5 {
 /* عناوين الأقسام بخط العرض */
 .ay-block-title h2,
 .s-block__title h2 {
-  font-family: "FODA Freestyle", "29LT Rewaya", Georgia, serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-display);
   font-size: max(22px, min(2.4vw, 30px));
   font-weight: 400;
@@ -9137,7 +9111,7 @@ h1, h2, h3, h4, h5 {
   background: var(--brand-crimson);
 }
 .ay-block-title p {
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   color: #5d7d67;
   color: var(--brand-olive-soft);
@@ -9171,7 +9145,7 @@ h1, h2, h3, h4, h5 {
   border-color: #cd103d;
   border-color: var(--brand-crimson);
   color: #fff;
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -9219,16 +9193,16 @@ h1, h2, h3, h4, h5 {
   align-items: center;
 }
 .ay-hero .ay-hero__title {
-  font-family: "FODA Freestyle", "29LT Rewaya", Georgia, serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
   color: #fff;
   font-size: max(28px, min(5vw, 54px));
   line-height: 1.25;
   margin-bottom: 14px;
 }
 .ay-hero .ay-hero__desc {
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   color: #fef6e9;
   color: var(--brand-sand);
@@ -9245,7 +9219,7 @@ h1, h2, h3, h4, h5 {
   background: #cd103d;
   background: var(--brand-crimson);
   color: #fff;
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   font-weight: 700;
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
@@ -9297,9 +9271,9 @@ h1, h2, h3, h4, h5 {
   transition: transform 0.45s ease;
 }
 .ay-categories .ay-cat__name {
-  font-family: "FODA Freestyle", "29LT Rewaya", Georgia, serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
   font-size: max(15px, min(1.6vw, 19px));
   color: #375b41;
   color: var(--brand-olive);
@@ -9389,16 +9363,16 @@ h1, h2, h3, h4, h5 {
   transition: background-color 0.35s ease, color 0.35s ease, transform 0.35s ease;
 }
 .ay-features .ay-feature__title {
-  font-family: "FODA Freestyle", "29LT Rewaya", Georgia, serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
   font-size: 17px;
   color: #375b41;
   color: var(--brand-olive);
   margin: 0;
 }
 .ay-features .ay-feature__text {
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   font-size: 13px;
   line-height: 1.8;
@@ -9431,16 +9405,16 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 26px;
 }
 .ay-reviews .ay-reviews__head h2 {
-  font-family: "FODA Freestyle", "29LT Rewaya", Georgia, serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
   font-size: max(24px, min(2.6vw, 32px));
   color: #375b41;
   color: var(--brand-olive);
   margin: 0 0 8px;
 }
 .ay-reviews .ay-reviews__head p {
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   color: #5d7d67;
   color: var(--brand-olive-soft);
@@ -9541,16 +9515,16 @@ h1, h2, h3, h4, h5 {
   max-width: 560px;
 }
 .ay-banner .ay-banner__title {
-  font-family: "FODA Freestyle", "29LT Rewaya", Georgia, serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
   color: #fff;
   font-size: max(24px, min(3.6vw, 44px));
   line-height: 1.3;
   margin: 0 0 12px;
 }
 .ay-banner .ay-banner__text {
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   color: #fef6e9;
   color: var(--brand-sand);
@@ -9567,7 +9541,7 @@ h1, h2, h3, h4, h5 {
   background: #cd103d;
   background: var(--brand-crimson);
   color: #fff;
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 15px;
@@ -9679,16 +9653,16 @@ h1, h2, h3, h4, h5 {
   text-align: center;
 }
 .ay-faq .ay-faq__title {
-  font-family: "FODA Freestyle", "29LT Rewaya", Georgia, serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
   font-size: max(24px, min(2.8vw, 34px));
   color: #375b41;
   color: var(--brand-olive);
   margin: 0;
 }
 .ay-faq .ay-faq__subtitle {
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.9;
@@ -9730,7 +9704,7 @@ h1, h2, h3, h4, h5 {
   text-align: inherit;
 }
 .ay-faq .ay-faq__question {
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 15px;
@@ -9769,7 +9743,7 @@ h1, h2, h3, h4, h5 {
   transition: height 0.4s cubic-bezier(0.22, 0.9, 0.28, 1);
 }
 .ay-faq .ay-faq__answer {
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 2;
@@ -9824,30 +9798,32 @@ h1, h2, h3, h4, h5 {
 /* البنر الأول: صورة فقط، بلا نصوص ولا تعتيم */
 .ay-banner--bare .ay-banner__link {
   display: block;
-  min-height: max(320px, min(46vw, 620px));
+  min-height: 0;
   padding: 0;
-  align-items: stretch;
+  box-shadow: none;
 }
-.ay-banner--bare .ay-banner__picture,
+.ay-banner--bare {
+  /* صورة مصمّمة ومكتوب عليها: تظهر بأبعادها الطبيعية، فلا يُقص نصها ولا يتمدد */
+}
+.ay-banner--bare .ay-banner__picture {
+  position: static;
+  display: block;
+}
 .ay-banner--bare .ay-banner__picture img {
   display: block;
   width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.ay-banner--bare .ay-banner__picture {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-.ay-banner--bare {
-  /* لا تكبير عند المرور — الصورة مصمّمة كما هي */
+  height: auto;
 }
 .ay-banner--bare .ay-banner__link:hover {
   box-shadow: none;
+}
+/* مع صورة: لا تدرّج خلفها */
+.ay-banner--bare:not(.ay-banner--empty) .ay-banner__link {
+  background: none;
+}
+/* بلا صورة بعد: يبقى التدرّج بارتفاع يُظهر مكان البنر */
+.ay-banner--bare.ay-banner--empty .ay-banner__link {
+  min-height: max(180px, min(30vw, 420px));
 }
 /* --------------------------------------------------------------------------
    17) الهيدر الشفاف العائم — الصفحة الرئيسية فقط
@@ -9995,7 +9971,7 @@ salla-product-card .s-product-card-content-subtitle {
   text-align: center;
 }
 salla-product-card .s-product-card-content-title a {
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 15px;
@@ -10020,7 +9996,7 @@ salla-product-card .s-product-card-price {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   font-weight: 700;
   color: #cd103d;
@@ -10055,7 +10031,7 @@ salla-product-card salla-add-product-button .s-button-element {
   border: 1.5px solid var(--brand-olive);
   color: #375b41;
   color: var(--brand-olive);
-  font-family: "29LT Rewaya", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DINNextLTArabic", "PingARLT",system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 14px;

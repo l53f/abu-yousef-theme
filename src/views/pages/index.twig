@@ -25,18 +25,16 @@
       url:          '/products'
     },
     {
-      image: 'https://placehold.co/1920x500/cd103d/fef6e9/png?text=Banner+2+1920x500',
-      title: 'عسل السدر الجبلي',
-      text:  'من مناحل موثوقة، معبّأ بعناية ومفحوص مخبرياً',
-      cta:   'اكتشف العسل',
-      url:   '/products'
+      image:        'https://placehold.co/1920x500/cd103d/fef6e9/png?text=Banner+2+1920x500',
+      image_mobile: 'https://placehold.co/1080x1080/cd103d/fef6e9/png?text=Mobile+Banner+2+1080x1080',
+      alt:          'عسل السدر الجبلي',
+      url:          '/products'
     },
     {
-      image: 'https://placehold.co/1920x500/2f4f39/fef6e9/png?text=Banner+3+1920x500',
-      title: 'خلطات وبهارات أصيلة',
-      text:  'تُطحن عندنا طازجة كل أسبوع، بنكهة تعرفها من أول ملعقة',
-      cta:   'تصفّح البهارات',
-      url:   '/products'
+      image:        'https://placehold.co/1920x500/2f4f39/fef6e9/png?text=Banner+3+1920x500',
+      image_mobile: 'https://placehold.co/1080x1080/2f4f39/fef6e9/png?text=Mobile+Banner+3+1080x1080',
+      alt:          'خلطات وبهارات أصيلة',
+      url:          '/products'
     }
   ] %}
 
@@ -99,7 +97,7 @@
   </section>
 
   {# ══════════ ٤. البنر الثاني ══════════ #}
-  {% include 'components.partials.ay-banner' with { banner: banners[1], index: 1 } %}
+  {% include 'components.partials.ay-banner' with { banner: banners[1], index: 1, bare: true } %}
 
   {# ══════════ ٥. وصل حديثاً ══════════ #}
   <section class="s-block s-block--best-offers ay-bestsellers ay-animate container overflow-hidden">
@@ -113,7 +111,7 @@
   </section>
 
   {# ══════════ ٦. البنر الثالث ══════════ #}
-  {% include 'components.partials.ay-banner' with { banner: banners[2], index: 2 } %}
+  {% include 'components.partials.ay-banner' with { banner: banners[2], index: 2, bare: true } %}
 
   {# ══════════ ٧. عروض وبكجات ══════════ #}
   <section class="s-block s-block--best-offers ay-bestsellers ay-animate container overflow-hidden">

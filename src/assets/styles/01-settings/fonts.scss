@@ -1,46 +1,7 @@
 /* ==========================================================================
-   خطوط متجر "أبو يوسف للعطارة"
+   الخطوط
    --------------------------------------------------------------------------
-   مهم: css-loader في هذا الثيم مضبوط على { url: false }، أي أن مسارات url()
-   تُترك كما هي ولا يعالجها webpack. الملف الناتج هو public/app.css،
-   لذلك المسارات هنا نسبية إلى مجلد public/ وليس إلى مجلد src/.
-   ضع ملفات الخطوط في: src/assets/fonts/  (وستُنسخ إلى public/fonts/)
+   لا نعرّف @font-face هنا. الخط يأتي من سلة عبر theme.font.path في
+   master.twig، ويُقرأ في abu-yousef.scss من var(--font-main).
+   بهذا يمكن تغيير الخط من لوحة التاجر دون تعديل الكود.
    ========================================================================== */
-
-/* خط العناوين البارزة */
-@font-face {
-  font-family: "FODA Freestyle";
-  src: url("fonts/FODAFreestyle.woff2") format("woff2"),
-       url("fonts/FODAFreestyle.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* خط النصوص العادية */
-@font-face {
-  font-family: "29LT Rewaya";
-  src: url("fonts/29LTRewaya-Regular.woff2") format("woff2"),
-       url("fonts/29LTRewaya-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "29LT Rewaya";
-  src: url("fonts/29LTRewaya-Medium.woff2") format("woff2"),
-       url("fonts/29LTRewaya-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "29LT Rewaya";
-  src: url("fonts/29LTRewaya-Bold.woff2") format("woff2"),
-       url("fonts/29LTRewaya-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
