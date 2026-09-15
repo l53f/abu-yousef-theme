@@ -10387,6 +10387,32 @@ body:not(.ay-home) .store-header {
   background-color: var(--brand-sand) !important;
   border-bottom: 1px solid rgba(55, 91, 65, 0.1) !important;
 }
+/* ==========================================================================
+   الهوية على المكوّنات الديناميكية لسلة (كل ما يضيفه التاجر من المحرر)
+   --------------------------------------------------------------------------
+   الأصناف مأخوذة من قوالب المكوّنات الفعلية. لا يوجد صنف .s-banner لأقسام
+   الرئيسية؛ البنرات هي .s-block--banners و .s-block--full-banner و .banner-entry،
+   وكل الأقسام تحمل .s-block فيغطيها محدّد واحد:
+   features, testimonials, custom-testimonials, banners, full-banner,
+   logos-slider, photos-slider, latest-products, special-products,
+   features-products, tabs-produtcs, slider-with-bg, video
+   ========================================================================== */
+/* خلفية سكرية لكل أقسام الرئيسية.
+   يُستثنى ay-reviews: درجته السكرية الأغمق مقصودة */
+.s-block:not(.ay-reviews) {
+  background-color: #fef6e9 !important;
+  background-color: var(--brand-sand) !important;
+}
+/* عناوين المكوّنات التي ترسمها سلة عبر salla-slider (الماركات، معرض الصور،
+   أحدث المنتجات، المنتجات المميزة، الآراء…) بنفس عناوين الأقسام.
+   يُستثنى ما يضع العنوان فوق صورة خلفية بنص أبيض، وإلا صار غير مقروء */
+.s-block:not(.s-block--slider-with-bg):not(.merge-with-top-component) .s-slider-block__title h1, .s-block:not(.s-block--slider-with-bg):not(.merge-with-top-component) .s-slider-block__title h2, .s-block:not(.s-block--slider-with-bg):not(.merge-with-top-component) .s-slider-block__title h3, .s-reviews-header h1, .s-reviews-header h2, .s-reviews-header h3 {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  font-family: "Tajawal", "PingARLT", sans-serif !important;
+  color: #375b41 !important;
+  color: var(--brand-olive) !important;
+}
 .before\:text-orange-300::before{
     content: var(--tw-content);
     --tw-text-opacity: 1;
