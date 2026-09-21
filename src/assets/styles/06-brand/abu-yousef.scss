@@ -1284,50 +1284,26 @@ body:not(.ay-home) .store-header {
 }
 
 /* ==========================================================================
-   بنرات الرئيسية المبنية برمجياً (index.twig): رئيسي + بنر لكل قسم
-   الصورة بعرض الحاوية وبنسبتها الطبيعية — لا قص ولا ضغط على أي شاشة
+   البنر العريض الأصلي لسلة (s-block--fixed-banner) — منع القص
+   يدعم صورتين من المحرر (كمبيوتر/جوال) وتظهر كل منهما بأبعادها كاملة
    ========================================================================== */
-.ay-custom-banners {
-  display: block;
-  width: 100%;
+.s-block--fixed-banner,
+.ay-banner {
   height: auto !important;
   min-height: 0 !important;
-  background-color: var(--brand-sand);
-
-  a,
-  picture {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-  }
-
-  img {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    aspect-ratio: auto !important;
-    object-fit: contain !important;
-  }
 }
 
-/* بنر القسم: من الحافة للحافة على الجوال، وبحواف ناعمة على الكمبيوتر */
-@media (max-width: 767px) {
-  .ay-custom-banners--section.container { padding-inline: 0 !important; }
+.s-block--fixed-banner a,
+.s-block--fixed-banner picture {
+  display: block !important;
+  height: auto !important;
+  padding: 0 !important;
 }
 
-@media (min-width: 768px) {
-  .ay-custom-banners--section a {
-    border-radius: 16px;
-    overflow: hidden;
-    transition: box-shadow .3s ease;
-  }
-
-  .ay-custom-banners--section a:hover {
-    box-shadow: 0 18px 40px rgba(205, 16, 61, .18);
-  }
+.s-block--fixed-banner img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
 }
 
 /* ==========================================================================
