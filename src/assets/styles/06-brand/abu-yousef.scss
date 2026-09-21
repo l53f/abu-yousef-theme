@@ -1282,3 +1282,29 @@ body:not(.ay-home) .store-header {
     object-fit: contain !important;
   }
 }
+
+/* ==========================================================================
+   بنر رئيسي ثابت أعلى الصفحة (يتجاوز قيود محرر سلة)
+   ========================================================================== */
+.ay-fixed-hero {
+  display: block;
+  width: 100%;
+  background-color: var(--brand-sand);
+}
+
+.ay-fixed-hero__picture { display: block; }
+
+/* الصورة بعرض الشاشة كاملاً وبنسبتها الطبيعية: لا قص ولا ضغط */
+.ay-fixed-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-inline: auto;
+}
+
+/* السلايدر المحسّن القديم لم تعد له حاجة */
+.ay-hero,
+.s-block--hero-slider {
+  display: none !important;
+}
