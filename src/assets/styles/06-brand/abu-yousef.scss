@@ -1284,27 +1284,63 @@ body:not(.ay-home) .store-header {
 }
 
 /* ==========================================================================
-   بنر رئيسي ثابت أعلى الصفحة (يتجاوز قيود محرر سلة)
+   البنرات العريضة الأصلية لسلة (بنر عريض ← منتجات ← بنر عريض …)
+   --------------------------------------------------------------------------
+   التاجر يبني الرئيسية من المحرر، فيجب أن تظهر صورة كل بنر بأبعادها
+   المرفوعة كاملة على كل الشاشات: الحاوية تتبع الصورة (height: auto)
+   والصورة بعرض الحاوية وبنسبتها الطبيعية — لا قص ولا ضغط.
    ========================================================================== */
-.ay-fixed-hero {
-  display: block;
-  width: 100%;
-  background-color: var(--brand-sand);
+.s-block--fixed-banner,
+.s-block--banners,
+.s-block--full-banner,
+.ay-banner {
+  height: auto !important;
+  min-height: 0 !important;
+
+  .banner,
+  .banner--fixed,
+  .ay-banner__link,
+  .ay-banner__picture,
+  picture {
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    padding: 0 !important;
+  }
+
+  picture img,
+  .banner img,
+  .ay-banner__link img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
 }
 
-.ay-fixed-hero__picture { display: block; }
+/* الجوال: البنر من حافة الشاشة إلى حافتها ليأخذ أكبر مساحة ممكنة */
+@media (max-width: 767px) {
+  .s-block--fixed-banner > .container,
+  .ay-banner > .container {
+    padding-inline: 0 !important;
+  }
 
-/* الصورة بعرض الشاشة كاملاً وبنسبتها الطبيعية: لا قص ولا ضغط */
-.ay-fixed-hero img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  margin-inline: auto;
+  .s-block--fixed-banner .ay-banner__link,
+  .ay-banner .ay-banner__link {
+    border-radius: 0 !important;
+  }
 }
 
-/* السلايدر المحسّن القديم لم تعد له حاجة */
-.ay-hero,
-.s-block--hero-slider {
-  display: none !important;
+/* الكمبيوتر: حواف ناعمة والصورة لا تتجاوز عرض الحاوية */
+@media (min-width: 768px) {
+  .s-block--fixed-banner .ay-banner__link,
+  .ay-banner .ay-banner__link {
+    overflow: hidden;
+  }
 }
