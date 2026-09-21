@@ -8,13 +8,13 @@
 {% extends "layouts.master" %}
 {% block content %}
     {# بنر رئيسي ثابت أعلى الصفحة — يتجاوز محرر سلة.
-       الصورة: src/assets/images/main-banner.png (تُنسخ إلى public/images عند البناء).
+       الصورة: src/assets/images/main-banner.jpg (تُنسخ إلى public/images عند البناء).
        للاستبدال: ضع صورتك بنفس الاسم، بلا أي تعديل على الكود. #}
     <section class="ay-fixed-hero">
         <picture class="ay-fixed-hero__picture">
-            <img src="{{ 'images/main-banner.png' | asset }}"
+            <img src="{{ 'images/main-banner.jpg' | asset }}"
                  alt="{{ store.name }}"
-                 width="1920" height="800"
+                 width="1942" height="809"
                  fetchpriority="high" />
         </picture>
     </section>
