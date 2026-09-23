@@ -1348,6 +1348,35 @@ body:not(.ay-home) .store-header {
 }
 
 /* ==========================================================================
+   الهيدر يطفو فوق البنر في الرئيسية بلا أي فراغ فوقه
+   ========================================================================== */
+.ay-home .store-header {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 100 !important;
+  background-color: transparent !important;
+}
+
+.ay-home #main-content,
+.ay-home .app-inner > main {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* أول عنصر في الرئيسية أياً كان نوعه يلتصق بأعلى الشاشة */
+.ay-home #main-content > *:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* قسم فارغ يتركه المحرر أحياناً فيأخذ دور "أول عنصر" ويترك فراغاً */
+.ay-home #main-content > .s-block:empty {
+  display: none !important;
+}
+
+/* ==========================================================================
    إلغاء الفراغ فوق أول مكوّن في الرئيسية
    --------------------------------------------------------------------------
    السبب الجذري: الثيم يعطي كل قسم .s-block هامشاً علوياً (mt-8 sm:mt-16)،

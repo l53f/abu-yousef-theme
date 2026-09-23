@@ -7,6 +7,11 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
+    {# الهيدر الشفاف الطافي يعتمد على صنف ay-home. كان يُضاف من home.js بعد
+       تحميل الحزمة، فتظهر الصفحة لحظةً بهيدر عادي يدفع البنر للأسفل.
+       هنا يُضاف أثناء قراءة الصفحة نفسها فلا فراغ ولا قفزة. #}
+    <script>document.body.classList.add('ay-home');</script>
+
     {% component home %}
 {% endblock %}
 {% block scripts %}
