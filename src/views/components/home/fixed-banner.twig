@@ -7,6 +7,9 @@
 | image.small_url | ?string | صورة الجوال                                          |
 | position        | int     | ترتيب القسم يبدأ من صفر                              |
 #}
+{# بلا صورة لا يُطبع البنر إطلاقاً: وسم <img> بمصدر فارغ يحجز مساحة
+   بنسبة 1200×300 فيظهر صندوقاً كريمياً فارغاً فوق بقية الأقسام. #}
+{% if image.url %}
 <section component-id="{{ componentId }}"
          data-testid="store-home-fixed-banner"
          class="s-block s-block--fixed-banner ay-banner ay-animate wide-placeholder">
@@ -29,3 +32,4 @@
     </a>
   </div>
 </section>
+{% endif %}

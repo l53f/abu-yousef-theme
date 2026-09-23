@@ -1393,7 +1393,9 @@ body:not(.ay-home) .store-header {
    (.s-block--hero-slider ارتفاعه ثابت من الثيم فيظهر كفراغ أبيض) */
 .ay-home .s-block--hero-slider:not(:has(.swiper-slide)),
 .ay-home .s-block--fixed-banner:not(:has(img)),
-.ay-home .s-block--banners:not(:has(img)) {
+.ay-home .s-block--banners:not(:has(img)),
+.ay-home .s-block--fixed-banner:has(img[src=""]),
+.ay-home .s-block--banners:has(img[src=""]) {
   display: none !important;
 }
 
