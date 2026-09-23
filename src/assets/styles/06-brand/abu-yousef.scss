@@ -1348,42 +1348,40 @@ body:not(.ay-home) .store-header {
 }
 
 /* ==========================================================================
-   الفراغات بين أقسام الرئيسية — بلا أي فراغ فوق القسم الأول
+   الفراغات في الرئيسية — بلا أي فراغ فوق البنر
    --------------------------------------------------------------------------
-   الثيم يعطي كل .s-block هامشاً علوياً (mt-8 sm:mt-16) ويلغيه لأول قسم عبر
-   :first-child. هذه الحيلة تفشل في محرر سلة: المحرر يحقن عناصر مخفية في
-   بداية #main-content لأغراض السحب والإفلات، فلا يكون البنر أول عنصر أبداً
-   ويرث الهامش فيظهر الفراغ.
-
-   البديل: تصفير الهامش العلوي لكل الأقسام، ثم إعادته للأقسام التي يسبقها
-   قسمٌ آخر فعلاً عبر (~). هذا لا يعتمد على ترتيب العناصر المخفية إطلاقاً.
+   سببان للفراغ الأبيض:
+   ١) سلة تحقن padding-top على .app-inner من JS لتعويض ارتفاع الهيدر الثابت،
+      وهيدر الرئيسية عندنا absolute فلا حاجة لهذا التعويض.
+   ٢) المحرر يغلف الأقسام بعناصر salla-component مخفية، فتنكسر محددات
+      :first-child و (~). لذلك لا نعتمد على موقع العنصر إطلاقاً: البنرات
+      بلا هامش علوي أينما وُضعت، والمسافة تُعطى لبقية الأقسام بالاسم.
    ========================================================================== */
-.ay-home #main-content .s-block {
-  margin-top: 0 !important;
-}
 
-/* المسافة تُضاف فقط لقسم يسبقه قسم آخر — أي لكل الأقسام عدا الأول المرئي */
-.ay-home #main-content .s-block ~ .s-block:not(.ay-reviews):not(.ay-faq) {
-  margin-top: 2rem !important;
-}
-
-@media (min-width: 640px) {
-  .ay-home #main-content .s-block ~ .s-block:not(.ay-reviews):not(.ay-faq) {
-    margin-top: 4rem !important;
-  }
-}
-
-/* البنرات لا تحتاج حشواً علوياً داخلياً بأي حال */
-.ay-home #main-content .s-block--fixed-banner,
-.ay-home #main-content .s-block--banners {
-  padding-top: 0 !important;
-}
-
-/* الحاوية الأب بلا فراغات */
+/* إلغاء الحشو الإجباري الذي تحقنه سلة (JS) في حاوية التطبيق */
+.ay-home .app-inner,
 .ay-home #main-content,
 .ay-home .app-inner > main {
   padding-top: 0 !important;
   margin-top: 0 !important;
+}
+
+/* تصفير هوامش البنرات العريضة دائماً (لأنها واجهة المتجر) */
+.ay-home .s-block--fixed-banner,
+.ay-home .s-block--banners {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* إعادة المسافات العلوية لبقية الأقسام (باستثناء البنرات والآراء) */
+.ay-home .s-block:not(.s-block--fixed-banner):not(.s-block--banners):not(.ay-reviews):not(.ay-faq) {
+  margin-top: 2rem !important;
+}
+
+@media (min-width: 640px) {
+  .ay-home .s-block:not(.s-block--fixed-banner):not(.s-block--banners):not(.ay-reviews):not(.ay-faq) {
+    margin-top: 4rem !important;
+  }
 }
 
 /* قسم فارغ يتركه المحرر أحياناً فيشغل مساحة بلا محتوى */
