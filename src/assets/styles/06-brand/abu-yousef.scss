@@ -1347,23 +1347,46 @@ body:not(.ay-home) .store-header {
   }
 }
 
-/* الجوال: البنر من حافة الشاشة إلى حافتها ليأخذ أكبر مساحة ممكنة */
-@media (max-width: 767px) {
-  .s-block--fixed-banner > .container,
-  .ay-banner > .container {
-    padding-inline: 0 !important;
-  }
-
-  .s-block--fixed-banner .ay-banner__link,
-  .ay-banner .ay-banner__link {
-    border-radius: 0 !important;
-  }
+/* ==========================================================================
+   كسر الحاوية: البنر بعرض الشاشة كاملاً (Full Bleed) على كل الشاشات
+   --------------------------------------------------------------------------
+   الهامش السالب مضروب على الجهتين لأن المتجر RTL؛ لو كُتب على اليسار وحده
+   لانزاح البنر بدل أن يتمدد. و overflow-x على الصفحة يمنع شريط التمرير
+   الأفقي الذي يسببه 100vw مع شريط التمرير الرأسي على ويندوز.
+   ========================================================================== */
+.s-block--fixed-banner,
+.s-block--banners,
+.ay-banner {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+  margin-right: calc(-50vw + 50%) !important;
+  border-radius: 0 !important;
 }
 
-/* الكمبيوتر: حواف ناعمة والصورة لا تتجاوز عرض الحاوية */
-@media (min-width: 768px) {
-  .s-block--fixed-banner .ay-banner__link,
-  .ay-banner .ay-banner__link {
-    overflow: hidden;
-  }
+.s-block--fixed-banner > .container,
+.s-block--banners > .container,
+.ay-banner > .container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* زوايا حادة تمتد للحواف: لا استدارة على الروابط ولا الصور بداخل البنر */
+.s-block--fixed-banner a,
+.s-block--fixed-banner picture,
+.s-block--fixed-banner img,
+.s-block--banners a,
+.s-block--banners picture,
+.s-block--banners img,
+.ay-banner a,
+.ay-banner picture,
+.ay-banner img {
+  border-radius: 0 !important;
+}
+
+html,
+body {
+  overflow-x: hidden;
 }
