@@ -1367,6 +1367,15 @@ body:not(.ay-home) .store-header {
   display: none !important;
 }
 
+/* صنف wide-placeholder يأتي من محرر سلة لا من الثيم، ويرسم صندوقاً بارتفاع
+   ثابت للمكوّن الذي لم تُرفع له صورة بعد. نطويه ما لم يحمل صورة حقيقية.
+   (السلايدر يضع صوره خلفيةً على .ay-hero__bg فنفحصها بدل <img>) */
+.s-block--fixed-banner.wide-placeholder:not(:has(img[src^="http"])),
+.s-block--banners.wide-placeholder:not(:has(img[src^="http"])),
+.s-block--hero-slider.wide-placeholder:not(:has(img[src^="http"])):not(:has([style*="url("])) {
+  display: none !important;
+}
+
 /* ٢) البنرات في الرئيسية بلا فراغ علوي أينما وُضعت */
 #main-content > .s-block--fixed-banner,
 #main-content > .s-block--banners {
