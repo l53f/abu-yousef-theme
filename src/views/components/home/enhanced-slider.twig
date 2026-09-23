@@ -8,6 +8,9 @@
 | component.slides[].without_overlay | bool | إلغاء التعتيم فوق الصورة          |
 | position                       | int      | ترتيب القسم يبدأ من صفر            |
 #}
+{# بلا شرائح لا يُطبع القسم إطلاقاً: كان يرسم صندوقاً فارغاً بارتفاع ثابت
+   (h-116 ≈ 464px) بلون الهوية، فيظهر كفراغ أبيض فوق أول بنر في الرئيسية. #}
+{% if component.slides|length %}
 <section component-id="{{ componentId }}"
          data-testid="store-home-slider"
          class="s-block s-block--hero-slider s-block--full-bg ay-hero wide-placeholder">
@@ -47,3 +50,4 @@
     </div>
   </salla-slider>
 </section>
+{% endif %}

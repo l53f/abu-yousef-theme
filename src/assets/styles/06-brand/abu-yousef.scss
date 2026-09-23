@@ -1389,6 +1389,14 @@ body:not(.ay-home) .store-header {
   display: none !important;
 }
 
+/* شبكة أمان: سلايدر أو بنر بلا محتوى لا يشغل مساحة
+   (.s-block--hero-slider ارتفاعه ثابت من الثيم فيظهر كفراغ أبيض) */
+.ay-home .s-block--hero-slider:not(:has(.swiper-slide)),
+.ay-home .s-block--fixed-banner:not(:has(img)),
+.ay-home .s-block--banners:not(:has(img)) {
+  display: none !important;
+}
+
 /* ==========================================================================
    الهيدر يطفو فوق البنر في الرئيسية
    ========================================================================== */
