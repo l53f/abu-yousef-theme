@@ -1348,7 +1348,51 @@ body:not(.ay-home) .store-header {
 }
 
 /* ==========================================================================
-   الهيدر يطفو فوق البنر في الرئيسية بلا أي فراغ فوقه
+   الفراغات بين أقسام الرئيسية — بلا أي فراغ فوق القسم الأول
+   --------------------------------------------------------------------------
+   الثيم يعطي كل .s-block هامشاً علوياً (mt-8 sm:mt-16) ويلغيه لأول قسم عبر
+   :first-child. هذه الحيلة تفشل في محرر سلة: المحرر يحقن عناصر مخفية في
+   بداية #main-content لأغراض السحب والإفلات، فلا يكون البنر أول عنصر أبداً
+   ويرث الهامش فيظهر الفراغ.
+
+   البديل: تصفير الهامش العلوي لكل الأقسام، ثم إعادته للأقسام التي يسبقها
+   قسمٌ آخر فعلاً عبر (~). هذا لا يعتمد على ترتيب العناصر المخفية إطلاقاً.
+   ========================================================================== */
+.ay-home #main-content .s-block {
+  margin-top: 0 !important;
+}
+
+/* المسافة تُضاف فقط لقسم يسبقه قسم آخر — أي لكل الأقسام عدا الأول المرئي */
+.ay-home #main-content .s-block ~ .s-block:not(.ay-reviews):not(.ay-faq) {
+  margin-top: 2rem !important;
+}
+
+@media (min-width: 640px) {
+  .ay-home #main-content .s-block ~ .s-block:not(.ay-reviews):not(.ay-faq) {
+    margin-top: 4rem !important;
+  }
+}
+
+/* البنرات لا تحتاج حشواً علوياً داخلياً بأي حال */
+.ay-home #main-content .s-block--fixed-banner,
+.ay-home #main-content .s-block--banners {
+  padding-top: 0 !important;
+}
+
+/* الحاوية الأب بلا فراغات */
+.ay-home #main-content,
+.ay-home .app-inner > main {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* قسم فارغ يتركه المحرر أحياناً فيشغل مساحة بلا محتوى */
+.ay-home #main-content > .s-block:empty {
+  display: none !important;
+}
+
+/* ==========================================================================
+   الهيدر يطفو فوق البنر في الرئيسية
    ========================================================================== */
 .ay-home .store-header {
   position: absolute !important;
@@ -1357,49 +1401,6 @@ body:not(.ay-home) .store-header {
   right: 0 !important;
   z-index: 100 !important;
   background-color: transparent !important;
-}
-
-.ay-home #main-content,
-.ay-home .app-inner > main {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
-}
-
-/* أول عنصر في الرئيسية أياً كان نوعه يلتصق بأعلى الشاشة */
-.ay-home #main-content > *:first-child {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* قسم فارغ يتركه المحرر أحياناً فيأخذ دور "أول عنصر" ويترك فراغاً */
-.ay-home #main-content > .s-block:empty {
-  display: none !important;
-}
-
-/* ==========================================================================
-   إلغاء الفراغ فوق أول مكوّن في الرئيسية
-   --------------------------------------------------------------------------
-   السبب الجذري: الثيم يعطي كل قسم .s-block هامشاً علوياً (mt-8 sm:mt-16)،
-   ويلغيه لأول قسم فقط داخل .s-blocks-wrapper. أما الرئيسية فمكوّناتها
-   تُطبع مباشرة داخل <main> بلا هذا الغلاف، فبقي هامش أول قسم ظاهراً.
-   وبما أن هيدر الرئيسية شفاف وفوق المحتوى، يلتصق البنر بأعلى الصفحة.
-   ========================================================================== */
-.ay-home #main-content > .s-block:first-child,
-.ay-home #main-content > .s-block:first-of-type,
-.ay-home .s-block:first-child,
-.ay-home .s-block:first-of-type,
-.ay-home .s-block--fixed-banner:first-child,
-.ay-home .s-block--fixed-banner:first-of-type {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* لو كان الغلاف نفسه يحمل هامشاً علوياً */
-.ay-home #main-content,
-.ay-home .main-content > .container:first-child,
-.ay-home .s-blocks-wrapper:first-child {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
 }
 
 /* ==========================================================================
