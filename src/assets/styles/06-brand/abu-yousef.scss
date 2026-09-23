@@ -1348,6 +1348,32 @@ body:not(.ay-home) .store-header {
 }
 
 /* ==========================================================================
+   إلغاء الفراغ فوق أول مكوّن في الرئيسية
+   --------------------------------------------------------------------------
+   السبب الجذري: الثيم يعطي كل قسم .s-block هامشاً علوياً (mt-8 sm:mt-16)،
+   ويلغيه لأول قسم فقط داخل .s-blocks-wrapper. أما الرئيسية فمكوّناتها
+   تُطبع مباشرة داخل <main> بلا هذا الغلاف، فبقي هامش أول قسم ظاهراً.
+   وبما أن هيدر الرئيسية شفاف وفوق المحتوى، يلتصق البنر بأعلى الصفحة.
+   ========================================================================== */
+.ay-home #main-content > .s-block:first-child,
+.ay-home #main-content > .s-block:first-of-type,
+.ay-home .s-block:first-child,
+.ay-home .s-block:first-of-type,
+.ay-home .s-block--fixed-banner:first-child,
+.ay-home .s-block--fixed-banner:first-of-type {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* لو كان الغلاف نفسه يحمل هامشاً علوياً */
+.ay-home #main-content,
+.ay-home .main-content > .container:first-child,
+.ay-home .s-blocks-wrapper:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* ==========================================================================
    كسر الحاوية: البنر بعرض الشاشة كاملاً (Full Bleed) على كل الشاشات
    --------------------------------------------------------------------------
    الهامش السالب مضروب على الجهتين لأن المتجر RTL؛ لو كُتب على اليسار وحده
