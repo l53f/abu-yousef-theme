@@ -1348,55 +1348,54 @@ body:not(.ay-home) .store-header {
 }
 
 /* ==========================================================================
-   الفراغات في الرئيسية — بلا أي فراغ فوق البنر
+   الفراغات في الرئيسية — بلا أي اعتماد على صنف ay-home
    --------------------------------------------------------------------------
-   سببان للفراغ الأبيض:
-   ١) سلة تحقن padding-top على .app-inner من JS لتعويض ارتفاع الهيدر الثابت،
-      وهيدر الرئيسية عندنا absolute فلا حاجة لهذا التعويض.
-   ٢) المحرر يغلف الأقسام بعناصر salla-component مخفية، فتنكسر محددات
-      :first-child و (~). لذلك لا نعتمد على موقع العنصر إطلاقاً: البنرات
-      بلا هامش علوي أينما وُضعت، والمسافة تُعطى لبقية الأقسام بالاسم.
+   درس مهم: صنف ay-home يُضاف من JavaScript، وهو غائب داخل محرر سلة وقبل
+   تحميل الحزمة. لذلك أي قاعدة بنيوية تُكتب كـ (.ay-home ...) تكون ميتة هناك.
+   القواعد التالية تعتمد على البنية وحدها: #main-content هو غلاف الرئيسية،
+   وأبناؤه المباشرون هم أقسام المحرر.
    ========================================================================== */
 
-/* إلغاء الحشو الإجباري الذي تحقنه سلة (JS) في حاوية التطبيق */
-.ay-home .app-inner,
-.ay-home #main-content,
-.ay-home .app-inner > main {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
+/* ١) قسم بلا محتوى لا يشغل مساحة إطلاقاً — وهذا مصدر الفراغ الأبيض:
+      بنر عريض أضافه التاجر بلا صورة يطبع <img src=""> فيحجز مساحته فارغة */
+.s-block--fixed-banner:has(img[src=""]),
+.s-block--fixed-banner:has(img:not([src])),
+.s-block--fixed-banner:not(:has(img)),
+.s-block--banners:has(img[src=""]),
+.s-block--banners:not(:has(img)),
+.s-block--hero-slider:not(:has(.swiper-slide)) {
+  display: none !important;
 }
 
-/* تصفير هوامش البنرات العريضة دائماً (لأنها واجهة المتجر) */
-.ay-home .s-block--fixed-banner,
-.ay-home .s-block--banners {
+/* ٢) البنرات في الرئيسية بلا فراغ علوي أينما وُضعت */
+#main-content > .s-block--fixed-banner,
+#main-content > .s-block--banners {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-/* إعادة المسافات العلوية لبقية الأقسام (باستثناء البنرات والآراء) */
-.ay-home .s-block:not(.s-block--fixed-banner):not(.s-block--banners):not(.ay-reviews):not(.ay-faq) {
+/* ٣) المسافة العلوية لبقية أقسام الرئيسية (لا البنرات ولا الآراء والأسئلة) */
+#main-content > .s-block:not(.s-block--fixed-banner):not(.s-block--banners):not(.ay-reviews):not(.ay-faq) {
   margin-top: 2rem !important;
 }
 
 @media (min-width: 640px) {
-  .ay-home .s-block:not(.s-block--fixed-banner):not(.s-block--banners):not(.ay-reviews):not(.ay-faq) {
+  #main-content > .s-block:not(.s-block--fixed-banner):not(.s-block--banners):not(.ay-reviews):not(.ay-faq) {
     margin-top: 4rem !important;
   }
 }
 
-/* قسم فارغ يتركه المحرر أحياناً فيشغل مساحة بلا محتوى */
-.ay-home #main-content > .s-block:empty {
-  display: none !important;
+/* ٤) الحاويات الأب بلا حشو علوي */
+#main-content,
+.app-inner > main {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }
 
-/* شبكة أمان: سلايدر أو بنر بلا محتوى لا يشغل مساحة
-   (.s-block--hero-slider ارتفاعه ثابت من الثيم فيظهر كفراغ أبيض) */
-.ay-home .s-block--hero-slider:not(:has(.swiper-slide)),
-.ay-home .s-block--fixed-banner:not(:has(img)),
-.ay-home .s-block--banners:not(:has(img)),
-.ay-home .s-block--fixed-banner:has(img[src=""]),
-.ay-home .s-block--banners:has(img[src=""]) {
-  display: none !important;
+/* ٥) الحشو الذي تحقنه سلة على .app-inner لتعويض الهيدر — يُلغى في الرئيسية
+      فقط، لأن الهيدر هناك طافٍ. هذه القاعدة بصرية فتبقى مشروطة بـ ay-home */
+.ay-home .app-inner {
+  padding-top: 0 !important;
 }
 
 /* ==========================================================================
