@@ -1462,3 +1462,52 @@ html,
 body {
   overflow-x: hidden;
 }
+
+/* ==========================================================================
+   الحل الجذري للفراغ العلوي (Nuclear Option)
+   --------------------------------------------------------------------------
+   كل قاعدة مكتوبة مرتين: مرة بـ .ay-home ومرة بدونه.
+   السبب: ay-home يُضاف من JavaScript وهو غائب داخل محرر سلة، فأي قاعدة
+   مشروطة به تكون ميتة هناك. النسخة غير المشروطة تُقيَّد بأبناء #main-content
+   المباشرين أو بأغلفة المحرر، حتى لا تمس تخطيط بقية الصفحات.
+   ========================================================================== */
+.ay-home .app-inner,
+.ay-home #main-content,
+#main-content {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* تصفير كل ابن مباشر في الرئيسية، وتخطي أغلفة المحرر (salla-component) */
+.ay-home #main-content > *,
+#main-content > .s-block,
+#main-content > salla-component,
+#main-content > salla-component > .s-block,
+#main-content > [component-id] {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* إعادة المسافة لما يلي العنصر الأول فقط */
+.ay-home #main-content > * + *,
+#main-content > .s-block ~ .s-block,
+#main-content > salla-component ~ salla-component,
+#main-content > [component-id] ~ [component-id] {
+  margin-top: 3rem !important;
+}
+
+/* أي عنصر فارغ يحقنه المحرر لا يشغل مساحة */
+.ay-home #main-content > *:empty,
+#main-content > *:empty,
+#main-content > salla-component:empty {
+  display: none !important;
+}
+
+/* حاوية البنر نفسها بلا حشو علوي */
+.ay-home .s-block--fixed-banner .container,
+.ay-home .ay-banner .container,
+.s-block--fixed-banner .container,
+.ay-banner .container {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
