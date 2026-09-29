@@ -6,7 +6,7 @@
    مباشرين لـ #main-content (بقية الصفحات تغلّفها في .container)، ونضيف
    أغلفة المحرر أيضاً. يبقى ay-home ضمن القائمة كشبكة أمان.
    ========================================================================== */
-$home: ":is(.ay-home, body:has(#main-content > .s-block), body:has(#main-content > [component-id]), body:has(#main-content > salla-component))";
+$home: ":is(.ay-home, body:has(#main-content > .ay-custom-hero), body:has(#main-content > .s-block), body:has(#main-content > [component-id]), body:has(#main-content > salla-component))";
 
 /* ==========================================================================
    أبو يوسف للعطارة — طبقة الهوية البصرية
@@ -1520,4 +1520,78 @@ body {
 .ay-banner .container {
   padding-top: 0 !important;
   margin-top: 0 !important;
+}
+
+
+/* ==========================================================================
+   الرئيسية المبنية برمجياً — بنر رئيسي وأقسام (بديل محرر سلة)
+   --------------------------------------------------------------------------
+   كل شيء هنا يخص أصنافنا وحدها، فلا يتأثر بأي صندوق أو هامش يفرضه المحرر.
+   ========================================================================== */
+.ay-custom-hero,
+.ay-custom-section,
+.ay-custom-banner {
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--brand-sand);
+}
+
+/* البنر الرئيسي: ملاصق لأعلى الشاشة تماماً وبعرضها كاملاً */
+.ay-custom-hero {
+  display: block;
+  width: 100vw;
+  max-width: 100vw;
+  margin-inline: calc(50% - 50vw) !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* بنر القسم: ممتد بعرض الشاشة كذلك */
+.ay-custom-banner {
+  display: block;
+  width: 100vw;
+  max-width: 100vw;
+  margin-inline: calc(50% - 50vw) !important;
+}
+
+/* الصور بأبعادها الطبيعية: لا قص ولا ضغط على أي شاشة */
+.ay-custom-hero picture,
+.ay-custom-hero a,
+.ay-custom-banner picture,
+.ay-custom-banner a {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+.ay-custom-hero img,
+.ay-custom-banner img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+}
+
+/* مسافة بين البنر ومنتجاته، ومسافة أكبر بين الأقسام */
+.ay-custom-products {
+  margin-top: 2rem;
+}
+
+.ay-custom-section + .ay-custom-section,
+.ay-custom-section {
+  margin-top: 3rem !important;
+}
+
+.ay-custom-hero + .ay-custom-section {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 767px) {
+  .ay-custom-products { margin-top: 1.25rem; }
+  .ay-custom-section  { margin-top: 2rem !important; }
 }
