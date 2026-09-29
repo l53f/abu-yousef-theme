@@ -1595,3 +1595,62 @@ body {
   .ay-custom-products { margin-top: 1.25rem; }
   .ay-custom-section  { margin-top: 2rem !important; }
 }
+
+
+/* ==========================================================================
+   بطاقات المنتجات على الجوال داخل الأقسام البرمجية
+   --------------------------------------------------------------------------
+   السبب: الثيم يعطي شريحة السلايدر (.slide--one-fourth) عرض w-full تحت 640px،
+   فتملأ البطاقة الواحدة الشاشة. هنا نجعلها أقل من النصف بقليل فيظهر منتجان
+   ونصف، ويفهم الزائر أن الشريط قابل للسحب.
+   ========================================================================== */
+@media (max-width: 767px) {
+  .ay-custom-section salla-products-slider .swiper-slide,
+  .ay-custom-section salla-slider .swiper-slide,
+  .ay-custom-section .slide--one-fourth {
+    width: 44% !important;
+    min-width: 44% !important;
+    max-width: 44% !important;
+    flex: 0 0 44% !important;
+  }
+
+  /* تناسق داخل البطاقة الأصغر: صورة أقصر وخطوط أهدأ */
+  .ay-custom-section .s-product-card-image {
+    aspect-ratio: 1 / 1;
+    height: auto !important;
+  }
+
+  .ay-custom-section .s-product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ay-custom-section .s-product-card-content-title {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    -webkit-line-clamp: 2;
+  }
+
+  .ay-custom-section .s-product-card-content-subtitle,
+  .ay-custom-section .s-product-card-starting-price {
+    font-size: 11px !important;
+  }
+
+  .ay-custom-section .s-product-card-sale-price,
+  .ay-custom-section .s-product-card-price {
+    font-size: 13px !important;
+  }
+
+  .ay-custom-section .s-product-card-content salla-button,
+  .ay-custom-section .s-product-card-content .s-button-element {
+    font-size: 12px !important;
+    padding-block: 6px !important;
+  }
+
+  /* عرض أضيق للبطاقة يعني هوامش أضيق داخلها */
+  .ay-custom-section .s-product-card-content {
+    padding: 8px !important;
+    gap: 4px !important;
+  }
+}
