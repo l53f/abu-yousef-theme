@@ -1,4 +1,14 @@
 /* ==========================================================================
+   كاشف الصفحة الرئيسية بلا JavaScript
+   --------------------------------------------------------------------------
+   صنف ay-home يُضاف من home.js، وهو غائب داخل محرر سلة (القوالب مكاشة هناك)
+   فتموت كل قاعدة مشروطة به. البديل: الرئيسية وحدها تضع أقسامها كأبناء
+   مباشرين لـ #main-content (بقية الصفحات تغلّفها في .container)، ونضيف
+   أغلفة المحرر أيضاً. يبقى ay-home ضمن القائمة كشبكة أمان.
+   ========================================================================== */
+$home: ":is(.ay-home, body:has(#main-content > .s-block), body:has(#main-content > [component-id]), body:has(#main-content > salla-component))";
+
+/* ==========================================================================
    أبو يوسف للعطارة — طبقة الهوية البصرية
    --------------------------------------------------------------------------
    يجب استيراد هذا الملف *آخر* ملف في app.scss حتى يتغلّب على قيم الثيم
@@ -780,7 +790,7 @@ h1, h2, h3, h4, h5 {
 /* --------------------------------------------------------------------------
    17) الهيدر الشفاف العائم — الصفحة الرئيسية فقط
    -------------------------------------------------------------------------- */
-.ay-home {
+#{$home} {
   .store-header {
     position: absolute;
     top: 0;
@@ -848,7 +858,7 @@ h1, h2, h3, h4, h5 {
 
 /* على الشاشات الصغيرة نغمّق التدرّج قليلاً لأن الهيدر أكثف */
 @media (max-width: 767px) {
-  .ay-home .store-header {
+  #{$home} .store-header {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .2) 60%, rgba(0, 0, 0, 0) 100%);
   }
 }
@@ -1180,7 +1190,7 @@ html, body, #app, .s-page, .s-main, main, .bg-gray-50, .bg-white, .bg-gray-100 {
 /* ٢) هيدر الصفحات الداخلية يندمج مع الخلفية السكرية.
    حُصر في .store-header: المكوّنان salla-cart-summary-card و salla-loyalty-program
    يرسمان <header> خاصاً بهما، ومحدّد header العام كان سيلوّنهما */
-body:not(.ay-home) .store-header {
+body:not(#{$home}) .store-header {
   background-color: var(--brand-sand) !important;
   border-bottom: 1px solid rgba(55, 91, 65, 0.1) !important;
 }
@@ -1195,16 +1205,16 @@ body:not(.ay-home) .store-header {
 /* تكميل: الهيدر العائم في الرئيسية.
    #mainnav يحمل bg-white، فالقاعدة ١ كانت ستحوّله شريطاً سكرياً فوق البنر
    لأن قواعد الشفافية السابقة بلا !important */
-.ay-home .store-header .top-navbar,
-.ay-home .store-header .main-nav-container,
-.ay-home .store-header .main-nav-container .inner {
+#{$home} .store-header .top-navbar,
+#{$home} .store-header .main-nav-container,
+#{$home} .store-header .main-nav-container .inner {
   background-color: transparent !important;
 }
 
 /* عند التمرير يعود صلباً — سكرياً بخط ناعم ليطابق هيدر الصفحات الداخلية.
    تخصيص (0,5,0) يغلب قاعدة الشفافية أعلاه (0,4,0) */
-.ay-home .store-header .main-nav-container.fixed-pinned .inner,
-.ay-home .store-header .main-nav-container.fixed-header .inner {
+#{$home} .store-header .main-nav-container.fixed-pinned .inner,
+#{$home} .store-header .main-nav-container.fixed-header .inner {
   background-color: var(--brand-sand) !important;
   border-bottom: 1px solid rgba(55, 91, 65, 0.1) !important;
 }
@@ -1351,7 +1361,7 @@ body:not(.ay-home) .store-header {
    الفراغات في الرئيسية — بلا أي اعتماد على صنف ay-home
    --------------------------------------------------------------------------
    درس مهم: صنف ay-home يُضاف من JavaScript، وهو غائب داخل محرر سلة وقبل
-   تحميل الحزمة. لذلك أي قاعدة بنيوية تُكتب كـ (.ay-home ...) تكون ميتة هناك.
+   تحميل الحزمة. لذلك أي قاعدة بنيوية تُكتب كـ (#{$home} ...) تكون ميتة هناك.
    القواعد التالية تعتمد على البنية وحدها: #main-content هو غلاف الرئيسية،
    وأبناؤه المباشرون هم أقسام المحرر.
    ========================================================================== */
@@ -1403,14 +1413,14 @@ body:not(.ay-home) .store-header {
 
 /* ٥) الحشو الذي تحقنه سلة على .app-inner لتعويض الهيدر — يُلغى في الرئيسية
       فقط، لأن الهيدر هناك طافٍ. هذه القاعدة بصرية فتبقى مشروطة بـ ay-home */
-.ay-home .app-inner {
+#{$home} .app-inner {
   padding-top: 0 !important;
 }
 
 /* ==========================================================================
    الهيدر يطفو فوق البنر في الرئيسية
    ========================================================================== */
-.ay-home .store-header {
+#{$home} .store-header {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
@@ -1466,20 +1476,20 @@ body {
 /* ==========================================================================
    الحل الجذري للفراغ العلوي (Nuclear Option)
    --------------------------------------------------------------------------
-   كل قاعدة مكتوبة مرتين: مرة بـ .ay-home ومرة بدونه.
+   كل قاعدة مكتوبة مرتين: مرة بـ #{$home} ومرة بدونه.
    السبب: ay-home يُضاف من JavaScript وهو غائب داخل محرر سلة، فأي قاعدة
    مشروطة به تكون ميتة هناك. النسخة غير المشروطة تُقيَّد بأبناء #main-content
    المباشرين أو بأغلفة المحرر، حتى لا تمس تخطيط بقية الصفحات.
    ========================================================================== */
-.ay-home .app-inner,
-.ay-home #main-content,
+#{$home} .app-inner,
+#{$home} #main-content,
 #main-content {
   padding-top: 0 !important;
   margin-top: 0 !important;
 }
 
 /* تصفير كل ابن مباشر في الرئيسية، وتخطي أغلفة المحرر (salla-component) */
-.ay-home #main-content > *,
+#{$home} #main-content > *,
 #main-content > .s-block,
 #main-content > salla-component,
 #main-content > salla-component > .s-block,
@@ -1489,7 +1499,7 @@ body {
 }
 
 /* إعادة المسافة لما يلي العنصر الأول فقط */
-.ay-home #main-content > * + *,
+#{$home} #main-content > * + *,
 #main-content > .s-block ~ .s-block,
 #main-content > salla-component ~ salla-component,
 #main-content > [component-id] ~ [component-id] {
@@ -1497,15 +1507,15 @@ body {
 }
 
 /* أي عنصر فارغ يحقنه المحرر لا يشغل مساحة */
-.ay-home #main-content > *:empty,
+#{$home} #main-content > *:empty,
 #main-content > *:empty,
 #main-content > salla-component:empty {
   display: none !important;
 }
 
 /* حاوية البنر نفسها بلا حشو علوي */
-.ay-home .s-block--fixed-banner .container,
-.ay-home .ay-banner .container,
+#{$home} .s-block--fixed-banner .container,
+#{$home} .ay-banner .container,
 .s-block--fixed-banner .container,
 .ay-banner .container {
   padding-top: 0 !important;
