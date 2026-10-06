@@ -1654,3 +1654,66 @@ body {
     gap: 4px !important;
   }
 }
+
+
+/* ==========================================================================
+   قسم العروض المميزة + طباعة العناوين + تنفّس الأقسام
+   ========================================================================== */
+
+/* العروض المميزة: مسافة فوقه تفصله عن البنر الرئيسي، وأخرى تحته عن أول قسم */
+.ay-custom-hero + .ay-custom-section.ay-custom-featured {
+  margin-top: 2rem !important;
+  margin-bottom: 3rem !important;
+}
+
+/* كل قسم يتنفّس عمّا يليه */
+.ay-custom-section {
+  margin-bottom: 4rem !important;
+}
+
+@media (max-width: 767px) {
+  .ay-custom-section { margin-bottom: 2.5rem !important; }
+}
+
+/* ---------- طباعة العناوين: في المنتصف، فخمة، بلون الهوية ---------- */
+.ay-custom-section .s-slider-block__title,
+#{$home} .s-block__title,
+#{$home} .s-slider-block__title {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px;
+  text-align: center !important;
+  margin-bottom: 24px !important;
+}
+
+.ay-custom-section .s-slider-block__title :is(h1, h2, h3),
+.ay-custom-section salla-products-slider::part(block-title),
+#{$home} .s-block__title :is(h1, h2, h3),
+#{$home} .s-slider-block__title :is(h1, h2, h3),
+#{$home} .ay-block-title h2 {
+  width: 100%;
+  text-align: center !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  font-family: 'Tajawal', 'PingARLT', sans-serif !important;
+  color: var(--brand-olive) !important;
+  margin-bottom: 0 !important;
+  letter-spacing: -0.5px;
+}
+
+/* على الجوال عنوان أصغر قليلاً حتى لا يلتف على ثلاثة أسطر */
+@media (max-width: 767px) {
+  .ay-custom-section .s-slider-block__title :is(h1, h2, h3),
+  #{$home} .s-block__title :is(h1, h2, h3),
+  #{$home} .s-slider-block__title :is(h1, h2, h3) {
+    font-size: 24px !important;
+  }
+}
+
+/* رابط "عرض الكل" يستقر تحت العنوان في المنتصف */
+.ay-custom-section .s-slider-block__title-nav,
+#{$home} .s-slider-block__title-nav {
+  justify-content: center !important;
+}
