@@ -56,6 +56,12 @@
       <div class="inner bg-inherit w-full">
           <div class="container">
               <div class="flex items-stretch justify-between relative">
+                  {# البحث في جهة البداية (يمين RTL): أيقونة تفتح نافذة البحث #}
+                  <salla-search data-testid="store-header-search"></salla-search>
+                  <button type="button" class="ay-search-btn" aria-label="بحث"
+                          onclick="salla.event.dispatch('search::open')">
+                    <i class="header-btn__icon icon sicon-search"></i>
+                  </button>
                   <div class="flex items-center">
                       <a data-testid="store-header-mobile-toggle" class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
                         <i class="sicon-menu text-primary text-2xl"></i>
@@ -72,12 +78,6 @@
                       <custom-main-menu></custom-main-menu>
                   </div>
                   <div class="flex items-center justify-end my-2.5">
-                      {# البحث: نافذة منبثقة بلا حقل طويل + أيقونة تفتحها #}
-                      <salla-search data-testid="store-header-search"></salla-search>
-                      <button type="button" class="ay-search-btn" aria-label="بحث"
-                              onclick="salla.event.dispatch('search::open')">
-                        <i class="header-btn__icon icon sicon-search"></i>
-                      </button>
                       <salla-user-menu data-testid="store-header-user-menu" avatar-only show-header show-trigger></salla-user-menu>
                       <salla-cart-summary data-testid="store-header-cart" class="ml-4 rtl:ml-[unset] rtl:mr-4">
                         <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>

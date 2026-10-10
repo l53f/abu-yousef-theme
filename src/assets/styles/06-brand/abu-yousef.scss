@@ -2010,3 +2010,107 @@ salla-slider.wide-placeholder {
     align-items: center !important;
   }
 }
+
+
+/* ==========================================================================
+   هيدر شفاف فوق البنر ← أخضر صلب عند النزول (نمط الغربي)
+   --------------------------------------------------------------------------
+   آلية الالتصاق من الثيم: app.js يضيف fixed-pinned / fixed-header، وقاعدة
+   الثيم تجعل .inner بـ position: fixed. فنحن نتحكم باللون لا بالآلية.
+   ========================================================================== */
+
+/* ١) أعلى الرئيسية: الهيدر يطفو شفافاً فوق البنر */
+#{$home} .store-header {
+  position: absolute !important;
+  top: 0 !important;
+  inset-inline: 0 !important;
+  z-index: 50 !important;
+  background-color: transparent !important;
+}
+
+#{$home} #mainnav,
+#{$home} #mainnav .inner {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* تدرّج داكن خفيف يضمن قراءة النصوص فوق الصور الفاتحة */
+#{$home} #mainnav .inner {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, .12) 60%, rgba(0, 0, 0, 0) 100%) !important;
+}
+
+/* البنر يبدأ من أعلى الشاشة تماماً */
+#{$home} #main-content,
+.ay-custom-hero {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* ٢) عند النزول: أخضر صلب في كل الصفحات */
+#mainnav.fixed-pinned .inner,
+#mainnav.fixed-header .inner,
+#{$home} #mainnav.fixed-pinned .inner,
+#{$home} #mainnav.fixed-header .inner {
+  position: fixed !important;
+  background-color: var(--brand-olive) !important;
+  background-image: none !important;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, .18) !important;
+}
+
+/* ٣) الألوان كريمية في الحالتين */
+#mainnav a,
+#mainnav button,
+#mainnav i,
+#mainnav .menu-item,
+#mainnav .header-btn__icon,
+#{$home} #mainnav a,
+#{$home} #mainnav i,
+#{$home} #mainnav .menu-item,
+#mainnav.fixed-pinned a,
+#mainnav.fixed-header a,
+#mainnav.fixed-pinned i,
+#mainnav.fixed-header i,
+#mainnav.fixed-pinned .menu-item,
+#mainnav.fixed-header .menu-item {
+  color: var(--brand-sand) !important;
+}
+
+/* ٤) الترتيب: البحث في جهة البداية، السلة والحساب في جهة النهاية،
+      والشعار في المنتصف تماماً */
+@media (min-width: 1024px) {
+  #mainnav .container > .flex.items-stretch > .ay-search-btn {
+    position: absolute !important;
+    inset-inline-start: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  #mainnav .container > .flex.items-stretch > div:last-child {
+    position: absolute !important;
+    inset-inline-end: 0 !important;
+    inset-inline-start: auto !important;
+    top: 50% !important;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  /* عند النزول يعود الصف أفقياً: الأطراف تبقى في مكانها بمحاذاة الوسط */
+  #mainnav.fixed-pinned .container > .flex.items-stretch > .ay-search-btn,
+  #mainnav.fixed-header .container > .flex.items-stretch > .ay-search-btn,
+  #mainnav.fixed-pinned .container > .flex.items-stretch > div:last-child,
+  #mainnav.fixed-header .container > .flex.items-stretch > div:last-child {
+    position: relative !important;
+    top: auto !important;
+    transform: none;
+    inset-inline: auto !important;
+  }
+}
+
+/* الجوال: صف واحد — بحث، ثم برجر وشعار، ثم السلة والحساب */
+@media (max-width: 1023px) {
+  #mainnav .container > .flex.items-stretch {
+    align-items: center !important;
+  }
+}
