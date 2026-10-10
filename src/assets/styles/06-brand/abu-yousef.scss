@@ -1812,3 +1812,36 @@ salla-slider.wide-placeholder {
     width: auto !important;
   }
 }
+
+
+/* ==========================================================================
+   تقريب القائمة من الشعار (الهيدر الموسّط)
+   --------------------------------------------------------------------------
+   المصدر الأكبر للمسافة ليس الروابط بل القائمة نفسها: الثيم يعطي .main-menu
+   حشواً علوياً pt-8 أي 32px. نصفّره ونخفّف حشو الروابط ونلغي الفجوة.
+   ========================================================================== */
+@media (min-width: 1024px) {
+  #mainnav .container > .flex.items-stretch > div:first-child {
+    gap: 0 !important;
+  }
+
+  #mainnav .navbar-brand {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  #mainnav .main-menu,
+  #mainnav custom-main-menu .main-menu {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  #mainnav .main-menu > li > a,
+  #mainnav.fixed-pinned .main-menu > li > a,
+  #mainnav.fixed-header .main-menu > li > a {
+    padding-top: 4px !important;
+    padding-bottom: 10px !important;
+  }
+}
