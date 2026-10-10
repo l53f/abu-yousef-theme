@@ -1729,7 +1729,7 @@ body {
    الجوال يبقى صفاً واحداً مضغوطاً كما هو — عموداً سيأكل نصف الشاشة.
    ========================================================================== */
 @media (min-width: 1024px) {
-  #mainnav .container > .flex.items-stretch {
+  #mainnav .inner > div > div {
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1738,7 +1738,7 @@ body {
   }
 
   /* المجموعة الأولى: الشعار ثم القائمة تحته، كلاهما في المنتصف */
-  #mainnav .container > .flex.items-stretch > div:first-child {
+  #mainnav .inner > div > div > div:first-child {
     flex-direction: column !important;
     align-items: center !important;
     width: 100%;
@@ -1765,7 +1765,7 @@ body {
   }
 
   /* أيقونات الحساب والسلة تُثبَّت في زاوية الصف العلوي */
-  #mainnav .container > .flex.items-stretch > div:last-child {
+  #mainnav .inner > div > div > div:last-child {
     position: absolute !important;
     top: 10px;
     inset-inline-start: 0;
@@ -1778,13 +1778,13 @@ body {
     max-height: 38px;
   }
 
-  #mainnav.fixed-pinned .container > .flex.items-stretch,
-  #mainnav.fixed-header .container > .flex.items-stretch {
+  #mainnav.fixed-pinned .inner > div > div,
+  #mainnav.fixed-header .inner > div > div {
     padding-block: 4px;
   }
 
-  #mainnav.fixed-pinned .container > .flex.items-stretch > div:first-child,
-  #mainnav.fixed-header .container > .flex.items-stretch > div:first-child {
+  #mainnav.fixed-pinned .inner > div > div > div:first-child,
+  #mainnav.fixed-header .inner > div > div > div:first-child {
     gap: 2px;
   }
 
@@ -1821,7 +1821,7 @@ salla-slider.wide-placeholder {
    حشواً علوياً pt-8 أي 32px. نصفّره ونخفّف حشو الروابط ونلغي الفجوة.
    ========================================================================== */
 @media (min-width: 1024px) {
-  #mainnav .container > .flex.items-stretch > div:first-child {
+  #mainnav .inner > div > div > div:first-child {
     gap: 0 !important;
   }
 
@@ -1855,16 +1855,16 @@ salla-slider.wide-placeholder {
    والأيقونات في مكانها الطبيعي.
    ========================================================================== */
 @media (min-width: 1024px) {
-  #mainnav.fixed-pinned .container > .flex.items-stretch,
-  #mainnav.fixed-header .container > .flex.items-stretch {
+  #mainnav.fixed-pinned .inner > div > div,
+  #mainnav.fixed-header .inner > div > div {
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
     padding-block: 0 !important;
   }
 
-  #mainnav.fixed-pinned .container > .flex.items-stretch > div:first-child,
-  #mainnav.fixed-header .container > .flex.items-stretch > div:first-child {
+  #mainnav.fixed-pinned .inner > div > div > div:first-child,
+  #mainnav.fixed-header .inner > div > div > div:first-child {
     flex-direction: row !important;
     align-items: center !important;
     width: auto !important;
@@ -1899,8 +1899,8 @@ salla-slider.wide-placeholder {
   }
 
   /* الأيقونات تعود لمكانها الطبيعي في الطرف */
-  #mainnav.fixed-pinned .container > .flex.items-stretch > div:last-child,
-  #mainnav.fixed-header .container > .flex.items-stretch > div:last-child {
+  #mainnav.fixed-pinned .inner > div > div > div:last-child,
+  #mainnav.fixed-header .inner > div > div > div:last-child {
     position: relative !important;
     top: auto !important;
     inset-inline-start: auto !important;
@@ -1998,10 +1998,10 @@ salla-slider.wide-placeholder {
 
 /* ٤) محاذاة كل العناصر على خط واحد عند التمرير */
 @media (min-width: 1024px) {
-  #mainnav.fixed-pinned .container > .flex.items-stretch,
-  #mainnav.fixed-header .container > .flex.items-stretch,
-  #mainnav.fixed-pinned .container > .flex.items-stretch > div,
-  #mainnav.fixed-header .container > .flex.items-stretch > div {
+  #mainnav.fixed-pinned .inner > div > div,
+  #mainnav.fixed-header .inner > div > div,
+  #mainnav.fixed-pinned .inner > div > div > div,
+  #mainnav.fixed-header .inner > div > div > div {
     align-items: center !important;
   }
 
@@ -2079,7 +2079,7 @@ salla-slider.wide-placeholder {
 /* ٤) الترتيب: البحث في جهة البداية، السلة والحساب في جهة النهاية،
       والشعار في المنتصف تماماً */
 @media (min-width: 1024px) {
-  #mainnav .container > .flex.items-stretch > .ay-search-btn {
+  #mainnav .inner > div > div > .ay-search-btn {
     position: absolute !important;
     inset-inline-start: 0 !important;
     top: 50% !important;
@@ -2087,7 +2087,7 @@ salla-slider.wide-placeholder {
     z-index: 2;
   }
 
-  #mainnav .container > .flex.items-stretch > div:last-child {
+  #mainnav .inner > div > div > div:last-child {
     position: absolute !important;
     inset-inline-end: 0 !important;
     inset-inline-start: auto !important;
@@ -2097,10 +2097,10 @@ salla-slider.wide-placeholder {
   }
 
   /* عند النزول يعود الصف أفقياً: الأطراف تبقى في مكانها بمحاذاة الوسط */
-  #mainnav.fixed-pinned .container > .flex.items-stretch > .ay-search-btn,
-  #mainnav.fixed-header .container > .flex.items-stretch > .ay-search-btn,
-  #mainnav.fixed-pinned .container > .flex.items-stretch > div:last-child,
-  #mainnav.fixed-header .container > .flex.items-stretch > div:last-child {
+  #mainnav.fixed-pinned .inner > div > div > .ay-search-btn,
+  #mainnav.fixed-header .inner > div > div > .ay-search-btn,
+  #mainnav.fixed-pinned .inner > div > div > div:last-child,
+  #mainnav.fixed-header .inner > div > div > div:last-child {
     position: relative !important;
     top: auto !important;
     transform: none;
@@ -2110,7 +2110,7 @@ salla-slider.wide-placeholder {
 
 /* الجوال: صف واحد — بحث، ثم برجر وشعار، ثم السلة والحساب */
 @media (max-width: 1023px) {
-  #mainnav .container > .flex.items-stretch {
+  #mainnav .inner > div > div {
     align-items: center !important;
   }
 }
