@@ -44,10 +44,7 @@
               </button>
           {% endif %}
 
-          {# Search bar #}
-          <div class="header-search flex-1">
-            <salla-search data-testid="store-header-search" inline oval height="36"></salla-search>
-          </div>
+          {# البحث انتقل إلى الهيدر الرئيسي كأيقونة — الشريط العلوي مخفي #}
       </div>
 
       <salla-contacts data-testid="store-header-contacts" is-header></salla-contacts>
@@ -75,6 +72,12 @@
                       <custom-main-menu></custom-main-menu>
                   </div>
                   <div class="flex items-center justify-end my-2.5">
+                      {# البحث: نافذة منبثقة بلا حقل طويل + أيقونة تفتحها #}
+                      <salla-search data-testid="store-header-search"></salla-search>
+                      <button type="button" class="ay-search-btn" aria-label="بحث"
+                              onclick="salla.event.dispatch('search::open')">
+                        <i class="header-btn__icon icon sicon-search"></i>
+                      </button>
                       <salla-user-menu data-testid="store-header-user-menu" avatar-only show-header show-trigger></salla-user-menu>
                       <salla-cart-summary data-testid="store-header-cart" class="ml-4 rtl:ml-[unset] rtl:mr-4">
                         <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>

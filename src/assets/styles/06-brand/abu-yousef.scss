@@ -1907,3 +1907,106 @@ salla-slider.wide-placeholder {
     margin-block: 0 !important;
   }
 }
+
+
+/* ==========================================================================
+   هيدر أخضر داكن بلون الفوتر + إخفاء الشريط العلوي + محاذاة واحدة
+   ========================================================================== */
+
+/* ١) الشريط العلوي (تواصل معنا + حقل البحث الطويل) مخفي كلياً */
+.store-header .top-navbar {
+  display: none !important;
+}
+
+/* ٢) الخلفية الخضراء في كل الحالات، بلا ظلال ولا حدود فاتحة */
+.store-header,
+#mainnav,
+#mainnav .inner,
+#mainnav.fixed-pinned .inner,
+#mainnav.fixed-header .inner,
+#{$home} .store-header,
+#{$home} .main-nav-container,
+#{$home} .main-nav-container .inner,
+#{$home} .main-nav-container.fixed-pinned .inner,
+#{$home} .main-nav-container.fixed-header .inner {
+  background-color: var(--brand-olive) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-bottom: 0 !important;
+}
+
+/* الرئيسية: الهيدر يعود داخل التدفق بعد أن صار صلباً.
+   لو بقي طافياً (absolute) لغطّى أعلى صورة البنر بشريط أخضر */
+#{$home} .store-header {
+  position: relative !important;
+  top: auto !important;
+}
+
+/* ٣) النصوص والأيقونات كريمية فوق الأخضر */
+#mainnav a,
+#mainnav .menu-item,
+#mainnav button,
+#mainnav i,
+#mainnav .header-btn__icon,
+#{$home} .main-nav-container.fixed-pinned .inner a,
+#{$home} .main-nav-container.fixed-header .inner a,
+#{$home} .main-nav-container.fixed-pinned .inner .menu-item,
+#{$home} .main-nav-container.fixed-header .inner .menu-item,
+#{$home} .main-nav-container.fixed-pinned .inner i,
+#{$home} .main-nav-container.fixed-header .inner i {
+  color: var(--brand-sand) !important;
+}
+
+#mainnav a:hover,
+#mainnav .menu-item:hover {
+  color: #fff !important;
+}
+
+/* حدود دوائر الأيقونات: كريمية شفافة بدل الرمادي */
+#mainnav .header-btn__icon {
+  border-color: rgba(254, 246, 233, .35) !important;
+  background-color: transparent !important;
+}
+
+#mainnav .header-btn__icon:hover {
+  border-color: var(--brand-sand) !important;
+  background-color: rgba(254, 246, 233, .12) !important;
+}
+
+/* شارة عدد السلة تبقى قرمزية لتبرز على الأخضر */
+#mainnav .s-cart-summary-count,
+#mainnav salla-cart-summary .s-cart-summary-count {
+  background-color: var(--brand-crimson) !important;
+  color: #fff !important;
+}
+
+/* زر البحث الجديد */
+.ay-search-btn {
+  @apply border-none outline-none transition-opacity hover:opacity-80;
+  background: transparent;
+  line-height: 0;
+}
+
+.ay-search-btn .header-btn__icon {
+  margin-inline-end: 9px;
+}
+
+/* البحث المنبثق لا يعرض شيئاً في مكانه */
+#mainnav salla-search {
+  display: contents;
+}
+
+/* ٤) محاذاة كل العناصر على خط واحد عند التمرير */
+@media (min-width: 1024px) {
+  #mainnav.fixed-pinned .container > .flex.items-stretch,
+  #mainnav.fixed-header .container > .flex.items-stretch,
+  #mainnav.fixed-pinned .container > .flex.items-stretch > div,
+  #mainnav.fixed-header .container > .flex.items-stretch > div {
+    align-items: center !important;
+  }
+
+  #mainnav.fixed-pinned .main-menu,
+  #mainnav.fixed-header .main-menu {
+    align-items: center !important;
+  }
+}
