@@ -1751,8 +1751,9 @@ body {
   }
 
   #mainnav .navbar-brand img {
-    max-height: 72px;
-    max-width: 220px;
+    max-height: 50px;
+    max-width: 150px;
+    width: auto;
     transition: max-height .3s ease;
   }
 
@@ -1774,7 +1775,7 @@ body {
   /* ── عند التمرير (Sticky): نفس التوسيط بشعار أصغر فيبقى الشريط رشيقاً ── */
   #mainnav.fixed-pinned .navbar-brand img,
   #mainnav.fixed-header .navbar-brand img {
-    max-height: 44px;
+    max-height: 38px;
   }
 
   #mainnav.fixed-pinned .container > .flex.items-stretch,
@@ -1801,4 +1802,13 @@ body {
 .s-block--hero-slider.wide-placeholder,
 salla-slider.wide-placeholder {
   display: none !important;
+}
+
+/* الشعار على الجوال: أصغر كذلك حتى لا يزاحم البرجر وأيقونة السلة */
+@media (max-width: 1023px) {
+  .store-header .navbar-brand img {
+    max-height: 42px !important;
+    max-width: 120px !important;
+    width: auto !important;
+  }
 }
