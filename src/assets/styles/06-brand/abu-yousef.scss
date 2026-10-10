@@ -1717,3 +1717,78 @@ body {
 #{$home} .s-slider-block__title-nav {
   justify-content: center !important;
 }
+
+
+/* ==========================================================================
+   الهيدر: الشعار في المنتصف والقائمة تحته (على نمط الغربي)
+   --------------------------------------------------------------------------
+   بنية سلة: صف واحد (justify-between) يضم [برجر + شعار + قائمة] يميناً
+   و[حساب + سلة] يساراً. نقلبه عموداً على الكمبيوتر: الشعار في المنتصف،
+   القائمة تحته، وأيقونات الحساب والسلة تُثبَّت في الزاوية.
+   الجوال يبقى صفاً واحداً مضغوطاً كما هو — عموداً سيأكل نصف الشاشة.
+   ========================================================================== */
+@media (min-width: 1024px) {
+  #mainnav .container > .flex.items-stretch {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative;
+    padding-block: 10px;
+  }
+
+  /* المجموعة الأولى: الشعار ثم القائمة تحته، كلاهما في المنتصف */
+  #mainnav .container > .flex.items-stretch > div:first-child {
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100%;
+    gap: 6px;
+  }
+
+  #mainnav .navbar-brand {
+    margin: 0 auto !important;
+    justify-content: center;
+  }
+
+  #mainnav .navbar-brand img {
+    max-height: 72px;
+    max-width: 220px;
+    transition: max-height .3s ease;
+  }
+
+  #mainnav custom-main-menu,
+  #mainnav custom-main-menu .main-menu {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100%;
+  }
+
+  /* أيقونات الحساب والسلة تُثبَّت في زاوية الصف العلوي */
+  #mainnav .container > .flex.items-stretch > div:last-child {
+    position: absolute !important;
+    top: 10px;
+    inset-inline-start: 0;
+    margin-block: 0 !important;
+  }
+
+  /* ── عند التمرير (Sticky): نفس التوسيط بشعار أصغر فيبقى الشريط رشيقاً ── */
+  #mainnav.fixed-pinned .navbar-brand img,
+  #mainnav.fixed-header .navbar-brand img {
+    max-height: 44px;
+  }
+
+  #mainnav.fixed-pinned .container > .flex.items-stretch,
+  #mainnav.fixed-header .container > .flex.items-stretch {
+    padding-block: 4px;
+  }
+
+  #mainnav.fixed-pinned .container > .flex.items-stretch > div:first-child,
+  #mainnav.fixed-header .container > .flex.items-stretch > div:first-child {
+    gap: 2px;
+  }
+
+  #mainnav.fixed-pinned .main-menu > li > a,
+  #mainnav.fixed-header .main-menu > li > a {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
