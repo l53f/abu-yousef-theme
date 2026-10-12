@@ -1721,82 +1721,6 @@ body {
 
 
 /* ==========================================================================
-   الهيدر: الشعار في المنتصف والقائمة تحته (على نمط الغربي)
-   --------------------------------------------------------------------------
-   بنية سلة: صف واحد (justify-between) يضم [برجر + شعار + قائمة] يميناً
-   و[حساب + سلة] يساراً. نقلبه عموداً على الكمبيوتر: الشعار في المنتصف،
-   القائمة تحته، وأيقونات الحساب والسلة تُثبَّت في الزاوية.
-   الجوال يبقى صفاً واحداً مضغوطاً كما هو — عموداً سيأكل نصف الشاشة.
-   ========================================================================== */
-@media (min-width: 1024px) {
-  #mainnav .inner > div > div {
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: relative;
-    padding-block: 10px;
-  }
-
-  /* المجموعة الأولى: الشعار ثم القائمة تحته، كلاهما في المنتصف */
-  #mainnav .inner > div > div > div:first-child {
-    flex-direction: column !important;
-    align-items: center !important;
-    width: 100%;
-    gap: 6px;
-  }
-
-  #mainnav .navbar-brand {
-    margin: 0 auto !important;
-    justify-content: center;
-  }
-
-  #mainnav .navbar-brand img {
-    max-height: 44px;
-    max-width: 140px;
-    width: auto;
-    transition: max-height .3s ease;
-  }
-
-  #mainnav custom-main-menu,
-  #mainnav custom-main-menu .main-menu {
-    display: flex !important;
-    justify-content: center !important;
-    width: 100%;
-  }
-
-  /* أيقونات الحساب والسلة تُثبَّت في زاوية الصف العلوي */
-  #mainnav .inner > div > div > div:last-child {
-    position: absolute !important;
-    top: 10px;
-    inset-inline-start: 0;
-    margin-block: 0 !important;
-  }
-
-  /* ── عند التمرير (Sticky): نفس التوسيط بشعار أصغر فيبقى الشريط رشيقاً ── */
-  #mainnav.fixed-pinned .navbar-brand img,
-  #mainnav.fixed-header .navbar-brand img {
-    max-height: 38px;
-  }
-
-  #mainnav.fixed-pinned .inner > div > div,
-  #mainnav.fixed-header .inner > div > div {
-    padding-block: 4px;
-  }
-
-  #mainnav.fixed-pinned .inner > div > div > div:first-child,
-  #mainnav.fixed-header .inner > div > div > div:first-child {
-    gap: 2px;
-  }
-
-  #mainnav.fixed-pinned .main-menu > li > a,
-  #mainnav.fixed-header .main-menu > li > a {
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-  }
-}
-
-
-/* ==========================================================================
    إخفاء إجباري لصندوق المحرر الوهمي (مكوّن صور متحركة الافتراضي)
    ========================================================================== */
 .s-block--hero-slider.wide-placeholder,
@@ -1814,317 +1738,26 @@ salla-slider.wide-placeholder {
 }
 
 
+
+
 /* ==========================================================================
-   تقريب القائمة من الشعار (الهيدر الموسّط)
+   الهيدر — بناء واحد نظيف (شبكة CSS)
    --------------------------------------------------------------------------
-   المصدر الأكبر للمسافة ليس الروابط بل القائمة نفسها: الثيم يعطي .main-menu
-   حشواً علوياً pt-8 أي 32px. نصفّره ونخفّف حشو الروابط ونلغي الفجوة.
-   ========================================================================== */
-@media (min-width: 1024px) {
-  #mainnav .inner > div > div > div:first-child {
-    gap: 0 !important;
-  }
+   الصف الأول شبكة ثلاثية: 1fr | auto | 1fr
+     البداية (يمين RTL): البرجر + أيقونة البحث
+     الوسط: الشعار — يتوسط الشاشة فعلياً لأن العمودين متساويان
+     النهاية (يسار RTL): الحساب + السلة
+   الصف الثاني: القائمة في المنتصف.
 
-  #mainnav .navbar-brand {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-    margin-top: 0 !important;
-  }
+   لماذا شبكة لا absolute: العمودان المتساويان يضمنان توسط الشعار بلا
+   حسابات، و justify-self: start/end يتبع اتجاه الصفحة تلقائياً فلا تنعكس
+   الجهات في RTL كما حدث مع inset-inline (البناء يحوّلها إلى left/right).
 
-  #mainnav .main-menu,
-  #mainnav custom-main-menu .main-menu {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    margin-top: 0 !important;
-  }
-
-  #mainnav .main-menu > li > a,
-  #mainnav.fixed-pinned .main-menu > li > a,
-  #mainnav.fixed-header .main-menu > li > a {
-    padding-top: 4px !important;
-    padding-bottom: 10px !important;
-  }
-}
-
-
-/* ==========================================================================
-   الهيدر اللاصق: صف أفقي واحد رشيق
-   --------------------------------------------------------------------------
-   التوسيط العمودي جميل أعلى الصفحة، لكنه عند التمرير يصنع شريطاً سميكاً
-   يأكل الشاشة. فعند الالتصاق نعيد الصف الأفقي: الشعار ثم القائمة بجانبه،
-   والأيقونات في مكانها الطبيعي.
-   ========================================================================== */
-@media (min-width: 1024px) {
-  #mainnav.fixed-pinned .inner > div > div,
-  #mainnav.fixed-header .inner > div > div {
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding-block: 0 !important;
-  }
-
-  #mainnav.fixed-pinned .inner > div > div > div:first-child,
-  #mainnav.fixed-header .inner > div > div > div:first-child {
-    flex-direction: row !important;
-    align-items: center !important;
-    width: auto !important;
-    gap: 0 !important;
-  }
-
-  #mainnav.fixed-pinned .navbar-brand,
-  #mainnav.fixed-header .navbar-brand {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  #mainnav.fixed-pinned .navbar-brand img,
-  #mainnav.fixed-header .navbar-brand img {
-    max-height: 34px;
-    max-width: 110px;
-  }
-
-  /* القائمة بجانب الشعار لا تحته */
-  #mainnav.fixed-pinned custom-main-menu,
-  #mainnav.fixed-header custom-main-menu,
-  #mainnav.fixed-pinned custom-main-menu .main-menu,
-  #mainnav.fixed-header custom-main-menu .main-menu {
-    width: auto !important;
-    justify-content: flex-start !important;
-  }
-
-  #mainnav.fixed-pinned .main-menu > li > a,
-  #mainnav.fixed-header .main-menu > li > a {
-    padding-top: 14px !important;
-    padding-bottom: 14px !important;
-  }
-
-  /* الأيقونات تعود لمكانها الطبيعي في الطرف */
-  #mainnav.fixed-pinned .inner > div > div > div:last-child,
-  #mainnav.fixed-header .inner > div > div > div:last-child {
-    position: relative !important;
-    top: auto !important;
-    inset-inline-start: auto !important;
-    margin-block: 0 !important;
-  }
-}
-
-
-/* ==========================================================================
-   هيدر أخضر داكن بلون الفوتر + إخفاء الشريط العلوي + محاذاة واحدة
+   ممنوع هنا استخدام أصناف Tailwind (.flex…) في المحددات: البناء يستبدلها
+   بكل صنف يستدعيها عبر @apply ويحذف !important.
    ========================================================================== */
 
-/* ١) الشريط العلوي (تواصل معنا + حقل البحث الطويل) مخفي كلياً */
-.store-header .top-navbar {
-  display: none !important;
-}
-
-/* ٢) الخلفية الخضراء في كل الحالات، بلا ظلال ولا حدود فاتحة */
-.store-header,
-#mainnav,
-#mainnav .inner,
-#mainnav.fixed-pinned .inner,
-#mainnav.fixed-header .inner,
-#{$home} .store-header,
-#{$home} .main-nav-container,
-#{$home} .main-nav-container .inner,
-#{$home} .main-nav-container.fixed-pinned .inner,
-#{$home} .main-nav-container.fixed-header .inner {
-  background-color: var(--brand-olive) !important;
-  background-image: none !important;
-  box-shadow: none !important;
-  border-bottom: 0 !important;
-}
-
-/* الرئيسية: الهيدر يعود داخل التدفق بعد أن صار صلباً.
-   لو بقي طافياً (absolute) لغطّى أعلى صورة البنر بشريط أخضر */
-#{$home} .store-header {
-  position: relative !important;
-  top: auto !important;
-}
-
-/* ٣) النصوص والأيقونات كريمية فوق الأخضر */
-#mainnav a,
-#mainnav .menu-item,
-#mainnav button,
-#mainnav i,
-#mainnav .header-btn__icon,
-#{$home} .main-nav-container.fixed-pinned .inner a,
-#{$home} .main-nav-container.fixed-header .inner a,
-#{$home} .main-nav-container.fixed-pinned .inner .menu-item,
-#{$home} .main-nav-container.fixed-header .inner .menu-item,
-#{$home} .main-nav-container.fixed-pinned .inner i,
-#{$home} .main-nav-container.fixed-header .inner i {
-  color: var(--brand-sand) !important;
-}
-
-#mainnav a:hover,
-#mainnav .menu-item:hover {
-  color: #fff !important;
-}
-
-/* حدود دوائر الأيقونات: كريمية شفافة بدل الرمادي */
-#mainnav .header-btn__icon {
-  border-color: rgba(254, 246, 233, .35) !important;
-  background-color: transparent !important;
-}
-
-#mainnav .header-btn__icon:hover {
-  border-color: var(--brand-sand) !important;
-  background-color: rgba(254, 246, 233, .12) !important;
-}
-
-/* شارة عدد السلة تبقى قرمزية لتبرز على الأخضر */
-#mainnav .s-cart-summary-count,
-#mainnav salla-cart-summary .s-cart-summary-count {
-  background-color: var(--brand-crimson) !important;
-  color: #fff !important;
-}
-
-/* زر البحث الجديد */
-.ay-search-btn {
-  @apply border-none outline-none transition-opacity hover:opacity-80;
-  background: transparent;
-  line-height: 0;
-}
-
-.ay-search-btn .header-btn__icon {
-  margin-inline-end: 9px;
-}
-
-/* البحث المنبثق لا يعرض شيئاً في مكانه */
-#mainnav salla-search {
-  display: contents;
-}
-
-/* ٤) محاذاة كل العناصر على خط واحد عند التمرير */
-@media (min-width: 1024px) {
-  #mainnav.fixed-pinned .inner > div > div,
-  #mainnav.fixed-header .inner > div > div,
-  #mainnav.fixed-pinned .inner > div > div > div,
-  #mainnav.fixed-header .inner > div > div > div {
-    align-items: center !important;
-  }
-
-  #mainnav.fixed-pinned .main-menu,
-  #mainnav.fixed-header .main-menu {
-    align-items: center !important;
-  }
-}
-
-
-/* ==========================================================================
-   هيدر شفاف فوق البنر ← أخضر صلب عند النزول (نمط الغربي)
-   --------------------------------------------------------------------------
-   آلية الالتصاق من الثيم: app.js يضيف fixed-pinned / fixed-header، وقاعدة
-   الثيم تجعل .inner بـ position: fixed. فنحن نتحكم باللون لا بالآلية.
-   ========================================================================== */
-
-/* ١) أعلى الرئيسية: الهيدر يطفو شفافاً فوق البنر */
-#{$home} .store-header {
-  position: absolute !important;
-  top: 0 !important;
-  inset-inline: 0 !important;
-  z-index: 50 !important;
-  background-color: transparent !important;
-}
-
-#{$home} #mainnav,
-#{$home} #mainnav .inner {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  border: 0 !important;
-}
-
-/* تدرّج داكن خفيف يضمن قراءة النصوص فوق الصور الفاتحة */
-#{$home} #mainnav .inner {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, .12) 60%, rgba(0, 0, 0, 0) 100%) !important;
-}
-
-/* البنر يبدأ من أعلى الشاشة تماماً */
-#{$home} #main-content,
-.ay-custom-hero {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* ٢) عند النزول: أخضر صلب في كل الصفحات */
-#mainnav.fixed-pinned .inner,
-#mainnav.fixed-header .inner,
-#{$home} #mainnav.fixed-pinned .inner,
-#{$home} #mainnav.fixed-header .inner {
-  position: fixed !important;
-  background-color: var(--brand-olive) !important;
-  background-image: none !important;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, .18) !important;
-}
-
-/* ٣) الألوان كريمية في الحالتين */
-#mainnav a,
-#mainnav button,
-#mainnav i,
-#mainnav .menu-item,
-#mainnav .header-btn__icon,
-#{$home} #mainnav a,
-#{$home} #mainnav i,
-#{$home} #mainnav .menu-item,
-#mainnav.fixed-pinned a,
-#mainnav.fixed-header a,
-#mainnav.fixed-pinned i,
-#mainnav.fixed-header i,
-#mainnav.fixed-pinned .menu-item,
-#mainnav.fixed-header .menu-item {
-  color: var(--brand-sand) !important;
-}
-
-/* ٤) الترتيب: البحث في جهة البداية، السلة والحساب في جهة النهاية،
-      والشعار في المنتصف تماماً */
-@media (min-width: 1024px) {
-  #mainnav .inner > div > div > .ay-search-btn {
-    position: absolute !important;
-    inset-inline-start: 0 !important;
-    top: 50% !important;
-    transform: translateY(-50%);
-    z-index: 2;
-  }
-
-  #mainnav .inner > div > div > div:last-child {
-    position: absolute !important;
-    inset-inline-end: 0 !important;
-    inset-inline-start: auto !important;
-    top: 50% !important;
-    transform: translateY(-50%);
-    z-index: 2;
-  }
-
-  /* عند النزول يعود الصف أفقياً: الأطراف تبقى في مكانها بمحاذاة الوسط */
-  #mainnav.fixed-pinned .inner > div > div > .ay-search-btn,
-  #mainnav.fixed-header .inner > div > div > .ay-search-btn,
-  #mainnav.fixed-pinned .inner > div > div > div:last-child,
-  #mainnav.fixed-header .inner > div > div > div:last-child {
-    position: relative !important;
-    top: auto !important;
-    transform: none;
-    inset-inline: auto !important;
-  }
-}
-
-/* الجوال: صف واحد — بحث، ثم برجر وشعار، ثم السلة والحساب */
-@media (max-width: 1023px) {
-  #mainnav .inner > div > div {
-    align-items: center !important;
-  }
-}
-
-
-/* ==========================================================================
-   هيكل هيدر الغربي: صف أول (بحث | شعار | أيقونات) وصف ثانٍ (القائمة)
-   --------------------------------------------------------------------------
-   تنبيه: ممنوع استخدام أصناف Tailwind مثل .flex في المحددات هنا — البناء
-   يستبدلها بكل صنف يستدعيها عبر @apply ويحذف !important. نستخدم البنية:
-   #mainnav .inner > div(=.container) > div(=الصف)
-   ========================================================================== */
-
-/* ١) لا شريط علوي ولا أي خلفية فوق البنر */
+/* ١) لا شريط علوي ولا فراغ فوق الهيدر */
 .store-header .top-navbar {
   display: none !important;
 }
@@ -2133,7 +1766,89 @@ salla-bullet-delivery-tag:empty {
   display: none !important;
 }
 
-#{$home} .store-header,
+.store-header,
+#mainnav {
+  margin-top: 0 !important;
+  top: 0 !important;
+}
+
+body,
+.app-inner {
+  padding-top: 0 !important;
+}
+
+/* ٢) الصف الأول: شبكة */
+.ay-nav-row {
+  display: grid !important;
+  grid-template-columns: 1fr auto 1fr !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-height: 62px;
+  gap: 10px;
+}
+
+.ay-nav-side {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px;
+}
+
+.ay-nav-start {
+  justify-self: start !important;
+}
+
+.ay-nav-end {
+  justify-self: end !important;
+}
+
+.ay-nav-row .navbar-brand {
+  justify-self: center !important;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+.ay-nav-row .navbar-brand img {
+  max-height: 46px;
+  max-width: 150px;
+  width: auto;
+  transition: max-height .3s ease;
+}
+
+/* ٣) الصف الثاني: القائمة */
+.ay-nav-menu {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin-top: 4px;
+}
+
+.ay-nav-menu custom-main-menu,
+.ay-nav-menu .main-menu {
+  display: flex !important;
+  justify-content: center !important;
+  width: auto !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin: 0 !important;
+}
+
+.ay-nav-menu .main-menu > li > a {
+  padding-top: 6px !important;
+  padding-bottom: 12px !important;
+}
+
+/* ٤) الرئيسية: الهيدر شفاف يطفو فوق البنر */
+#{$home} .store-header {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 100 !important;
+  background-color: transparent !important;
+}
+
 #{$home} #mainnav,
 #{$home} #mainnav > .inner,
 #{$home} #mainnav .inner > div {
@@ -2142,169 +1857,102 @@ salla-bullet-delivery-tag:empty {
   border: 0 !important;
 }
 
-#{$home} .store-header {
-  position: absolute !important;
-  top: 0 !important;
-  inset-inline: 0 !important;
-  width: 100% !important;
-  z-index: 100 !important;
+/* تدرّج داكن خفيف يحفظ قراءة النصوص فوق الصور الفاتحة */
+#{$home} #mainnav > .inner {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .38) 0%, rgba(0, 0, 0, .14) 60%, rgba(0, 0, 0, 0) 100%) !important;
 }
 
-@media (min-width: 1024px) {
-  /* الحاوية: صفّان */
-  #mainnav .inner > div > div {
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: relative !important;
-    padding-top: 12px !important;
-    padding-bottom: 8px !important;
-  }
-
-  /* الصف الأول: الشعار في المنتصف تماماً */
-  #mainnav .inner > div > div > div:first-child {
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-    gap: 8px !important;
-  }
-
-  #mainnav .navbar-brand {
-    margin: 0 auto !important;
-    height: 52px;
-    align-items: center;
-  }
-
-  /* البحث في جهة البداية والأيقونات في جهة النهاية، بمحاذاة الشعار نفسه */
-  #mainnav .inner > div > div > .ay-search-btn,
-  #mainnav .inner > div > div > div:last-child {
-    position: absolute !important;
-    top: 12px !important;
-    height: 52px !important;
-    display: flex !important;
-    align-items: center !important;
-    margin: 0 !important;
-    z-index: 2;
-  }
-
-  #mainnav .inner > div > div > .ay-search-btn {
-    inset-inline-start: 0 !important;
-    inset-inline-end: auto !important;
-  }
-
-  #mainnav .inner > div > div > div:last-child {
-    inset-inline-end: 0 !important;
-    inset-inline-start: auto !important;
-  }
-
-  /* ٢) الصف الثاني: القائمة تحت الشعار بعرض كامل وفي المنتصف */
-  #mainnav custom-main-menu,
-  #mainnav custom-main-menu .main-menu {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    margin-top: 6px !important;
-    padding-top: 0 !important;
-  }
-
-  /* ٣) عند النزول: صف أفقي واحد بخلفية خضراء */
-  #mainnav.fixed-pinned .inner > div > div,
-  #mainnav.fixed-header .inner > div > div {
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-
-  #mainnav.fixed-pinned .inner > div > div > div:first-child,
-  #mainnav.fixed-header .inner > div > div > div:first-child {
-    flex-direction: row !important;
-    align-items: center !important;
-    width: auto !important;
-    gap: 0 !important;
-  }
-
-  #mainnav.fixed-pinned .inner > div > div > .ay-search-btn,
-  #mainnav.fixed-header .inner > div > div > .ay-search-btn,
-  #mainnav.fixed-pinned .inner > div > div > div:last-child,
-  #mainnav.fixed-header .inner > div > div > div:last-child {
-    position: relative !important;
-    top: auto !important;
-    height: auto !important;
-    inset-inline: auto !important;
-  }
-
-  #mainnav.fixed-pinned custom-main-menu,
-  #mainnav.fixed-header custom-main-menu,
-  #mainnav.fixed-pinned custom-main-menu .main-menu,
-  #mainnav.fixed-header custom-main-menu .main-menu {
-    width: auto !important;
-    justify-content: flex-start !important;
-    margin-top: 0 !important;
-  }
-
-  #mainnav.fixed-pinned .navbar-brand,
-  #mainnav.fixed-header .navbar-brand {
-    height: auto !important;
-    margin: 0 !important;
-  }
+/* الصفحات الداخلية: هيدر أخضر صلب */
+body:not(.ay-home) #mainnav,
+body:not(.ay-home) #mainnav > .inner {
+  background-color: var(--brand-olive) !important;
 }
 
-/* الخلفية الخضراء عند النزول في كل الصفحات، بنصوص كريمية */
+/* ٥) عند النزول: أخضر صلب ورشيق في كل الصفحات */
 #mainnav.fixed-pinned .inner,
 #mainnav.fixed-header .inner,
 #{$home} #mainnav.fixed-pinned .inner,
 #{$home} #mainnav.fixed-header .inner {
   background-color: var(--brand-olive) !important;
   background-image: none !important;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, .18) !important;
 }
 
-#mainnav.fixed-pinned a,
-#mainnav.fixed-header a,
-#mainnav.fixed-pinned i,
-#mainnav.fixed-header i,
-#mainnav.fixed-pinned .menu-item,
-#mainnav.fixed-header .menu-item {
+#mainnav.fixed-pinned .ay-nav-row,
+#mainnav.fixed-header .ay-nav-row {
+  min-height: 52px;
+}
+
+#mainnav.fixed-pinned .ay-nav-row .navbar-brand img,
+#mainnav.fixed-header .ay-nav-row .navbar-brand img {
+  max-height: 34px;
+}
+
+#mainnav.fixed-pinned .ay-nav-menu,
+#mainnav.fixed-header .ay-nav-menu {
+  margin-top: 0;
+}
+
+#mainnav.fixed-pinned .ay-nav-menu .main-menu > li > a,
+#mainnav.fixed-header .ay-nav-menu .main-menu > li > a {
+  padding-top: 4px !important;
+  padding-bottom: 8px !important;
+}
+
+/* ٦) الألوان الكريمية في كل الحالات */
+#mainnav a,
+#mainnav button,
+#mainnav i,
+#mainnav .menu-item,
+#mainnav .header-btn__icon {
   color: var(--brand-sand) !important;
 }
 
+#mainnav a:hover,
+#mainnav .menu-item:hover {
+  color: #fff !important;
+}
 
-/* ==========================================================================
-   تصحيح جهة التثبيت في RTL
-   --------------------------------------------------------------------------
-   البناء يحوّل inset-inline-start إلى left وinset-inline-end إلى right،
-   وهو عكس المطلوب في متجر عربي. لذلك نكتب الجهات صراحةً: البحث يميناً
-   والأيقونات يساراً، مع عكسها في الإنجليزية.
-   ========================================================================== */
-@media (min-width: 1024px) {
-  #mainnav .inner > div > div > .ay-search-btn {
-    right: 0 !important;
-    left: auto !important;
+#mainnav .header-btn__icon {
+  border-color: rgba(254, 246, 233, .35) !important;
+  background-color: transparent !important;
+  margin: 0 !important;
+}
+
+#mainnav .header-btn__icon:hover {
+  border-color: var(--brand-sand) !important;
+  background-color: rgba(254, 246, 233, .12) !important;
+}
+
+.ay-search-btn {
+  background: transparent;
+  border: 0;
+  line-height: 0;
+  cursor: pointer;
+  transition: opacity .2s ease;
+}
+
+.ay-search-btn:hover {
+  opacity: .8;
+}
+
+#mainnav salla-search {
+  display: contents;
+}
+
+/* ٧) الجوال: القائمة من البرجر، فصف واحد يكفي */
+@media (max-width: 1023px) {
+  .ay-nav-row {
+    min-height: 56px;
+    gap: 6px;
   }
 
-  #mainnav .inner > div > div > div:last-child {
-    left: 0 !important;
-    right: auto !important;
+  .ay-nav-row .navbar-brand img {
+    max-height: 40px;
+    max-width: 120px;
   }
 
-  [dir="ltr"] #mainnav .inner > div > div > .ay-search-btn {
-    left: 0 !important;
-    right: auto !important;
-  }
-
-  [dir="ltr"] #mainnav .inner > div > div > div:last-child {
-    right: 0 !important;
-    left: auto !important;
-  }
-
-  /* عند النزول لا تثبيت: صف أفقي طبيعي */
-  #mainnav.fixed-pinned .inner > div > div > .ay-search-btn,
-  #mainnav.fixed-header .inner > div > div > .ay-search-btn,
-  #mainnav.fixed-pinned .inner > div > div > div:last-child,
-  #mainnav.fixed-header .inner > div > div > div:last-child {
-    right: auto !important;
-    left: auto !important;
+  .ay-nav-menu {
+    display: none !important;
   }
 }
