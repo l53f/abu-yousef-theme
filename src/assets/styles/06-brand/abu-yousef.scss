@@ -1781,11 +1781,20 @@ body,
 .ay-nav-row {
   display: grid !important;
   grid-template-columns: 1fr auto 1fr !important;
+  grid-template-areas: "start logo end" "menu menu menu" !important;
   align-items: center !important;
   width: 100% !important;
-  min-height: 62px;
-  gap: 10px;
+  column-gap: 10px;
+  row-gap: 2px;
+  /* تنفّس علوي حتى لا تلتصق العناصر بحافة الشاشة */
+  padding-top: 15px !important;
+  padding-bottom: 8px !important;
 }
+
+.ay-nav-start { grid-area: start; }
+.ay-nav-end   { grid-area: end; }
+.ay-nav-row .navbar-brand { grid-area: logo; }
+.ay-nav-menu  { grid-area: menu; }
 
 .ay-nav-side {
   display: flex !important;
@@ -1809,7 +1818,7 @@ body,
 }
 
 .ay-nav-row .navbar-brand img {
-  max-height: 46px;
+  max-height: 42px;
   max-width: 150px;
   width: auto;
   transition: max-height .3s ease;
@@ -1885,7 +1894,7 @@ body:not(.ay-home) #mainnav > .inner {
 
 #mainnav.fixed-pinned .ay-nav-row .navbar-brand img,
 #mainnav.fixed-header .ay-nav-row .navbar-brand img {
-  max-height: 34px;
+  max-height: 30px;
 }
 
 #mainnav.fixed-pinned .ay-nav-menu,
@@ -1954,5 +1963,84 @@ body:not(.ay-home) #mainnav > .inner {
 
   .ay-nav-menu {
     display: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   لا خط أبيض فوق البنر + سطر واحد رفيع عند الالتصاق
+   ========================================================================== */
+html,
+body,
+.app-inner,
+.app-inner > main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* الفراغ الرفيع سببه المعتاد مسافة السطر تحت/فوق الصور السطرية */
+.ay-custom-hero,
+.ay-custom-banner {
+  line-height: 0 !important;
+  font-size: 0 !important;
+  background-color: transparent !important;
+}
+
+.ay-custom-hero img,
+.ay-custom-banner img {
+  vertical-align: top !important;
+}
+
+/* ---- الالتصاق: سطر أفقي واحد رفيع ----
+   المناطق تُعاد توزيعها: الشعار في جهة البداية، القائمة بجانبه،
+   ثم الأيقونات والبحث في جهة النهاية. (في RTL العمود الأول هو اليمين) */
+@media (min-width: 1024px) {
+  #mainnav.fixed-pinned .ay-nav-row,
+  #mainnav.fixed-header .ay-nav-row {
+    grid-template-columns: auto 1fr auto auto !important;
+    grid-template-areas: "logo menu end start" !important;
+    align-items: center !important;
+    min-height: 56px;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    column-gap: 14px;
+    row-gap: 0;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-row .navbar-brand,
+  #mainnav.fixed-header .ay-nav-row .navbar-brand {
+    justify-self: start !important;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-menu,
+  #mainnav.fixed-header .ay-nav-menu {
+    justify-content: flex-start !important;
+    margin-top: 0 !important;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-start,
+  #mainnav.fixed-header .ay-nav-start {
+    justify-self: end !important;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-end,
+  #mainnav.fixed-header .ay-nav-end {
+    justify-self: end !important;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-menu .main-menu > li > a,
+  #mainnav.fixed-header .ay-nav-menu .main-menu > li > a {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+}
+
+/* الجوال: سطر واحد والقائمة من البرجر */
+@media (max-width: 1023px) {
+  .ay-nav-row {
+    grid-template-columns: auto 1fr auto !important;
+    grid-template-areas: "start logo end" !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
   }
 }
