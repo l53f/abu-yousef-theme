@@ -2114,3 +2114,197 @@ salla-slider.wide-placeholder {
     align-items: center !important;
   }
 }
+
+
+/* ==========================================================================
+   هيكل هيدر الغربي: صف أول (بحث | شعار | أيقونات) وصف ثانٍ (القائمة)
+   --------------------------------------------------------------------------
+   تنبيه: ممنوع استخدام أصناف Tailwind مثل .flex في المحددات هنا — البناء
+   يستبدلها بكل صنف يستدعيها عبر @apply ويحذف !important. نستخدم البنية:
+   #mainnav .inner > div(=.container) > div(=الصف)
+   ========================================================================== */
+
+/* ١) لا شريط علوي ولا أي خلفية فوق البنر */
+.store-header .top-navbar {
+  display: none !important;
+}
+
+salla-bullet-delivery-tag:empty {
+  display: none !important;
+}
+
+#{$home} .store-header,
+#{$home} #mainnav,
+#{$home} #mainnav > .inner,
+#{$home} #mainnav .inner > div {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+#{$home} .store-header {
+  position: absolute !important;
+  top: 0 !important;
+  inset-inline: 0 !important;
+  width: 100% !important;
+  z-index: 100 !important;
+}
+
+@media (min-width: 1024px) {
+  /* الحاوية: صفّان */
+  #mainnav .inner > div > div {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    padding-top: 12px !important;
+    padding-bottom: 8px !important;
+  }
+
+  /* الصف الأول: الشعار في المنتصف تماماً */
+  #mainnav .inner > div > div > div:first-child {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  #mainnav .navbar-brand {
+    margin: 0 auto !important;
+    height: 52px;
+    align-items: center;
+  }
+
+  /* البحث في جهة البداية والأيقونات في جهة النهاية، بمحاذاة الشعار نفسه */
+  #mainnav .inner > div > div > .ay-search-btn,
+  #mainnav .inner > div > div > div:last-child {
+    position: absolute !important;
+    top: 12px !important;
+    height: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    z-index: 2;
+  }
+
+  #mainnav .inner > div > div > .ay-search-btn {
+    inset-inline-start: 0 !important;
+    inset-inline-end: auto !important;
+  }
+
+  #mainnav .inner > div > div > div:last-child {
+    inset-inline-end: 0 !important;
+    inset-inline-start: auto !important;
+  }
+
+  /* ٢) الصف الثاني: القائمة تحت الشعار بعرض كامل وفي المنتصف */
+  #mainnav custom-main-menu,
+  #mainnav custom-main-menu .main-menu {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 6px !important;
+    padding-top: 0 !important;
+  }
+
+  /* ٣) عند النزول: صف أفقي واحد بخلفية خضراء */
+  #mainnav.fixed-pinned .inner > div > div,
+  #mainnav.fixed-header .inner > div > div {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  #mainnav.fixed-pinned .inner > div > div > div:first-child,
+  #mainnav.fixed-header .inner > div > div > div:first-child {
+    flex-direction: row !important;
+    align-items: center !important;
+    width: auto !important;
+    gap: 0 !important;
+  }
+
+  #mainnav.fixed-pinned .inner > div > div > .ay-search-btn,
+  #mainnav.fixed-header .inner > div > div > .ay-search-btn,
+  #mainnav.fixed-pinned .inner > div > div > div:last-child,
+  #mainnav.fixed-header .inner > div > div > div:last-child {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    inset-inline: auto !important;
+  }
+
+  #mainnav.fixed-pinned custom-main-menu,
+  #mainnav.fixed-header custom-main-menu,
+  #mainnav.fixed-pinned custom-main-menu .main-menu,
+  #mainnav.fixed-header custom-main-menu .main-menu {
+    width: auto !important;
+    justify-content: flex-start !important;
+    margin-top: 0 !important;
+  }
+
+  #mainnav.fixed-pinned .navbar-brand,
+  #mainnav.fixed-header .navbar-brand {
+    height: auto !important;
+    margin: 0 !important;
+  }
+}
+
+/* الخلفية الخضراء عند النزول في كل الصفحات، بنصوص كريمية */
+#mainnav.fixed-pinned .inner,
+#mainnav.fixed-header .inner,
+#{$home} #mainnav.fixed-pinned .inner,
+#{$home} #mainnav.fixed-header .inner {
+  background-color: var(--brand-olive) !important;
+  background-image: none !important;
+}
+
+#mainnav.fixed-pinned a,
+#mainnav.fixed-header a,
+#mainnav.fixed-pinned i,
+#mainnav.fixed-header i,
+#mainnav.fixed-pinned .menu-item,
+#mainnav.fixed-header .menu-item {
+  color: var(--brand-sand) !important;
+}
+
+
+/* ==========================================================================
+   تصحيح جهة التثبيت في RTL
+   --------------------------------------------------------------------------
+   البناء يحوّل inset-inline-start إلى left وinset-inline-end إلى right،
+   وهو عكس المطلوب في متجر عربي. لذلك نكتب الجهات صراحةً: البحث يميناً
+   والأيقونات يساراً، مع عكسها في الإنجليزية.
+   ========================================================================== */
+@media (min-width: 1024px) {
+  #mainnav .inner > div > div > .ay-search-btn {
+    right: 0 !important;
+    left: auto !important;
+  }
+
+  #mainnav .inner > div > div > div:last-child {
+    left: 0 !important;
+    right: auto !important;
+  }
+
+  [dir="ltr"] #mainnav .inner > div > div > .ay-search-btn {
+    left: 0 !important;
+    right: auto !important;
+  }
+
+  [dir="ltr"] #mainnav .inner > div > div > div:last-child {
+    right: 0 !important;
+    left: auto !important;
+  }
+
+  /* عند النزول لا تثبيت: صف أفقي طبيعي */
+  #mainnav.fixed-pinned .inner > div > div > .ay-search-btn,
+  #mainnav.fixed-header .inner > div > div > .ay-search-btn,
+  #mainnav.fixed-pinned .inner > div > div > div:last-child,
+  #mainnav.fixed-header .inner > div > div > div:last-child {
+    right: auto !important;
+    left: auto !important;
+  }
+}
