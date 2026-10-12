@@ -23,13 +23,13 @@
 
     {# ------------------------------------------------------------------
        ١) البنر الرئيسي
-          hero-desktop.jpg  →  1920 × 799   (من 768px فأعلى)
-          hero-mobile.jpg   →  1080 × 1440  (أقل من 768px)
+          hero-desktop.webp  →  1920 × 799   (من 768px فأعلى)
+          hero-mobile.webp   →  1080 × 1440  (أقل من 768px)
        ------------------------------------------------------------------ #}
     <section class="ay-custom-hero">
         <picture>
-            <source media="(max-width: 767px)" srcset="{{ 'images/hero-mobile.jpg' | asset }}">
-            <img src="{{ 'images/hero-desktop.jpg' | asset }}"
+            <source media="(max-width: 767px)" srcset="{{ 'images/hero-mobile.webp' | asset }}">
+            <img src="{{ 'images/hero-desktop.webp' | asset }}"
                  alt="{{ store.name }}"
                  width="1920" height="799"
                  fetchpriority="high">
@@ -59,18 +59,18 @@
 
          key          اسم داخلي (حروف إنجليزية بلا مسافات)
          title        العنوان الظاهر فوق المنتجات
-         image        صورة البنر 1920 × 666 في src/assets/images
+         image        صورة البنر 1920 × 666 بصيغة webp في src/assets/images
          mobile       صورة بنر الجوال (اختياري) — تُترك '' لاستخدام صورة الكمبيوتر
          url          رابط التصنيف (يُفتح عند الضغط على البنر و"عرض الكل")
          category_id  رقم التصنيف من رابطه: .../c123456 ← 123456
                       إن تُرك '' تُعرض أحدث المنتجات مؤقتاً
        ------------------------------------------------------------------ #}
     {% set ay_sections = [
-        { key: 'honey',  title: 'العسل',           image: 'banner-honey.jpg',  mobile: '', url: '', category_id: '' },
-        { key: 'oils',   title: 'الزيوت الطبيعية', image: 'banner-oils.jpg',   mobile: '', url: '', category_id: '' },
-        { key: 'herbs',  title: 'الأعشاب',         image: 'banner-herbs.jpg',  mobile: '', url: '', category_id: '' },
-        { key: 'salt',   title: 'الملح',            image: 'banner-salt.jpg',   mobile: '', url: '', category_id: '' },
-        { key: 'water',  title: 'الماء',           image: 'banner-water.jpg',  mobile: '', url: '', category_id: '' },
+        { key: 'honey',  title: 'العسل',           image: 'banner-honey.webp',  mobile: '', url: '', category_id: '' },
+        { key: 'oils',   title: 'الزيوت الطبيعية', image: 'banner-oils.webp',   mobile: '', url: '', category_id: '' },
+        { key: 'herbs',  title: 'الأعشاب',         image: 'banner-herbs.webp',  mobile: '', url: '', category_id: '' },
+        { key: 'salt',   title: 'الملح',            image: 'banner-salt.webp',   mobile: '', url: '', category_id: '' },
+        { key: 'water',  title: 'الماء',           image: 'banner-water.webp',  mobile: '', url: '', category_id: '' },
     ] %}
 
     {% for section in ay_sections %}
