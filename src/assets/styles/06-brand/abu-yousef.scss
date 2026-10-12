@@ -2160,3 +2160,43 @@ body,
     line-height: 1.2 !important;
   }
 }
+
+
+/* ==========================================================================
+   نسف أي فاصل علوي + محاذاة الهيدر اللاصق (نهائي)
+   ========================================================================== */
+.header-spacer,
+salla-header-spacer,
+.store-header-spacer {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+}
+
+html,
+body {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+@media (min-width: 1024px) {
+  #mainnav.fixed-pinned .ay-nav-row,
+  #mainnav.fixed-header .ay-nav-row {
+    align-items: center !important;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-row .navbar-brand img,
+  #mainnav.fixed-header .ay-nav-row .navbar-brand img {
+    max-height: 40px !important;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-menu .main-menu > li > a,
+  #mainnav.fixed-header .ay-nav-menu .main-menu > li > a {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+}
