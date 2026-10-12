@@ -2044,3 +2044,119 @@ body,
     padding-bottom: 10px !important;
   }
 }
+
+
+/* ==========================================================================
+   لمسات أخيرة: لا فاصل علوي، تدرّج ناعم بدل الشريط، والتصاق مستوٍ تماماً
+   ========================================================================== */
+
+/* ١) أي فاصل تحقنه سلة لتعويض ارتفاع الهيدر */
+.header-spacer,
+.store-header-spacer {
+  display: none !important;
+}
+
+html,
+body,
+.app-inner {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* ٢) التدرّج: كان على .inner بارتفاعها المحدود فينتهي بحدّ حاد ويبدو شريطاً
+      رمادياً. ننقله إلى طبقة ممتدة 200px تتلاشى تدريجياً خلف الهيدر */
+#{$home} #mainnav > .inner {
+  background-image: none !important;
+}
+
+#{$home} .store-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 200px;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(to bottom,
+    rgba(0, 0, 0, .42) 0%,
+    rgba(0, 0, 0, .22) 35%,
+    rgba(0, 0, 0, .08) 70%,
+    rgba(0, 0, 0, 0) 100%);
+}
+
+/* ظل نصي خفيف يضمن القراءة فوق الصور الفاتحة بلا أي شريط */
+#{$home} #mainnav a,
+#{$home} #mainnav .menu-item,
+#{$home} #mainnav i {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .45);
+}
+
+#mainnav.fixed-pinned a,
+#mainnav.fixed-header a,
+#mainnav.fixed-pinned .menu-item,
+#mainnav.fixed-header .menu-item,
+#mainnav.fixed-pinned i,
+#mainnav.fixed-header i {
+  text-shadow: none !important;
+}
+
+/* ٣) الهيدر اللاصق: شعار أكبر وكل العناصر على خط استواء واحد */
+@media (min-width: 1024px) {
+  #mainnav.fixed-pinned .ay-nav-row,
+  #mainnav.fixed-header .ay-nav-row {
+    min-height: 64px !important;
+    align-items: center !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-row .navbar-brand img,
+  #mainnav.fixed-header .ay-nav-row .navbar-brand img {
+    max-height: 42px !important;
+    max-width: 150px !important;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-row > *,
+  #mainnav.fixed-header .ay-nav-row > * {
+    align-self: center !important;
+    margin: 0 !important;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-row .navbar-brand,
+  #mainnav.fixed-header .ay-nav-row .navbar-brand,
+  #mainnav.fixed-pinned .ay-nav-start,
+  #mainnav.fixed-header .ay-nav-start,
+  #mainnav.fixed-pinned .ay-nav-end,
+  #mainnav.fixed-header .ay-nav-end,
+  #mainnav.fixed-pinned .ay-nav-menu,
+  #mainnav.fixed-header .ay-nav-menu {
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+  }
+
+  /* الروابط: بلا حشو عمودي يدفعها خارج خط المنتصف */
+  #mainnav.fixed-pinned .ay-nav-menu .main-menu,
+  #mainnav.fixed-header .ay-nav-menu .main-menu {
+    align-items: center !important;
+    height: 100% !important;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-menu .main-menu > li,
+  #mainnav.fixed-header .ay-nav-menu .main-menu > li {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  #mainnav.fixed-pinned .ay-nav-menu .main-menu > li > a,
+  #mainnav.fixed-header .ay-nav-menu .main-menu > li > a {
+    display: flex !important;
+    align-items: center !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    line-height: 1.2 !important;
+  }
+}
