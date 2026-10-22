@@ -74,10 +74,14 @@
     ] %}
 
     {% for section in ay_sections %}
+        {# رابط القسم: يُولَّد من رقم التصنيف تلقائياً بنمط روابط سلة (/-/c123456).
+           ولو عبّأ التاجر حقل url يدوياً فهو يغلب القيمة المولَّدة. #}
+        {% set cat_url = section.url ?: (section.category_id ? store.url ~ '/-/c' ~ section.category_id : '') %}
+
         <section class="ay-custom-section ay-custom-section--{{ section.key }}">
 
             <div class="ay-custom-banner">
-                {% if section.url %}<a href="{{ section.url }}" aria-label="{{ section.title }}">{% endif %}
+                {% if cat_url %}<a href="{{ cat_url }}" aria-label="{{ section.title }}">{% endif %}
                     <picture>
                         {% if section.mobile %}
                             <source media="(max-width: 767px)" srcset="{{ ('images/' ~ section.mobile) | asset }}">
@@ -87,7 +91,7 @@
                              width="1920" height="666"
                              loading="lazy">
                     </picture>
-                {% if section.url %}</a>{% endif %}
+                {% if cat_url %}</a>{% endif %}
             </div>
 
             <div class="ay-custom-products container">
@@ -101,7 +105,7 @@
                     {% endif %}
                     limit="10"
                     block-title="{{ section.title }}"
-                    {% if section.url %}display-all-url="{{ section.url }}"{% endif %}
+                    {% if cat_url %}display-all-url="{{ cat_url }}"{% endif %}
                 ></salla-products-slider>
             </div>
 
